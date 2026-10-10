@@ -464,7 +464,7 @@ if __name__ == '__main__':
                    page_hero('404', 'Hata 404', 'Bu sayfa bulunamadı.', 'Adres değişmiş ya da yanlış yazılmış olabilir. Ana sayfadan devam edebilirsiniz.',
                              '\n      <p style="margin-top:28px"><a class="btn btn-primary" href="index.html">Ana sayfaya dön</a></p>'))
     with open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8') as f:
-        f.write(nf.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<base href="/">\n<meta name="robots" content="noindex">', 1))
+        f.write(nf.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<script>document.write(\'<base href="\' + (/\\.github\\.io$/.test(location.hostname) ? \'/\' + location.pathname.split(\'/\')[1] + \'/\' : \'/\') + \'">\')</script>\n<meta name="robots" content="noindex">', 1))
     os.makedirs(os.path.join(ROOT, 'demos'), exist_ok=True)
     for d in DEMOS:
         with open(os.path.join(ROOT, 'demos', d[0] + '.html'), 'w', encoding='utf-8') as f:

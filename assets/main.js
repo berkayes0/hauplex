@@ -19,7 +19,7 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Form: validates in the browser, then posts to Netlify Forms when served from the live site.
+  // Form: validates in the browser, then sends via FormSubmit to the form's data-to address when served from the live site.
   var filters = document.querySelector('.filters');
   if (filters) {
     filters.addEventListener('click', function (e) {
@@ -35,7 +35,7 @@
 
   var form = document.getElementById('contact-form');
   var status = document.getElementById('form-status');
-  var endpoint = /(^|\.)hauplex\.|\.netlify\.app$/.test(location.hostname) ? '/' : '';
+  var endpoint = form && /(^|\.)hauplex\.|\.github\.io$/.test(location.hostname) ? 'https://formsubmit.co/ajax/' + form.getAttribute('data-to') : '';
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
     var missing = Array.prototype.filter.call(form.querySelectorAll('[required]'), function (el) { return !el.value.trim(); });
@@ -58,7 +58,7 @@
       status.textContent = 'Teşekkürler! Form doğru dolduruldu. (Bu önizlemede form henüz bir e-posta servisine bağlı değil, mesaj gönderilmedi.)';
       return;
     }
-    fetch(endpoint, { method: 'POST', body: new URLSearchParams(new FormData(form)).toString(), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
       .then(function (r) {
         if (!r.ok) throw new Error();
         status.className = 'form-status';
