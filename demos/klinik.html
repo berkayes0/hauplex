@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lavin Diş Kliniği · Hauplex demo</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22 xmlns:c2pa=%22http://c2pa.org/manifest%22%3E%3Cmetadata%3E%3Cc2pa:manifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo1ODMxMDk0YS03NmFmLTQzOTctYTJjMC1hMWI2MjI5Y2VlMWIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaK81mBHbTk9w%2BFrl9%2BlK2oEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0ZGNkNWEwYS1jZTdhLTQ2ODgtODgxYy1mMTVkMGU5OWI5MWJscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo9JU%2BJ3CN52//6ZHVsOHP4AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggOALOs0bC6c9qwF2jLDxeIjE%2Bu/LjWiVm4vRLygZhRnWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBQJj3aVjFue5ewbs0S9ovcAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAfwCXyHIdXVaQD7N39F7Q3pMMpWbUWaZABRwoq4HtGi2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjU4MzEwOTRhLTc2YWYtNDM5Ny1hMmMwLWExYjYyMjljZWUxYi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmRkZDE1NGM4LTI1N2YtNDFlYy1iNWIxLTAxOGY0ZmUwYjQyZnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCA4As6zRsLpz2rAXaMsPF4iMT678uNaJWbi9EvKBmFGdaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggJ9zmNADvyhyK7JPMqjuuos/CSyTSIBJFsVZ1nxVj%2BGSiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggk56B955C3cOMHVIeAni5Up2m3uoxsRBikxuSTa0K%2BRh0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQLquS1CsjLCVX0/POQqSlNqDuq4Njbkymw9Sk1mZH6oUUvV61ppUPQx1i1vVMPPo2AQj82O6GKrBkYoRfX0pMa4=%3C/c2pa:manifest%3E%3C/metadata%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%232340E8%22/%3E%3Cg transform=%22translate%2816 16%29 scale%28.8%29 translate%28-16 -15.6%29%22%3E%3Cg fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%224%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4%22/%3E%3C/g%3E%3Ccircle cx=%2210%22 cy=%225%22 r=%223.6%22 fill=%22%23FFFFFF%22/%3E%3Ccircle cx=%2222%22 cy=%2225.6%22 r=%223.3%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%222.8%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Instrument+Sans:wght@500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>body{margin:0}
+.demobar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:#0E1420;color:#E8ECF2;font:500 14px/1.3 "Instrument Sans","Segoe UI",system-ui,sans-serif;border-bottom:1px solid #263042}
+.demobar-in{max-width:1240px;margin:0 auto;padding:10px clamp(16px,3vw,32px);display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap}
+.demobar a{color:inherit;text-decoration:none}
+.demobar-l{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap}
+.demobar-brand{display:inline-flex;align-items:center;gap:8px;font-family:"Bricolage Grotesque","Segoe UI",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.demobar-brand svg{width:24px;height:24px}
+.demobar-tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:4px 8px;border-radius:5px;background:#F2B4551f;color:#F2B455}
+.demobar-name{color:#8E98AB}.demobar-name b{color:#E8ECF2;font-weight:600}
+.demobar-r{display:flex;gap:8px;flex-wrap:wrap}
+.demobar-r a{padding:8px 14px;border-radius:999px;border:1px solid #263042;font-weight:600;font-size:13px;white-space:nowrap}
+.demobar-r a:hover{border-color:#E8ECF2}
+.demobar-r a.go{background:#7086FF;border-color:#7086FF;color:#0B0F16}
+@media (max-width:640px){.demobar-name{display:none}}
+</style>
+</head>
+<body>
+<div class="demobar"><div class="demobar-in">
+  <div class="demobar-l"><a class="demobar-brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="#7086FF" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4"/></g><circle cx="10" cy="5" r="3.6" fill="#7086FF"/><circle cx="22" cy="25.6" r="3.3" fill="none" stroke="#7086FF" stroke-width="2.8"/></svg>hauplex</a><span class="demobar-tag">Demo tasarım</span><span class="demobar-name"><b>Lavin Diş Kliniği</b> · Sağlık · Klinik web sitesi ve online randevu</span></div>
+  <div class="demobar-r"><a href="../referanslar.html">← Tüm referanslar</a><a class="go" href="../iletisim.html">Benzerini isteyin</a></div>
+</div></div>
+
+<style>
+.d{position:relative}
+.d [data-go],.d [data-act],.d [role="button"]{cursor:pointer}
+.d [role="button"]:focus-visible,.d button:focus-visible,.d select:focus-visible,.d input:focus-visible{outline:2px solid var(--k-accent,#2340E8);outline-offset:2px}
+.d button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit}
+.d section,.d [id]{scroll-margin-top:72px}
+.k-toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:200;display:grid;gap:8px;width:min(420px,calc(100vw - 32px));pointer-events:none}
+.k-toast{background:var(--k-ink,#111);color:var(--k-bg,#fff);padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.4;box-shadow:0 10px 30px -10px rgba(0,0,0,.45);animation:kIn .25s ease;pointer-events:auto}
+.k-toast.ok{border-left:4px solid #2FB57A}.k-toast.warn{border-left:4px solid #E5A11A}
+@keyframes kIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.k-back{position:fixed;inset:0;z-index:190;background:rgba(10,12,16,.55);display:grid;place-items:center;padding:16px;animation:kFade .2s ease}
+@keyframes kFade{from{opacity:0}to{opacity:1}}
+.k-modal{background:var(--k-bg,#fff);color:var(--k-ink,#111);width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);animation:kIn .25s ease}
+.k-mh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--k-line,rgba(0,0,0,.1))}
+.k-mh h3{margin:0;font-size:19px;line-height:1.25;text-transform:none;letter-spacing:0}
+.k-x{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;opacity:.7}
+.k-x:hover{opacity:1;background:var(--k-line,rgba(0,0,0,.08))}
+.k-mb{padding:20px 22px;display:grid;gap:14px;font-size:15px;line-height:1.55}
+.k-mb p{margin:0}
+.k-mf{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:0 22px 20px}
+.k-btn{font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;border:1px solid var(--k-line,rgba(0,0,0,.15))}
+.k-btn.p{background:var(--k-accent,#2340E8);color:var(--k-on,#fff);border-color:var(--k-accent,#2340E8)}
+.k-field{display:grid;gap:6px}
+.k-field label{font-size:13px;font-weight:600;opacity:.75}
+.k-field input,.k-field select,.k-field textarea{font:inherit;font-size:15px;color:inherit;background:transparent;border:1px solid var(--k-line,rgba(0,0,0,.18));border-radius:10px;padding:11px 12px;width:100%}
+.k-field textarea{min-height:90px;resize:vertical}
+.k-field input:focus,.k-field select:focus,.k-field textarea:focus{outline:none;border-color:var(--k-accent,#2340E8)}
+.k-err{font-size:13px;color:#D64545}
+.k-dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}
+.k-dl dt{opacity:.65}.k-dl dd{margin:0;font-weight:600}
+.k-note{font-size:12px;opacity:.65}
+</style>
+<style>
+.d{--k-accent:#0F5C58;--k-on:#fff;--k-ink:#173836;--k-bg:#fff;--k-line:#E3E8E4;--bg:#FBFAF7;--card:#FFFFFF;--ink:#173836;--muted:#5F7472;--line:#E3E8E4;--teal:#0F5C58;--mint:#DCEDE7;--blush:#F4DDD2;--sand:#F3EEE6;
+  font-family:"Nunito Sans",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.6}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3{font-family:"Fraunces",Georgia,serif;font-weight:400;line-height:1.1;margin:0;letter-spacing:-.01em}
+.d p{margin:0}.d ul{list-style:none;margin:0;padding:0}
+.d .w{max-width:1140px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.d .nav{display:flex;justify-content:space-between;align-items:center;gap:20px;height:80px}
+.d .logo{font-family:"Fraunces",serif;font-size:24px;display:flex;align-items:center;gap:10px}
+.d .logo i{width:30px;height:30px;border-radius:50%;background:var(--teal);position:relative}
+.d .logo i::after{content:"";position:absolute;left:8px;right:8px;top:14px;height:7px;border:2px solid #fff;border-top:0;border-radius:0 0 10px 10px}
+.d .menu{display:flex;gap:28px;font-size:15px;color:var(--muted)}
+.d .cta{background:var(--teal);color:#fff;font-weight:700;font-size:14px;padding:12px 20px;border-radius:999px;white-space:nowrap}
+.d .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center;padding-block:48px 80px}
+.d .hero small{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.d .hero h1{font-size:clamp(42px,5.6vw,72px);margin-top:16px}
+.d .hero h1 em{font-style:italic;color:var(--teal)}
+.d .hero p{font-size:18px;color:var(--muted);max-width:46ch;margin-top:20px}
+.d .hb{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.d .ghost{font-weight:700;font-size:14px;padding:12px 20px;border-radius:999px;border:1px solid var(--line)}
+.d .visual{position:relative;aspect-ratio:1/1.05;max-width:100%;border-radius:200px 200px 24px 24px;background:linear-gradient(160deg,var(--mint),var(--blush));overflow:hidden}
+.d .visual::before{content:"";position:absolute;left:18%;right:18%;top:38%;height:22%;border:10px solid #fff;border-top:0;border-radius:0 0 200px 200px;opacity:.9}
+.d .badge{position:absolute;left:20px;bottom:20px;right:20px;background:#fff;border-radius:16px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 10px 30px -12px #17383640}
+.d .badge b{display:block;font-size:15px}.d .badge span{font-size:13px;color:var(--muted)}
+.d .badge em{font-style:normal;font-weight:700;color:var(--teal);font-size:14px;white-space:nowrap}
+.d section.s{padding-block:80px}
+.d .sh{display:grid;gap:12px;max-width:620px;margin-bottom:40px}
+.d .sh small{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.d .sh h2{font-size:clamp(32px,4vw,48px)}
+.d .treat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.d .treat li{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;gap:10px;align-content:start}
+.d .treat i{width:44px;height:44px;border-radius:14px;background:var(--mint);display:block}
+.d .treat li:nth-child(even) i{background:var(--blush)}
+.d .treat h3{font-size:24px}
+.d .treat p{font-size:15px;color:var(--muted)}
+.d .sand{background:var(--sand)}
+.d .docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.d .doc{display:grid;gap:14px}
+.d .av{aspect-ratio:1/1;max-width:100%;border-radius:20px;display:grid;place-items:center;font-family:"Fraunces",serif;font-size:56px;color:var(--teal)}
+.d .doc h3{font-size:22px}.d .doc p{font-size:14px;color:var(--muted)}
+.d .booking{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
+.d .bk{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,3vw,32px);display:grid;gap:22px}
+.d .bk h3{font-family:"Nunito Sans",sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.d .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.d .opts input{position:absolute;opacity:0;pointer-events:none}
+.d .opts label{cursor:pointer;font-size:14px;font-weight:600;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);transition:.15s}
+.d .opts label:hover{border-color:var(--teal)}
+.d .opts input:checked+label{background:var(--teal);border-color:var(--teal);color:#fff}
+.d .opts input:disabled+label{opacity:.4;text-decoration:line-through;cursor:not-allowed}
+.d .opts input:focus-visible+label{outline:2px solid var(--teal);outline-offset:2px}
+.d .days label{display:grid;text-align:center;min-width:64px;line-height:1.2}
+.d .days label small{font-weight:400;font-size:12px;opacity:.8}
+.d .times{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}
+.d .times label{text-align:center}
+.d .sum{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;font-size:14px;color:var(--muted)}
+.d .sum b{color:var(--ink)}
+.d .info{display:grid;gap:18px}
+.d .info p{color:var(--muted)}
+.d .info ul{display:grid;gap:12px}
+.d .info li{display:flex;gap:12px;align-items:baseline}
+.d .info li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal);flex:none;transform:translateY(-2px)}
+.d .foot{border-top:1px solid var(--line);padding-block:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--muted)}
+.d .menu button{color:inherit}.d .menu button:hover{color:var(--teal)}
+.d .burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);font-size:18px;text-align:center}
+.d .cta:hover{filter:brightness(1.1)}.d .ghost:hover{border-color:var(--teal)}
+.d .badge em{cursor:pointer}
+.d .treat li{cursor:pointer;transition:transform .2s,border-color .2s}.d .treat li:hover{transform:translateY(-3px);border-color:var(--teal)}
+.d .treat li span{font-size:13px;font-weight:700;color:var(--teal)}
+.d .doc{cursor:pointer}.d .doc:hover .av{filter:brightness(.97)}
+.d .w{position:relative}
+@media (max-width:900px){
+  .d .menu{display:none;position:absolute;top:80px;left:clamp(16px,4vw,40px);right:clamp(16px,4vw,40px);z-index:20;background:var(--card);border:1px solid var(--line);border-radius:16px;flex-direction:column;gap:0;padding:8px 16px}
+  .d .menu.open{display:flex}.d .menu button{padding:12px 0;text-align:left;border-bottom:1px solid var(--line)}
+  .d .burger{display:block}
+  .d .hero,.d .booking{grid-template-columns:minmax(0,1fr)}
+  .d .visual{max-width:420px}
+  .d .treat,.d .docs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){.d .treat,.d .docs{grid-template-columns:minmax(0,1fr)}.d .nav .cta{display:none}}
+</style>
+<div class="d">
+  <div class="w">
+    <div class="nav">
+      <div class="logo"><i></i>Lavin</div>
+      <nav class="menu" aria-label="Menü"><button type="button" data-go="#tedaviler">Tedaviler</button><button type="button" data-go="#hekimler">Hekimlerimiz</button><button type="button" data-go="#randevu">Randevu</button><button type="button" data-go="#randevu">İletişim</button></nav>
+      <div style="display:flex;gap:10px;align-items:center"><button type="button" class="cta" data-go="#randevu">Online randevu</button><button type="button" class="burger" aria-label="Menüyü aç" aria-expanded="false">☰</button></div>
+    </div>
+    <div class="hero">
+      <div>
+        <small>Kadıköy · İstanbul</small>
+        <h1>Gülüşünüz için <em>sakin</em> ve güvenli bir klinik.</h1>
+        <p>İmplanttan ortodontiye, deneyimli hekimlerimizle ağız ve diş sağlığınızın her aşamasında yanınızdayız. Randevunuzu birkaç tıkla oluşturun.</p>
+        <div class="hb"><button type="button" class="cta" data-go="#randevu">Randevu oluşturun</button><button type="button" class="ghost" data-go="#tedaviler">Tedavileri inceleyin</button></div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="badge"><div><b>Pazartesi için boş saat var</b><span>Dt. Selin Arslan · 15:30</span></div><em role="button" tabindex="0" data-act="quick">Hemen ayırt</em></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="s sand" id="tedaviler"><div class="w">
+    <div class="sh"><small>Tedaviler</small><h2>İhtiyacınız olan her tedavi tek çatı altında</h2></div>
+    <ul class="treat">
+      <li role="button" tabindex="0" data-tr="İmplant"><i></i><h3>İmplant</h3><p>Eksik dişleriniz için kalıcı ve doğal görünümlü çözümler.</p><span>Randevu al →</span></li>
+      <li role="button" tabindex="0" data-tr="Ortodonti"><i></i><h3>Ortodonti</h3><p>Şeffaf plak ve braket seçenekleriyle düzgün dişler.</p><span>Randevu al →</span></li>
+      <li role="button" tabindex="0" data-tr="Diş beyazlatma"><i></i><h3>Diş beyazlatma</h3><p>Tek seansta ofis tipi beyazlatma ya da ev tipi uygulama.</p><span>Randevu al →</span></li>
+      <li role="button" tabindex="0" data-tr="Estetik dolgu"><i></i><h3>Estetik dolgu</h3><p>Dişinizin renginde, fark edilmeyen kompozit dolgular.</p><span>Randevu al →</span></li>
+      <li role="button" tabindex="0" data-tr="Çocuk diş hekimliği"><i></i><h3>Çocuk diş hekimliği</h3><p>Çocuklara özel, korkutmayan ve oyunla destekli tedavi.</p><span>Randevu al →</span></li>
+      <li role="button" tabindex="0" data-tr="Kanal tedavisi"><i></i><h3>Kanal tedavisi</h3><p>Mikroskop destekli, tek seansta tamamlanabilen tedavi.</p><span>Randevu al →</span></li>
+    </ul>
+  </div></section>
+
+  <section class="s" id="hekimler"><div class="w">
+    <div class="sh"><small>Hekimlerimiz</small><h2>Sizi dinleyen bir ekip</h2></div>
+    <div class="docs">
+      <div class="doc" role="button" tabindex="0" data-doc="0"><div class="av" style="background:var(--mint)">SA</div><div><h3>Dt. Selin Arslan</h3><p>Protetik diş tedavisi · İmplant</p></div></div>
+      <div class="doc" role="button" tabindex="0" data-doc="1"><div class="av" style="background:var(--blush)">KÖ</div><div><h3>Dr. Kerem Öz</h3><p>Ortodonti uzmanı</p></div></div>
+      <div class="doc" role="button" tabindex="0" data-doc="2"><div class="av" style="background:var(--sand)">EY</div><div><h3>Dt. Ece Yalçın</h3><p>Çocuk diş hekimliği</p></div></div>
+    </div>
+  </div></section>
+
+  <section class="s sand" id="randevu"><div class="w booking">
+    <div class="info">
+      <div class="sh" style="margin-bottom:0"><small>Online randevu</small><h2>Size uygun saati seçin</h2></div>
+      <p>Randevunuz anında sisteme işlenir. Bir gün önce SMS ile hatırlatma gönderilir, isterseniz aynı mesajdan iptal edebilirsiniz.</p>
+      <ul><li>Hafta içi 09:00 – 20:00, cumartesi 10:00 – 16:00</li><li>Moda Caddesi No: 00, Kadıköy</li><li>0216 000 00 00</li></ul>
+    </div>
+    <div class="bk">
+      <div><h3>Tedavi</h3><div class="opts" id="k-tr"></div></div>
+      <div><h3>Gün</h3><div class="opts days" id="k-day"></div></div>
+      <div><h3>Saat</h3><div class="opts times" id="k-time"></div></div>
+      <div class="sum"><span id="k-sum">Hekim: <b>Dt. Selin Arslan</b> · Süre: <b>30 dk</b></span><button type="button" class="cta" id="k-confirm">Randevuyu onayla</button></div>
+    </div>
+  </div></section>
+
+  <div class="w"><div class="foot"><span>© Lavin Ağız ve Diş Sağlığı Polikliniği</span><span>KVKK · Hasta hakları</span></div></div>
+</div>
+<script>
+function demoKit(root) {
+  var host = root.querySelector('.d');
+  var toasts = document.createElement('div');
+  toasts.className = 'k-toasts';
+  toasts.setAttribute('role', 'status');
+  host.appendChild(toasts);
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'k-toast ' + (type || 'ok');
+    t.textContent = msg;
+    toasts.appendChild(t);
+    setTimeout(function () { t.remove(); }, 3200);
+  }
+
+  // modal({ title, body: html, actions: [{ label, primary, onClick(close, el) }], form: { fields: [...], submit, onSubmit(data, close) } })
+  function modal(o) {
+    var back = document.createElement('div');
+    back.className = 'k-back';
+    var fields = '';
+    if (o.form) {
+      fields = o.form.fields.map(function (f, i) {
+        var id = 'kf-' + Date.now() + '-' + i;
+        var ctl;
+        if (f.type === 'select') ctl = '<select id="' + id + '" name="' + f.name + '">' + f.options.map(function (op) { return '<option>' + esc(op) + '</option>'; }).join('') + '</select>';
+        else if (f.type === 'textarea') ctl = '<textarea id="' + id + '" name="' + f.name + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '"></textarea>';
+        else ctl = '<input id="' + id + '" name="' + f.name + '" type="' + (f.type || 'text') + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '" value="' + esc(f.value || '') + '">';
+        return '<div class="k-field"><label for="' + id + '">' + esc(f.label) + '</label>' + ctl + '</div>';
+      }).join('') + '<div class="k-err" hidden></div>';
+    }
+    var acts = (o.actions || []).map(function (a, i) { return '<button type="button" class="k-btn' + (a.primary ? ' p' : '') + '" data-k="' + i + '">' + esc(a.label) + '</button>'; }).join('');
+    if (o.form) acts = '<button type="button" class="k-btn" data-k="cancel">Vazgeç</button><button type="submit" class="k-btn p">' + esc(o.form.submit || 'Gönder') + '</button>';
+    var inner = '<div class="k-mh"><h3>' + esc(o.title) + '</h3><button type="button" class="k-x" aria-label="Kapat">×</button></div>' +
+      '<div class="k-mb">' + (o.body || '') + fields + '</div>' + (acts ? '<div class="k-mf">' + acts + '</div>' : '');
+    back.innerHTML = o.form ? '<form class="k-modal" role="dialog" aria-modal="true" novalidate>' + inner + '</form>' : '<div class="k-modal" role="dialog" aria-modal="true">' + inner + '</div>';
+    host.appendChild(back);
+    var box = back.firstChild;
+    function close() { back.remove(); document.removeEventListener('keydown', onKey); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', onKey);
+    back.addEventListener('click', function (e) {
+      if (e.target === back || e.target.closest('.k-x') || e.target.closest('[data-k="cancel"]')) { close(); return; }
+      var b = e.target.closest('[data-k]');
+      if (b && o.actions) { var a = o.actions[+b.getAttribute('data-k')]; if (a.onClick) a.onClick(close, box); else close(); }
+    });
+    if (o.form) {
+      box.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var err = box.querySelector('.k-err'), data = {}, bad = null;
+        o.form.fields.forEach(function (f) {
+          var el = box.querySelector('[name="' + f.name + '"]');
+          data[f.name] = el.value.trim();
+          if (!bad && f.required && !data[f.name]) bad = el;
+          if (!bad && f.type === 'tel' && data[f.name] && data[f.name].replace(/\D/g, '').length < 10) bad = el;
+          if (!bad && f.type === 'email' && data[f.name] && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data[f.name])) bad = el;
+        });
+        if (bad) { err.hidden = false; err.textContent = 'Lütfen işaretli alanı doğru doldurun: ' + bad.previousSibling.textContent + '.'; bad.focus(); return; }
+        o.form.onSubmit(data, close);
+      });
+    }
+    var first = box.querySelector('input,select,textarea') || box.querySelector('.k-x');
+    if (first) first.focus();
+    return box;
+  }
+
+  function money(n) { return '₺' + n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+  function go(sel) {
+    var el = root.querySelector(sel);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // [data-go="#id"] scrolls; role=button elements respond to Enter and Space.
+  root.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-go]');
+    if (g) { e.preventDefault(); go(g.getAttribute('data-go')); }
+  });
+  root.addEventListener('keydown', function (e) {
+    var b = e.target.closest && e.target.closest('[role="button"]');
+    if (b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); b.click(); }
+  });
+  root.querySelectorAll('[data-go],[data-act]').forEach(function (el) {
+    if (el.tagName !== 'BUTTON' && el.tagName !== 'A' && !el.hasAttribute('role')) { el.setAttribute('role', 'button'); el.tabIndex = 0; }
+  });
+
+  return { toast: toast, modal: modal, money: money, go: go, esc: esc, host: host };
+}
+
+(function (root, kit) {
+var TR = [
+  { n: 'Kontrol ve muayene', doc: 0, dk: 30 }, { n: 'İmplant', doc: 0, dk: 45 }, { n: 'Ortodonti', doc: 1, dk: 30 },
+  { n: 'Diş beyazlatma', doc: 0, dk: 60 }, { n: 'Estetik dolgu', doc: 0, dk: 45 }, { n: 'Çocuk diş hekimliği', doc: 2, dk: 30 }, { n: 'Kanal tedavisi', doc: 1, dk: 60 }
+];
+var DOCS = [
+  { n: 'Dt. Selin Arslan', a: 'Protetik diş tedavisi ve implant', b: '12 yıllık deneyim. İmplant üstü protezler ve gülüş tasarımı üzerine çalışıyor.' },
+  { n: 'Dr. Kerem Öz', a: 'Ortodonti uzmanı', b: 'Şeffaf plak tedavisinde sertifikalı. Yetişkin ortodontisi ve kanal tedavileri.' },
+  { n: 'Dt. Ece Yalçın', a: 'Çocuk diş hekimliği', b: 'Çocuklarda koruyucu tedavi, fissür örtücü ve korkusuz diş hekimliği yaklaşımı.' }
+];
+var DAYS = [['Pzt', '12 Eki'], ['Sal', '13 Eki'], ['Çar', '14 Eki'], ['Per', '15 Eki'], ['Cum', '16 Eki'], ['Cmt', '17 Eki']];
+var TIMES = ['09:00', '09:30', '10:30', '11:00', '14:00', '15:30', '17:00', '18:30'];
+var busy = { 0: ['09:00', '11:00', '17:00'], 1: ['09:00', '10:30', '17:00'], 2: ['14:00', '18:30'], 3: ['09:30', '10:30', '15:30'], 4: ['11:00', '14:00'], 5: ['09:00', '17:00', '18:30'] };
+var sel = { tr: 0, day: 1, time: '14:00' };
+var $ = function (s) { return root.querySelector(s); };
+function radio(group, id, label, checked, disabled) {
+  return '<input type="radio" name="' + group + '" id="' + id + '"' + (checked ? ' checked' : '') + (disabled ? ' disabled' : '') + '><label for="' + id + '">' + label + '</label>';
+}
+function render() {
+  $('#k-tr').innerHTML = TR.map(function (t, i) { return radio('kt', 'kt' + i, t.n, i === sel.tr); }).join('');
+  $('#k-day').innerHTML = DAYS.map(function (d, i) { return radio('kd', 'kd' + i, d[0] + '<small>' + d[1] + '</small>', i === sel.day); }).join('');
+  var b = busy[sel.day] || [];
+  if (b.indexOf(sel.time) > -1) sel.time = TIMES.filter(function (t) { return b.indexOf(t) < 0; })[0];
+  $('#k-time').innerHTML = TIMES.map(function (t, i) { var off = b.indexOf(t) > -1 || (sel.day === 5 && (t > '16:00' || t < '10:00')); return radio('ks', 'ks' + i, t, t === sel.time && !off, off); }).join('');
+  if (!root.querySelector('#k-time input:checked')) sel.time = null;
+  var t = TR[sel.tr];
+  $('#k-sum').innerHTML = 'Hekim: <b>' + DOCS[t.doc].n + '</b> · Süre: <b>' + t.dk + ' dk</b> · <b>' + DAYS[sel.day][1] + (sel.time ? ' ' + sel.time : '') + '</b>';
+}
+root.querySelector('.bk').addEventListener('change', function (e) {
+  var id = e.target.id;
+  if (id.indexOf('kt') === 0) sel.tr = +id.slice(2);
+  if (id.indexOf('kd') === 0) sel.day = +id.slice(2);
+  if (id.indexOf('ks') === 0) sel.time = TIMES[+id.slice(2)];
+  render();
+});
+function pick(trName, day, time) {
+  TR.forEach(function (t, i) { if (t.n === trName) sel.tr = i; });
+  if (day != null) sel.day = day; if (time) sel.time = time;
+  render(); kit.go('#randevu');
+}
+root.querySelectorAll('[data-tr]').forEach(function (li) { li.addEventListener('click', function () { pick(li.getAttribute('data-tr')); kit.toast(li.getAttribute('data-tr') + ' seçildi. Size uygun gün ve saati seçin.'); }); });
+root.querySelector('[data-act="quick"]').addEventListener('click', function () { pick('Kontrol ve muayene', 0, '15:30'); kit.toast('Pazartesi 15:30 seçildi. Onaylamak için butona basın.'); });
+root.querySelectorAll('[data-doc]').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var i = +el.getAttribute('data-doc'), d = DOCS[i];
+    kit.modal({ title: d.n, body: '<p><b>' + d.a + '</b></p><p>' + d.b + '</p>', actions: [{ label: 'Kapat' }, { label: d.n.split(' ').slice(1).join(' ') + ' ile randevu', primary: true, onClick: function (close) { close(); var t = TR.filter(function (x) { return x.doc === i; })[0]; pick(t.n); } }] });
+  });
+});
+var menu = $('.menu'), burger = $('.burger');
+burger.addEventListener('click', function () { var o = menu.classList.toggle('open'); burger.textContent = o ? '×' : '☰'; burger.setAttribute('aria-expanded', String(o)); });
+menu.addEventListener('click', function () { menu.classList.remove('open'); burger.textContent = '☰'; });
+$('#k-confirm').addEventListener('click', function () {
+  if (!sel.time) { kit.toast('Lütfen bir saat seçin.', 'warn'); return; }
+  var t = TR[sel.tr], when = DAYS[sel.day][0] + ' ' + DAYS[sel.day][1] + ' · ' + sel.time;
+  kit.modal({
+    title: 'Randevunuzu tamamlayın',
+    body: '<dl class="k-dl"><dt>Tedavi</dt><dd>' + t.n + '</dd><dt>Hekim</dt><dd>' + DOCS[t.doc].n + '</dd><dt>Tarih</dt><dd>' + when + '</dd></dl>',
+    form: { submit: 'Randevuyu onayla', fields: [{ name: 'ad', label: 'Ad soyad', required: true }, { name: 'tel', label: 'Cep telefonu', type: 'tel', required: true, placeholder: '05XX XXX XX XX' }, { name: 'not', label: 'Not (isteğe bağlı)', type: 'textarea', placeholder: 'Şikayetinizi kısaca yazabilirsiniz.' }],
+      onSubmit: function (d, close) {
+        close();
+        (busy[sel.day] = busy[sel.day] || []).push(sel.time);
+        render();
+        kit.modal({ title: 'Randevunuz oluşturuldu', body: '<p>Teşekkürler ' + kit.esc(d.ad.split(' ')[0]) + '. Randevunuz <b>' + when + '</b> için ' + DOCS[t.doc].n + ' adına kaydedildi.</p><p>' + kit.esc(d.tel) + ' numarasına onay SMS\'i gönderildi. Bir gün önce hatırlatma alacaksınız.</p>', actions: [{ label: 'Tamam', primary: true }] });
+      } }
+  });
+});
+render();
+})(document, demoKit(document));
+</script>
+</body>
+</html>

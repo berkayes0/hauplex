@@ -1,0 +1,277 @@
+<!--meta title="Rota Lojistik" kind="Lojistik · Stok ve kargo bildirimleri" fonts="Outfit:wght@400;500;600;700"-->
+<style>
+.d{--k-accent:#4A2C82;--k-on:#fff;--k-ink:#1E1730;--k-bg:#fff;--k-line:#E6E3EE;--bg:#F6F5FA;--card:#FFFFFF;--ink:#1E1730;--muted:#6E6782;--line:#E6E3EE;--plum:#4A2C82;--plum2:#6A47B0;--soft:#EEE8F8;--coral:#F2643F;--green:#1F9D6B;--amber:#D18A0B;--wa:#E7F6EC;
+  font-family:"Outfit",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5;padding:clamp(16px,3vw,32px)}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3,.d p{margin:0}.d ul,.d ol{list-style:none;margin:0;padding:0}
+.d .wrap{max-width:1220px;margin:0 auto;display:grid;gap:20px}
+.d .hd{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.d .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.d .logo i{width:32px;height:32px;border-radius:10px;background:var(--plum);position:relative}
+.d .logo i::after{content:"";position:absolute;left:8px;top:8px;width:16px;height:16px;border:3px solid #fff;border-left-color:transparent;border-radius:50%}
+.d .tabs{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;flex-wrap:wrap}
+.d .tabs button{padding:8px 14px;border-radius:9px;font-size:14px;font-weight:500;color:var(--muted)}
+.d .tabs button.on{background:var(--plum);color:#fff}
+.d .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.d .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;gap:2px;min-width:0}
+.d .kpi span{font-size:13px;color:var(--muted)}
+.d .kpi b{font-size:28px;font-weight:600;font-variant-numeric:tabular-nums}
+.d .kpi small{font-size:12px;font-weight:500;color:var(--green)}
+.d .kpi small.w{color:var(--coral)}
+.d .grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.d .card{background:var(--card);border:1px solid var(--line);border-radius:16px;min-width:0}
+.d .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line)}
+.d .ch h2{font-size:17px;font-weight:600}
+.d .ch span{font-size:13px;color:var(--muted)}
+.d .route{padding:20px}
+.d .rhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.d .rhead b{font-size:18px}.d .rhead span{color:var(--muted);font-size:14px}
+.d .eta{background:var(--soft);color:var(--plum);font-weight:600;font-size:13px;padding:6px 12px;border-radius:999px;align-self:start}
+.d .line{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.d .line::before{content:"";position:absolute;top:9px;left:10%;right:10%;height:3px;background:var(--line);border-radius:2px}
+.d .line::after{content:"";position:absolute;top:9px;left:10%;width:var(--p,60%);transition:width .4s;height:3px;background:var(--plum);border-radius:2px}
+.d .line li{position:relative;z-index:1;display:grid;justify-items:center;text-align:center;gap:8px}
+.d .line i{width:21px;height:21px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.d .line li.done i{background:var(--plum);border-color:var(--plum)}
+.d .line li.now i{border-color:var(--plum);box-shadow:0 0 0 5px #4A2C8226}
+.d .line b{font-size:13px;font-weight:600}
+.d .line small{font-size:12px;color:var(--muted)}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:560px;font-size:14px}
+.d th{text-align:left;font-size:12px;font-weight:500;color:var(--muted);padding:10px 20px;text-transform:uppercase;letter-spacing:.06em}
+.d td{padding:12px 20px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.d td small{display:block;color:var(--muted);font-size:12px}
+.d .lvl{display:flex;align-items:center;gap:8px}
+.d .lvl i{display:block;width:70px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.d .lvl i b{display:block;height:100%;background:var(--coral)}
+.d .st{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.d .st.s1{background:#1F9D6B1a;color:var(--green)}.d .st.s2{background:#D18A0B1f;color:var(--amber)}
+.d .phone{margin:20px auto;max-width:300px;border:10px solid var(--ink);border-radius:36px;background:#F2EFE9;overflow:hidden}
+.d .pt{background:#1F6E54;color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.d .pt i{width:30px;height:30px;border-radius:50%;background:#ffffff33}
+.d .pt b{display:block;font-size:14px}.d .pt span{font-size:11px;opacity:.8}
+.d .msgs{padding:14px;display:grid;gap:10px}
+.d .msg{background:#fff;border-radius:4px 12px 12px 12px;padding:10px 12px;font-size:13px;max-width:92%;box-shadow:0 1px 0 #0000000f}
+.d .msg time{display:block;text-align:right;font-size:10px;color:var(--muted);margin-top:4px}
+.d .msg u{text-decoration:none;color:#1F6E54;font-weight:600}
+.d .rules{padding:6px 20px 14px}
+.d .rules li{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
+.d .rules li:first-child{border-top:0}
+.d .rules small{display:block;color:var(--muted);font-size:12px}
+.d .tg{flex:none;width:40px;height:22px;border-radius:999px;background:var(--plum);position:relative}
+.d .tg::after{content:"";position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+.d .tg.off{background:var(--line)}.d .tg.off::after{right:auto;left:3px}
+@media (max-width:1000px){.d .grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){.d .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.d .line b{font-size:12px}.d .line small{display:none}}
+.d .tabs button:hover{color:var(--ink)}.d .tabs button.on:hover{color:#fff}
+.d .view[hidden]{display:none}
+.d .tg{cursor:pointer}
+.d .tg:focus-visible{outline:2px solid var(--plum);outline-offset:2px}
+.d .sim{font-size:13px;font-weight:600;background:var(--plum);color:#fff;padding:9px 14px;border-radius:10px}
+.d .sim:hover{background:var(--plum2)}
+.d .sim:disabled{opacity:.5;cursor:not-allowed}
+.d .mini{font-size:12px;font-weight:600;padding:6px 10px;border-radius:8px;border:1px solid var(--line)}
+.d .mini:hover{border-color:var(--plum);color:var(--plum)}
+.d .mini.p{background:var(--plum);color:#fff;border-color:var(--plum)}
+.d .msg.new{animation:lMsg .4s ease}
+@keyframes lMsg{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.d .msgs{max-height:340px;overflow:auto}
+.d .filter{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-width:220px;color:var(--ink);background:var(--card)}
+.d .filter:focus{outline:none;border-color:var(--plum)}
+.d .st.s3{background:#4A2C821a;color:var(--plum)}
+.d .addrule{font-size:13px;font-weight:600;color:var(--plum)}
+</style>
+<div class="d">
+  <div class="wrap">
+    <div class="hd">
+      <div class="logo"><i></i>Rota Lojistik</div>
+      <nav class="tabs" aria-label="Bölümler"><button type="button" class="on" data-tab="genel">Genel bakış</button><button type="button" data-tab="gonderi">Gönderiler</button><button type="button" data-tab="stok">Stok</button><button type="button" data-tab="kural">Bildirim kuralları</button></nav>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Bugün çıkan gönderi</span><b id="l-out">186</b><small>Hepsi müşteriye bildirildi</small></div>
+      <div class="kpi"><span>Dağıtımda</span><b>412</b><small>Zamanında %97</small></div>
+      <div class="kpi"><span>Kritik stok</span><b id="l-crit">4</b><small class="w" id="l-crit-s">1 tanesi onay bekliyor</small></div>
+      <div class="kpi"><span>Gönderilen bildirim</span><b id="l-msgs">1.284</b><small>WhatsApp, SMS, e-posta</small></div>
+    </div>
+
+    <section class="view grid" data-tab="genel">
+      <div style="display:grid;gap:20px;min-width:0">
+        <div class="card">
+          <div class="ch"><h2>Gönderi takibi</h2><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span id="l-no">RT-558210</span><button type="button" class="sim" id="l-sim">Sonraki adımı simüle et</button></div></div>
+          <div class="route">
+            <div class="rhead"><div><b id="l-route">İstanbul → İzmir</b><br><span id="l-who">Alıcı: Ege Mobilya · 14 koli, 312 kg</span></div><span class="eta" id="l-eta">Tahmini teslim: yarın 11:00</span></div>
+            <ol class="line" id="l-line"></ol>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><h2>Kritik stok uyarıları</h2><span>Otomatik kontrol: her 15 dk</span></div>
+          <div class="tw"><table><thead><tr><th>Ürün</th><th>Depo</th><th>Seviye</th><th>Otomatik işlem</th></tr></thead><tbody class="l-stock"></tbody></table></div>
+        </div>
+      </div>
+      <div style="display:grid;gap:20px;min-width:0">
+        <div class="card">
+          <div class="ch"><h2>Müşteriye giden mesajlar</h2><span>önizleme</span></div>
+          <div class="phone" aria-hidden="true">
+            <div class="pt"><i></i><div><b>Rota Lojistik</b><span>Onaylı işletme hesabı</span></div></div>
+            <div class="msgs" id="l-msgbox"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><h2>Bildirim kuralları</h2><span class="l-active">4 aktif</span></div>
+          <ul class="rules l-rules"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" data-tab="gonderi" hidden>
+      <div class="card">
+        <div class="ch"><h2>Gönderiler</h2><input class="filter" id="l-filter" type="search" placeholder="Gönderi no, alıcı veya şehir" aria-label="Gönderi ara"></div>
+        <div class="tw"><table><thead><tr><th>Gönderi</th><th>Alıcı</th><th>Güzergâh</th><th>Durum</th><th></th></tr></thead><tbody id="l-ships"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="view" data-tab="stok" hidden>
+      <div class="card">
+        <div class="ch"><h2>Stok seviyeleri</h2><span>Kritik eşik altındakiler üstte</span></div>
+        <div class="tw"><table><thead><tr><th>Ürün</th><th>Depo</th><th>Seviye</th><th>Otomatik işlem</th></tr></thead><tbody class="l-stock" data-all="1"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="view" data-tab="kural" hidden>
+      <div class="card" style="max-width:720px">
+        <div class="ch"><h2>Bildirim kuralları</h2><div style="display:flex;gap:12px;align-items:center"><span class="l-active">4 aktif</span><button type="button" class="addrule" id="l-add">+ Yeni kural</button></div></div>
+        <ul class="rules l-rules"></ul>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+var $ = function (s) { return root.querySelector(s); };
+var STEPS = ['Sipariş', 'Hazırlandı', 'Yola çıktı', 'Transfer', 'Teslim'];
+var SHIPS = [
+  { no: 'RT-558210', who: 'Ege Mobilya', load: '14 koli, 312 kg', from: 'İstanbul', to: 'İzmir', via: 'Bursa', step: 3, times: ['09:12', '11:40', '13:05', 'Bursa', ''] },
+  { no: 'RT-558214', who: 'Akdeniz Market', load: '6 palet, 2,4 ton', from: 'İstanbul', to: 'Antalya', via: 'Afyon', step: 2, times: ['08:30', '10:15', '12:40', '', ''] },
+  { no: 'RT-558219', who: 'Başkent Elektronik', load: '22 koli, 180 kg', from: 'İzmir', to: 'Ankara', via: 'Eskişehir', step: 1, times: ['10:02', '13:20', '', '', ''] },
+  { no: 'RT-558223', who: 'Karadeniz Tekstil', load: '9 koli, 96 kg', from: 'Bursa', to: 'Samsun', via: 'Ankara', step: 4, times: ['Dün', 'Dün', 'Dün', 'Ankara', '10:48'] },
+  { no: 'RT-558227', who: 'Trakya Yapı', load: '3 palet, 1,1 ton', from: 'İstanbul', to: 'Tekirdağ', via: 'Çorlu', step: 0, times: ['14:10', '', '', '', ''] }
+];
+var STOCK = [
+  { n: 'Streç film 50 cm', sku: 'AMB-0042', d: 'Tuzla', c: 24, max: 200, st: 1 },
+  { n: 'Koli 60×40×40', sku: 'AMB-0108', d: 'Tuzla', c: 180, max: 1000, st: 1 },
+  { n: 'Palet (EUR)', sku: 'PLT-0001', d: 'Kemalpaşa', c: 44, max: 200, st: 2 },
+  { n: 'Etiket rulosu 100×150', sku: 'ETK-0310', d: 'Kemalpaşa', c: 9, max: 100, st: 1 },
+  { n: 'Koli bandı 45 mm', sku: 'AMB-0011', d: 'Tuzla', c: 620, max: 1000, st: 0 },
+  { n: 'Köpük dolgu 1 m³', sku: 'AMB-0230', d: 'Kemalpaşa', c: 140, max: 300, st: 0 }
+];
+var RULES = [
+  { n: 'Yola çıkışta WhatsApp', d: 'Alıcıya takip bağlantısıyla', on: true },
+  { n: 'Gecikme riskinde SMS', d: 'Tahmini saat 2 saatten fazla kayarsa', on: true },
+  { n: 'Kritik stokta tedarikçiye e-posta', d: 'Seviye %25\'in altına inince', on: true },
+  { n: 'Teslimde e-fatura gönderimi', d: 'Teslim imzası alınınca', on: true },
+  { n: 'Haftalık özet raporu', d: 'Pazartesi 08:00, yöneticiye', on: false }
+];
+var cur = 0, msgCount = 1284, out = 186, clock = 16 * 60 + 48;
+function hhmm() { clock += 23 + Math.floor(Math.random() * 40); return String(Math.floor(clock / 60) % 24).padStart(2, '0') + ':' + String(clock % 60).padStart(2, '0'); }
+function tabs(t) {
+  root.querySelectorAll('.tabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-tab') === t); });
+  root.querySelectorAll('.view').forEach(function (v) { v.hidden = v.getAttribute('data-tab') !== t; });
+}
+$('.tabs').addEventListener('click', function (e) { var b = e.target.closest('[data-tab]'); if (b) tabs(b.getAttribute('data-tab')); });
+
+function msg(text, time) {
+  var box = $('#l-msgbox'), m = document.createElement('div');
+  m.className = 'msg new'; m.innerHTML = text + '<time>' + time + '</time>';
+  box.appendChild(m); box.scrollTop = box.scrollHeight;
+}
+function renderTrack() {
+  var s = SHIPS[cur];
+  $('#l-no').textContent = s.no; $('#l-route').textContent = s.from + ' → ' + s.to;
+  $('#l-who').textContent = 'Alıcı: ' + s.who + ' · ' + s.load;
+  $('#l-eta').textContent = s.step === 4 ? 'Teslim edildi' : 'Tahmini teslim: ' + (s.step >= 3 ? 'bugün 18:30' : 'yarın 11:00');
+  $('#l-line').innerHTML = STEPS.map(function (n, i) { return '<li class="' + (i < s.step ? 'done' : i === s.step ? (s.step === 4 ? 'done' : 'now') : '') + '"><i></i><b>' + n + '</b><small>' + (s.times[i] || (i > s.step ? 'Bekleniyor' : '')) + '</small></li>'; }).join('');
+  var pct = Math.min(s.step, 4) / 4 * 80;
+  $('#l-line').style.setProperty('--p', pct + '%');
+  $('#l-line').setAttribute('style', '--p:' + pct + '%');
+  $('#l-sim').disabled = s.step === 4;
+  $('#l-sim').textContent = s.step === 4 ? 'Teslim edildi' : 'Sonraki adımı simüle et';
+}
+function resetMsgs() {
+  var s = SHIPS[cur]; $('#l-msgbox').innerHTML = '';
+  if (s.step >= 2) msg('Merhaba ' + s.who + ', ' + s.no + ' numaralı gönderiniz yola çıktı. ' + s.load + '. Takip: <u>rota.link/' + s.no.slice(3) + '</u>', s.times[2] || '13:05');
+  if (s.step >= 3) msg('Gönderiniz ' + s.via + ' transfer merkezine ulaştı ve plana uygun ilerliyor.', '16:48');
+  if (s.step >= 4) msg('Gönderiniz teslim edildi. e-Faturanız e-posta adresinize gönderildi. Bizi tercih ettiğiniz için teşekkürler.', s.times[4]);
+  if (s.step < 2) msg('Merhaba ' + s.who + ', siparişiniz alındı ve depomuzda hazırlanıyor. Yola çıktığında size haber vereceğiz.', s.times[0]);
+}
+$('#l-sim').addEventListener('click', function () {
+  var s = SHIPS[cur]; if (s.step >= 4) return;
+  s.step++; var t = hhmm(); s.times[s.step] = s.step === 3 ? s.via : t;
+  var texts = [null, null,
+    'Merhaba ' + s.who + ', ' + s.no + ' numaralı gönderiniz yola çıktı. ' + s.load + '. Takip: <u>rota.link/' + s.no.slice(3) + '</u>',
+    'Gönderiniz ' + s.via + ' transfer merkezine ulaştı ve plana uygun ilerliyor.',
+    'Gönderiniz teslim edildi. e-Faturanız e-posta adresinize gönderildi. Bizi tercih ettiğiniz için teşekkürler.'];
+  var rule = s.step === 2 ? RULES[0] : s.step === 4 ? RULES[3] : null;
+  if (texts[s.step] && (!rule || rule.on)) { msg(texts[s.step], t); msgCount++; $('#l-msgs').textContent = msgCount.toLocaleString('tr-TR'); }
+  else if (rule && !rule.on) kit.toast('"' + rule.n + '" kuralı kapalı olduğu için müşteriye mesaj gitmedi.', 'warn');
+  if (s.step === 2) { out++; $('#l-out').textContent = out; }
+  renderTrack(); renderShips();
+  kit.toast(s.no + ': ' + STEPS[s.step] + (s.step === 3 ? ' (' + s.via + ')' : '') + '.');
+});
+
+function renderShips() {
+  var f = ($('#l-filter').value || '').trim().toLocaleLowerCase('tr');
+  var rows = SHIPS.map(function (s, i) { return [s, i]; }).filter(function (x) { var s = x[0]; return !f || (s.no + ' ' + s.who + ' ' + s.from + ' ' + s.to).toLocaleLowerCase('tr').indexOf(f) > -1; });
+  $('#l-ships').innerHTML = rows.length ? rows.map(function (x) {
+    var s = x[0], cls = s.step === 4 ? 's1' : s.step >= 2 ? 's3' : 's2';
+    return '<tr><td>' + s.no + '<small>' + s.load + '</small></td><td>' + s.who + '</td><td>' + s.from + ' → ' + s.to + '</td><td><span class="st ' + cls + '">' + STEPS[s.step] + '</span></td><td><button type="button" class="mini" data-track="' + x[1] + '">Takip et</button></td></tr>';
+  }).join('') : '<tr><td colspan="5" style="color:var(--muted)">Eşleşen gönderi yok.</td></tr>';
+}
+$('#l-filter').addEventListener('input', renderShips);
+$('#l-ships').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-track]'); if (!b) return;
+  cur = +b.getAttribute('data-track'); renderTrack(); resetMsgs(); tabs('genel');
+});
+
+function renderStock() {
+  var sorted = STOCK.slice().sort(function (a, b) { return a.c / a.max - b.c / b.max; });
+  root.querySelectorAll('.l-stock').forEach(function (tb) {
+    var list = tb.getAttribute('data-all') ? sorted : sorted.filter(function (x) { return x.c / x.max < 0.25; });
+    tb.innerHTML = list.map(function (x) {
+      var pct = Math.round(x.c / x.max * 100), act;
+      if (x.st === 1) act = '<span class="st s1">Tedarikçiye sipariş gitti</span>';
+      else if (x.st === 2) act = '<button type="button" class="mini p" data-ok="' + x.sku + '">Satın almayı onayla</button>';
+      else act = '<span style="color:var(--muted);font-size:13px">Yeterli</span>';
+      return '<tr><td>' + x.n + '<small>SKU ' + x.sku + '</small></td><td>' + x.d + '</td><td><div class="lvl"><i><b style="width:' + Math.min(pct, 100) + '%;' + (pct >= 25 ? 'background:var(--green)' : '') + '"></b></i>' + x.c + ' / ' + x.max + '</div></td><td>' + act + '</td></tr>';
+    }).join('');
+  });
+  var crit = STOCK.filter(function (x) { return x.c / x.max < 0.25; }), wait = crit.filter(function (x) { return x.st === 2; }).length;
+  $('#l-crit').textContent = crit.length;
+  $('#l-crit-s').textContent = wait ? wait + ' tanesi onay bekliyor' : 'Hepsi için sipariş verildi';
+  $('#l-crit-s').className = wait ? 'w' : '';
+}
+root.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-ok]'); if (!b) return;
+  var x = STOCK.filter(function (s) { return s.sku === b.getAttribute('data-ok'); })[0];
+  kit.modal({ title: 'Satın alma onayı', body: '<dl class="k-dl"><dt>Ürün</dt><dd>' + x.n + '</dd><dt>Depo</dt><dd>' + x.d + '</dd><dt>Önerilen miktar</dt><dd>' + (x.max - x.c) + ' adet</dd><dt>Tedarikçi</dt><dd>Anadolu Palet A.Ş.</dd></dl>', actions: [{ label: 'Vazgeç' }, { label: 'Onayla ve sipariş ver', primary: true, onClick: function (close) { close(); x.st = 1; renderStock(); kit.toast(x.n + ' için tedarikçiye sipariş e-postası gönderildi.'); } }] });
+});
+
+function renderRules() {
+  var html = RULES.map(function (r, i) { return '<li><div>' + kit.esc(r.n) + '<small>' + kit.esc(r.d) + '</small></div><button type="button" class="tg' + (r.on ? '' : ' off') + '" role="switch" aria-checked="' + r.on + '" aria-label="' + kit.esc(r.n) + '" data-rule="' + i + '"></button></li>'; }).join('');
+  root.querySelectorAll('.l-rules').forEach(function (u) { u.innerHTML = html; });
+  var n = RULES.filter(function (r) { return r.on; }).length;
+  root.querySelectorAll('.l-active').forEach(function (s) { s.textContent = n + ' aktif'; });
+}
+root.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-rule]'); if (!b) return;
+  var r = RULES[+b.getAttribute('data-rule')]; r.on = !r.on; renderRules();
+  kit.toast('"' + r.n + '" ' + (r.on ? 'açıldı.' : 'kapatıldı.'));
+});
+$('#l-add').addEventListener('click', function () {
+  kit.modal({ title: 'Yeni bildirim kuralı', form: { submit: 'Kuralı ekle', fields: [
+    { name: 'ne', label: 'Ne olduğunda', type: 'select', options: ['Gönderi teslim edildiğinde', 'Teslimat başarısız olduğunda', 'Gönderi depoda 24 saatten fazla beklediğinde', 'Stok %10\'un altına indiğinde'] },
+    { name: 'kim', label: 'Kime', type: 'select', options: ['Alıcıya', 'Gönderici firmaya', 'Operasyon ekibine', 'Tedarikçiye'] },
+    { name: 'kanal', label: 'Kanal', type: 'select', options: ['WhatsApp', 'SMS', 'E-posta'] }
+  ], onSubmit: function (d, close) { close(); RULES.push({ n: d.ne + ' ' + d.kanal, d: d.kim, on: true }); renderRules(); kit.toast('Kural eklendi ve aktif.'); } } });
+});
+renderTrack(); resetMsgs(); renderShips(); renderStock(); renderRules();
+</script>

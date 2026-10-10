@@ -1,0 +1,308 @@
+<!--meta title="Bereket Gıda" kind="Toptan gıda · B2B bayi portalı" fonts="DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700"-->
+<style>
+.d{--k-accent:#1F5A40;--k-on:#fff;--k-ink:#1D2A22;--k-bg:#fff;--k-line:#E1E4DB;--bg:#F4F5F0;--card:#FFFFFF;--ink:#1D2A22;--muted:#66736B;--line:#E1E4DB;--green:#1F5A40;--green2:#2E7A57;--soft:#E6F0E9;--tomato:#D4572C;--amber:#C98A12;
+  font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3,.d p{margin:0}.d ul{list-style:none;margin:0;padding:0}
+.d .app{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:900px}
+.d .side{background:var(--green);color:#fff;padding:24px 16px;display:flex;flex-direction:column;gap:28px}
+.d .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;padding-inline:8px}
+.d .logo i{width:30px;height:30px;border-radius:50% 50% 50% 4px;background:#F1C75B}
+.d .logo small{display:block;font-size:11px;font-weight:500;opacity:.7;letter-spacing:.06em;text-transform:uppercase}
+.d .menu{display:grid;gap:4px}
+.d .menu li{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;border-radius:10px;font-weight:500;color:#ffffffc0}
+.d .menu li.on{background:#ffffff1f;color:#fff}
+.d .menu em{font-style:normal;font-size:12px;background:#F1C75B;color:var(--ink);border-radius:999px;padding:1px 8px;font-weight:700}
+.d .rep{margin-top:auto;background:#ffffff14;border-radius:12px;padding:14px;font-size:13px}
+.d .rep b{display:block;font-size:14px}.d .rep span{opacity:.7}
+.d .main{padding:24px clamp(16px,3vw,32px);display:grid;gap:22px;align-content:start;min-width:0}
+.d .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.d .topbar h1{font-size:24px;font-weight:700}
+.d .topbar p{color:var(--muted);font-size:14px}
+.d .search{flex:1;max-width:360px;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 14px;color:var(--muted);font-size:14px}
+.d .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.d .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:4px;min-width:0}
+.d .kpi span{font-size:13px;color:var(--muted)}
+.d .kpi b{font-size:22px;font-variant-numeric:tabular-nums;font-weight:700}
+.d .kpi small{font-size:12px;color:var(--green2);font-weight:600}
+.d .kpi small.warn{color:var(--amber)}
+.d .promo{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--tomato);color:#fff;border-radius:14px;padding:18px 22px}
+.d .promo b{font-size:18px}.d .promo p{opacity:.9;font-size:14px}
+.d .promo span{background:#fff;color:var(--tomato);font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px;white-space:nowrap}
+.d .grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+.d .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;min-width:0}
+.d .ph{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 18px;border-bottom:1px solid var(--line)}
+.d .ph h2{font-size:17px}
+.d .chips{display:flex;gap:6px;flex-wrap:wrap}
+.d .chips span{font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.d .chips span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:620px}
+.d th{text-align:left;font-size:12px;font-weight:500;color:var(--muted);padding:10px 18px;background:#FAFBF8;text-transform:uppercase;letter-spacing:.05em}
+.d td{padding:13px 18px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums;vertical-align:middle}
+.d th.r,.d td.r{text-align:right}
+.d .prod{display:flex;align-items:center;gap:12px}
+.d .thumb{width:38px;height:38px;border-radius:10px;flex:none}
+.d .prod b{display:block;font-weight:600}.d .prod small{color:var(--muted);font-size:12px}
+.d s{color:var(--muted);font-size:13px}
+.d .price{font-weight:700;color:var(--green)}
+.d .st{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px}
+.d .st.ok{background:var(--soft);color:var(--green2)}.d .st.low{background:#FBF1DC;color:var(--amber)}
+.d .q{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.d .q i{font-style:normal;width:28px;text-align:center;color:var(--muted)}
+.d .q b{min-width:36px;text-align:center;border-inline:1px solid var(--line);padding:4px 0;font-weight:600}
+.d .cart{padding:18px;display:grid;gap:14px}
+.d .cart li{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.d .cart li span{color:var(--muted)}
+.d .cart .tot{border-top:1px dashed var(--line);padding-top:14px;font-size:17px;font-weight:700}
+.d .cart .btn{background:var(--green);color:#fff;text-align:center;font-weight:600;padding:13px;border-radius:10px}
+.d .note{font-size:12px;color:var(--muted);background:var(--soft);padding:10px 12px;border-radius:10px}
+.d .orders{padding:6px 18px 14px}
+.d .orders li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.d .orders li:first-child{border-top:0}
+.d .orders small{display:block;color:var(--muted);font-size:12px}
+@media (max-width:1100px){.d .grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:860px){
+  .d .app{grid-template-columns:minmax(0,1fr)}
+  .d .side{flex-direction:row;align-items:center;gap:16px;overflow-x:auto;padding:14px 16px}
+  .d .menu{display:flex;gap:4px}.d .menu li{white-space:nowrap}
+  .d .rep{display:none}
+  .d .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+.d .menu button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:11px 12px;border-radius:10px;font-weight:500;color:#ffffffc0}
+.d .menu button:hover{background:#ffffff12;color:#fff}
+.d .menu button.on{background:#ffffff1f;color:#fff}
+.d .view[hidden]{display:none}
+.d .search{display:block;font:inherit;font-size:14px;color:var(--ink)}
+.d .search:focus{outline:none;border-color:var(--green)}
+.d .chips button{font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.d .chips button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.d .q button{width:30px;height:30px;color:var(--muted);font-size:16px;text-align:center}
+.d .q button:hover{background:var(--soft);color:var(--green)}
+.d .q input{width:44px;text-align:center;border:0;border-inline:1px solid var(--line);font:inherit;font-weight:600;padding:5px 0;color:var(--ink);background:transparent;-moz-appearance:textfield}
+.d .q input::-webkit-inner-spin-button{display:none}
+.d .promo button{background:#fff;color:var(--tomato);font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px;white-space:nowrap}
+.d .cart .btn{display:block;width:100%;text-align:center}
+.d .cart .btn:disabled{opacity:.45;cursor:not-allowed}
+.d .empty{padding:28px 18px;text-align:center;color:var(--muted);font-size:14px}
+.d .linkish{font-size:13px;font-weight:600;color:var(--green2)}
+.d .camp{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;padding:18px}
+.d .camp article{border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:8px;align-content:start}
+.d .camp b{font-size:16px}.d .camp p{font-size:14px;color:var(--muted)}
+.d .camp button{justify-self:start;margin-top:6px;font-size:13px;font-weight:600;background:var(--green);color:#fff;padding:8px 14px;border-radius:8px}
+.d .pdf{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.d .pdf:hover{border-color:var(--green);color:var(--green)}
+.d .rep button{margin-top:8px;font-size:12px;font-weight:600;background:#ffffff1f;color:#fff;padding:7px 10px;border-radius:8px}
+@media (max-width:860px){.d .menu button{white-space:nowrap;width:auto}}
+</style>
+<div class="d">
+  <div class="app">
+    <aside class="side">
+      <div class="logo"><i></i><div>Bereket<small>Bayi portalı</small></div></div>
+      <nav class="menu" aria-label="Portal menüsü">
+        <button type="button" data-view="panel">Panel</button>
+        <button type="button" data-view="siparis" class="on">Hızlı sipariş</button>
+        <button type="button" data-view="siparislerim">Siparişlerim <em id="g-open-badge">3</em></button>
+        <button type="button" data-view="cari">Cari hesap</button>
+        <button type="button" data-view="kampanya">Kampanyalar <em>2</em></button>
+        <button type="button" data-view="fatura">Faturalar</button>
+      </nav>
+      <div class="rep"><span>Satış temsilciniz</span><b>Mert Aydın</b><span>0532 000 00 00</span><br><button type="button" data-act="rep">Mesaj gönder</button></div>
+    </aside>
+
+    <div class="main">
+      <div class="topbar">
+        <div><h1>Hoş geldiniz, Yıldız Market</h1><p>Bayi kodu B-1042 · Fiyat grubu: Altın</p></div>
+        <input class="search" id="g-search" type="search" placeholder="Ürün adı veya kod ile arayın" aria-label="Ürün ara">
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><span>Cari bakiye</span><b id="g-bal">₺86.420,00</b><small class="warn">Vadesi 12 gün sonra</small></div>
+        <div class="kpi"><span>Kalan kredi limiti</span><b id="g-limit">₺163.580,00</b><small>Limit ₺250.000</small></div>
+        <div class="kpi"><span>Bu ayki alım</span><b id="g-month">₺214.900,00</b><small>Geçen aya göre +%18</small></div>
+        <div class="kpi"><span>Açık siparişler</span><b id="g-open">3</b><small>1 tanesi yolda</small></div>
+      </div>
+
+      <section class="view" data-view="panel" hidden>
+        <div class="promo"><div><b>Ekim kampanyası: Bakliyatta %12 ek iskonto</b><p>50 koli ve üzeri bakliyat siparişlerinde sepette otomatik uygulanır. Son gün 31 Ekim.</p></div><button type="button" data-act="promo">Kampanyalı ürünler</button></div>
+        <div class="panel" style="margin-top:22px"><div class="ph"><h2>Son siparişler</h2><button type="button" class="linkish" data-view-go="siparislerim">Tümünü gör</button></div><ul class="orders" id="g-orders-mini"></ul></div>
+      </section>
+
+      <section class="view" data-view="siparis">
+        <div class="promo"><div><b>Ekim kampanyası: Bakliyatta %12 ek iskonto</b><p>50 koli ve üzeri bakliyat siparişlerinde sepette otomatik uygulanır. Son gün 31 Ekim.</p></div><button type="button" data-act="promo">Kampanyalı ürünler</button></div>
+        <div class="grid" style="margin-top:22px">
+          <div class="panel">
+            <div class="ph"><h2>Ürünler</h2>
+              <div class="chips" role="group" aria-label="Kategori"><button type="button" class="on" data-cat="all">Tümü</button><button type="button" data-cat="Bakliyat">Bakliyat</button><button type="button" data-cat="Makarna">Makarna</button><button type="button" data-cat="Yağ">Yağ</button><button type="button" data-cat="Konserve">Konserve</button></div>
+            </div>
+            <div class="tw"><table>
+              <thead><tr><th>Ürün</th><th>Stok</th><th class="r">Liste</th><th class="r">Size özel</th><th class="r">Koli</th></tr></thead>
+              <tbody id="g-products"></tbody>
+            </table></div>
+          </div>
+          <div class="panel">
+            <div class="ph"><h2>Sepet</h2><span style="color:var(--muted);font-size:13px" id="g-koli">0 koli</span></div>
+            <ul class="cart">
+              <li><span>Ara toplam</span><b id="g-sub">₺0,00</b></li>
+              <li><span>Kampanya iskontosu</span><b style="color:var(--tomato)" id="g-disc">₺0,00</b></li>
+              <li><span>KDV (%1)</span><b id="g-kdv">₺0,00</b></li>
+              <li class="tot"><span style="color:var(--ink)">Toplam</span><b id="g-total">₺0,00</b></li>
+              <li class="note" id="g-note">Bakliyatta 50 koliye ulaşınca %12 iskonto otomatik uygulanır.</li>
+              <li><button type="button" class="btn" id="g-confirm">Siparişi onayla</button></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" data-view="siparislerim" hidden>
+        <div class="panel"><div class="ph"><h2>Siparişlerim</h2></div>
+          <div class="tw"><table><thead><tr><th>Sipariş</th><th>Tarih</th><th class="r">Koli</th><th class="r">Tutar</th><th>Durum</th></tr></thead><tbody id="g-orders"></tbody></table></div>
+        </div>
+      </section>
+
+      <section class="view" data-view="cari" hidden>
+        <div class="panel"><div class="ph"><h2>Cari hesap ekstresi</h2><button type="button" class="pdf" data-act="ekstre">Ekstreyi e-postama gönder</button></div>
+          <div class="tw"><table><thead><tr><th>Tarih</th><th>Açıklama</th><th class="r">Borç</th><th class="r">Alacak</th><th class="r">Bakiye</th></tr></thead><tbody id="g-cari"></tbody></table></div>
+        </div>
+      </section>
+
+      <section class="view" data-view="kampanya" hidden>
+        <div class="panel"><div class="ph"><h2>Aktif kampanyalar</h2></div>
+          <div class="camp">
+            <article><b>Bakliyatta %12 ek iskonto</b><p>50 koli ve üzeri bakliyat siparişlerinde sepette otomatik. Son gün 31 Ekim.</p><button type="button" data-act="promo">Ürünlere git</button></article>
+            <article><b>Ayçiçek yağında 10 koliye 1 koli bedava</b><p>Yağ kategorisinde her 10 koliye 1 koli hediye, sevkiyatla birlikte gönderilir.</p><button type="button" data-act="promo-yag">Ürünlere git</button></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" data-view="fatura" hidden>
+        <div class="panel"><div class="ph"><h2>Faturalar</h2></div>
+          <div class="tw"><table><thead><tr><th>Fatura no</th><th>Tarih</th><th class="r">Tutar</th><th class="r"></th></tr></thead><tbody id="g-invoices"></tbody></table></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<script>
+var PRODUCTS = [
+  { code: 'BRK-1101', name: 'Kırmızı mercimek 1 kg', pack: "12'li koli", cat: 'Bakliyat', list: 702, price: 596.70, stock: 340, color: '#E9C46A' },
+  { code: 'BRK-1104', name: 'Nohut 9 mm 1 kg', pack: "12'li koli", cat: 'Bakliyat', list: 810, price: 688.50, stock: 210, color: '#F4A261' },
+  { code: 'BRK-1107', name: 'Kuru fasulye 1 kg', pack: "12'li koli", cat: 'Bakliyat', list: 960, price: 816.00, stock: 95, color: '#EDE0C8' },
+  { code: 'BRK-2203', name: 'Spagetti makarna 500 g', pack: "20'li koli", cat: 'Makarna', list: 540, price: 475.20, stock: 18, color: '#E76F51' },
+  { code: 'BRK-2206', name: 'Burgu makarna 500 g', pack: "20'li koli", cat: 'Makarna', list: 540, price: 475.20, stock: 160, color: '#F2B880' },
+  { code: 'BRK-3010', name: 'Ayçiçek yağı 5 L', pack: "4'lü koli", cat: 'Yağ', list: 1380, price: 1255.80, stock: 120, color: '#9CB380' },
+  { code: 'BRK-3014', name: 'Zeytinyağı 1 L', pack: "12'li koli", cat: 'Yağ', list: 3240, price: 2948.40, stock: 12, color: '#7A9A3A' },
+  { code: 'BRK-4402', name: 'Domates salçası 830 g', pack: "12'li koli", cat: 'Konserve', list: 924, price: 822.36, stock: 260, color: '#C0504D' },
+  { code: 'BRK-4410', name: 'Ton balığı 3×80 g', pack: "24'lü koli", cat: 'Konserve', list: 1680, price: 1495.20, stock: 44, color: '#6C8EAD' }
+];
+var qty = {}; PRODUCTS.forEach(function (p) { qty[p.code] = 0; });
+var ORDERS = [
+  { no: 'SP-24081', date: '8 Ekim 2026', koli: 120, total: 86420, st: 'Yolda' },
+  { no: 'SP-24055', date: '3 Ekim 2026', koli: 86, total: 61980, st: 'Teslim edildi' },
+  { no: 'SP-24012', date: '27 Eylül 2026', koli: 140, total: 66500, st: 'Teslim edildi' }
+];
+var bal = 86420, limit = 163580, month = 214900, openCount = 3, cat = 'all', q = '';
+var $ = function (s) { return root.querySelector(s); };
+
+function show(v) {
+  root.querySelectorAll('.menu button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === v); });
+  root.querySelectorAll('.view').forEach(function (s) { s.hidden = s.getAttribute('data-view') !== v; });
+}
+root.querySelector('.menu').addEventListener('click', function (e) { var b = e.target.closest('[data-view]'); if (b) show(b.getAttribute('data-view')); });
+root.addEventListener('click', function (e) { var b = e.target.closest('[data-view-go]'); if (b) show(b.getAttribute('data-view-go')); });
+
+function renderProducts() {
+  var rows = PRODUCTS.filter(function (p) {
+    return (cat === 'all' || p.cat === cat) && (!q || (p.name + ' ' + p.code).toLocaleLowerCase('tr').indexOf(q) > -1);
+  });
+  $('#g-products').innerHTML = rows.length ? rows.map(function (p) {
+    var st = p.stock < 50 ? '<span class="st low">Son ' + p.stock + ' koli</span>' : '<span class="st ok">Stokta</span>';
+    return '<tr><td><div class="prod"><span class="thumb" style="background:' + p.color + '"></span><div><b>' + p.name + '</b><small>' + p.pack + ' · ' + p.code + '</small></div></div></td><td>' + st +
+      '</td><td class="r"><s>' + kit.money(p.list) + '</s></td><td class="r price">' + kit.money(p.price) +
+      '</td><td class="r"><span class="q"><button type="button" data-d="-1" data-c="' + p.code + '" aria-label="Azalt">−</button><input type="number" min="0" max="' + p.stock + '" value="' + qty[p.code] + '" data-c="' + p.code + '" aria-label="' + p.name + ' koli adedi"><button type="button" data-d="1" data-c="' + p.code + '" aria-label="Artır">+</button></span></td></tr>';
+  }).join('') : '<tr><td colspan="5" class="empty">"' + kit.esc(q) + '" ile eşleşen ürün bulunamadı.</td></tr>';
+}
+function setQty(code, v) {
+  var p = PRODUCTS.filter(function (x) { return x.code === code; })[0];
+  v = Math.max(0, Math.min(p.stock, Math.round(v) || 0));
+  if (v === p.stock && qty[code] < v) kit.toast(p.name + ' için stokta ' + p.stock + ' koli var.', 'warn');
+  qty[code] = v;
+  var inp = root.querySelector('input[data-c="' + code + '"]'); if (inp) inp.value = v;
+  renderCart();
+}
+function totals() {
+  var sub = 0, koli = 0, bak = 0, bakSum = 0;
+  PRODUCTS.forEach(function (p) { var n = qty[p.code]; sub += n * p.price; koli += n; if (p.cat === 'Bakliyat') { bak += n; bakSum += n * p.price; } });
+  var disc = bak >= 50 ? Math.round(bakSum * 0.12 * 100) / 100 : 0;
+  var kdv = Math.round((sub - disc) * 0.01 * 100) / 100;
+  return { sub: sub, koli: koli, bak: bak, disc: disc, kdv: kdv, total: Math.round((sub - disc + kdv) * 100) / 100 };
+}
+function renderCart() {
+  var t = totals();
+  $('#g-sub').textContent = kit.money(t.sub);
+  $('#g-disc').textContent = (t.disc ? '−' : '') + kit.money(t.disc);
+  $('#g-kdv').textContent = kit.money(t.kdv);
+  $('#g-total').textContent = kit.money(t.total);
+  $('#g-koli').textContent = t.koli + ' koli';
+  $('#g-note').textContent = t.disc ? 'Bakliyat kampanyası uygulandı: %12 iskonto.' : (t.bak ? 'Bakliyatta %12 iskonto için ' + (50 - t.bak) + ' koli daha ekleyin.' : 'Bakliyatta 50 koliye ulaşınca %12 iskonto otomatik uygulanır.');
+  $('#g-confirm').disabled = !t.koli;
+}
+root.querySelector('#g-products').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-d]'); if (!b) return;
+  var c = b.getAttribute('data-c'); setQty(c, qty[c] + (+b.getAttribute('data-d')) * (e.shiftKey ? 10 : 1));
+});
+root.querySelector('#g-products').addEventListener('change', function (e) { if (e.target.matches('input[data-c]')) setQty(e.target.getAttribute('data-c'), +e.target.value); });
+root.querySelector('.chips').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-cat]'); if (!b) return;
+  cat = b.getAttribute('data-cat');
+  this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+  renderProducts();
+});
+$('#g-search').addEventListener('input', function () { q = this.value.trim().toLocaleLowerCase('tr'); show('siparis'); renderProducts(); });
+function goCat(c) { show('siparis'); var b = root.querySelector('.chips [data-cat="' + c + '"]'); if (b) b.click(); }
+root.querySelectorAll('[data-act="promo"]').forEach(function (b) { b.addEventListener('click', function () { goCat('Bakliyat'); }); });
+root.querySelector('[data-act="promo-yag"]').addEventListener('click', function () { goCat('Yağ'); });
+root.querySelector('[data-act="rep"]').addEventListener('click', function () {
+  kit.modal({ title: 'Mert Aydın\'a mesaj', form: { submit: 'Gönder', fields: [{ name: 'konu', label: 'Konu', type: 'select', options: ['Fiyat teklifi', 'Sipariş durumu', 'Ödeme ve vade', 'Diğer'] }, { name: 'msg', label: 'Mesajınız', type: 'textarea', required: true }], onSubmit: function (d, close) { close(); kit.toast('Mesajınız Mert Aydın\'a iletildi. Konu: ' + d.konu + '.'); } } });
+});
+
+function renderOrders() {
+  var badge = function (st) { return '<span class="st ' + (st === 'Onay bekliyor' ? 'low' : 'ok') + '">' + st + '</span>'; };
+  $('#g-orders').innerHTML = ORDERS.map(function (o) { return '<tr><td>#' + o.no + '</td><td>' + o.date + '</td><td class="r">' + o.koli + '</td><td class="r">' + kit.money(o.total) + '</td><td>' + badge(o.st) + '</td></tr>'; }).join('');
+  $('#g-orders-mini').innerHTML = ORDERS.slice(0, 3).map(function (o) { return '<li><div>#' + o.no + '<small>' + o.date + ' · ' + o.koli + ' koli</small></div>' + badge(o.st) + '</li>'; }).join('');
+  $('#g-invoices').innerHTML = ORDERS.filter(function (o) { return o.st !== 'Onay bekliyor'; }).map(function (o, i) { return '<tr><td>BRK2026' + String(4810 - i).padStart(6, '0') + '</td><td>' + o.date + '</td><td class="r">' + kit.money(o.total) + '</td><td class="r"><button type="button" class="pdf" data-inv="' + o.no + '">PDF görüntüle</button></td></tr>'; }).join('');
+  $('#g-open').textContent = openCount; $('#g-open-badge').textContent = openCount;
+  $('#g-bal').textContent = kit.money(bal); $('#g-limit').textContent = kit.money(limit); $('#g-month').textContent = kit.money(month);
+}
+root.querySelector('#g-invoices').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-inv]'); if (!b) return;
+  var o = ORDERS.filter(function (x) { return x.no === b.getAttribute('data-inv'); })[0];
+  kit.modal({ title: 'e-Fatura · #' + o.no, body: '<dl class="k-dl"><dt>Alıcı</dt><dd>Yıldız Market (B-1042)</dd><dt>Tarih</dt><dd>' + o.date + '</dd><dt>Koli</dt><dd>' + o.koli + '</dd><dt>Tutar</dt><dd>' + kit.money(o.total) + '</dd></dl><p class="k-note">Gerçek portalda fatura PDF olarak açılır ve indirilebilir.</p>' });
+});
+$('#g-cari').innerHTML = [['1 Eki', 'Devir', '', '', 72300], ['3 Eki', 'Fatura #SP-24055', 61980, '', 134280], ['5 Eki', 'Havale · Ziraat', '', 80000, 54280], ['8 Eki', 'Fatura #SP-24081', 86420, '', 140700], ['9 Eki', 'Kredi kartı tahsilatı', '', 54280, 86420]]
+  .map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td class="r">' + (r[2] ? kit.money(r[2]) : '') + '</td><td class="r">' + (r[3] ? kit.money(r[3]) : '') + '</td><td class="r"><b>' + kit.money(r[4]) + '</b></td></tr>'; }).join('');
+root.querySelector('[data-act="ekstre"]').addEventListener('click', function () { kit.toast('Ekim ayı ekstresi muhasebe@yildizmarket.com adresine gönderildi.'); });
+
+$('#g-confirm').addEventListener('click', function () {
+  var t = totals(); if (!t.koli) return;
+  if (t.total > limit) { kit.toast('Sipariş tutarı kalan kredi limitinizi aşıyor. Temsilcinizle görüşebilirsiniz.', 'warn'); return; }
+  var lines = PRODUCTS.filter(function (p) { return qty[p.code]; }).map(function (p) { return '<dt>' + p.name + '</dt><dd>' + qty[p.code] + ' koli</dd>'; }).join('');
+  kit.modal({
+    title: 'Siparişi onaylıyor musunuz?',
+    body: '<dl class="k-dl">' + lines + '<dt>Toplam</dt><dd>' + kit.money(t.total) + '</dd></dl><p class="k-note">Onaylanan sipariş ERP\'ye aktarılır ve depoya iletilir.</p>',
+    actions: [{ label: 'Vazgeç' }, { label: 'Onayla', primary: true, onClick: function (close) {
+      close();
+      var no = 'SP-' + (24082 + ORDERS.length - 3);
+      ORDERS.unshift({ no: no, date: '10 Ekim 2026', koli: t.koli, total: t.total, st: 'Onay bekliyor' });
+      openCount++; bal += t.total; limit -= t.total; month += t.total;
+      PRODUCTS.forEach(function (p) { p.stock -= qty[p.code]; qty[p.code] = 0; });
+      renderProducts(); renderCart(); renderOrders();
+      kit.toast('#' + no + ' numaralı siparişiniz alındı. Bugün 16:00\'ya kadar onaylanırsa yarın sevk edilir.');
+    } }]
+  });
+});
+
+// Example cart so the screen opens in a working state.
+qty['BRK-1101'] = 40; qty['BRK-1104'] = 25; qty['BRK-2203'] = 18; qty['BRK-3010'] = 12;
+renderProducts(); renderCart(); renderOrders();
+</script>

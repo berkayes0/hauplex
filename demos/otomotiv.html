@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parçam Oto · Hauplex demo</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22 xmlns:c2pa=%22http://c2pa.org/manifest%22%3E%3Cmetadata%3E%3Cc2pa:manifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo1ODMxMDk0YS03NmFmLTQzOTctYTJjMC1hMWI2MjI5Y2VlMWIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaK81mBHbTk9w%2BFrl9%2BlK2oEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0ZGNkNWEwYS1jZTdhLTQ2ODgtODgxYy1mMTVkMGU5OWI5MWJscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo9JU%2BJ3CN52//6ZHVsOHP4AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggOALOs0bC6c9qwF2jLDxeIjE%2Bu/LjWiVm4vRLygZhRnWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBQJj3aVjFue5ewbs0S9ovcAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAfwCXyHIdXVaQD7N39F7Q3pMMpWbUWaZABRwoq4HtGi2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjU4MzEwOTRhLTc2YWYtNDM5Ny1hMmMwLWExYjYyMjljZWUxYi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmRkZDE1NGM4LTI1N2YtNDFlYy1iNWIxLTAxOGY0ZmUwYjQyZnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCA4As6zRsLpz2rAXaMsPF4iMT678uNaJWbi9EvKBmFGdaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggJ9zmNADvyhyK7JPMqjuuos/CSyTSIBJFsVZ1nxVj%2BGSiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggk56B955C3cOMHVIeAni5Up2m3uoxsRBikxuSTa0K%2BRh0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQLquS1CsjLCVX0/POQqSlNqDuq4Njbkymw9Sk1mZH6oUUvV61ppUPQx1i1vVMPPo2AQj82O6GKrBkYoRfX0pMa4=%3C/c2pa:manifest%3E%3C/metadata%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%232340E8%22/%3E%3Cg transform=%22translate%2816 16%29 scale%28.8%29 translate%28-16 -15.6%29%22%3E%3Cg fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%224%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4%22/%3E%3C/g%3E%3Ccircle cx=%2210%22 cy=%225%22 r=%223.6%22 fill=%22%23FFFFFF%22/%3E%3Ccircle cx=%2222%22 cy=%2225.6%22 r=%223.3%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%222.8%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Instrument+Sans:wght@500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>body{margin:0}
+.demobar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:#0E1420;color:#E8ECF2;font:500 14px/1.3 "Instrument Sans","Segoe UI",system-ui,sans-serif;border-bottom:1px solid #263042}
+.demobar-in{max-width:1240px;margin:0 auto;padding:10px clamp(16px,3vw,32px);display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap}
+.demobar a{color:inherit;text-decoration:none}
+.demobar-l{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap}
+.demobar-brand{display:inline-flex;align-items:center;gap:8px;font-family:"Bricolage Grotesque","Segoe UI",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.demobar-brand svg{width:24px;height:24px}
+.demobar-tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:4px 8px;border-radius:5px;background:#F2B4551f;color:#F2B455}
+.demobar-name{color:#8E98AB}.demobar-name b{color:#E8ECF2;font-weight:600}
+.demobar-r{display:flex;gap:8px;flex-wrap:wrap}
+.demobar-r a{padding:8px 14px;border-radius:999px;border:1px solid #263042;font-weight:600;font-size:13px;white-space:nowrap}
+.demobar-r a:hover{border-color:#E8ECF2}
+.demobar-r a.go{background:#7086FF;border-color:#7086FF;color:#0B0F16}
+@media (max-width:640px){.demobar-name{display:none}}
+</style>
+</head>
+<body>
+<div class="demobar"><div class="demobar-in">
+  <div class="demobar-l"><a class="demobar-brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="#7086FF" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4"/></g><circle cx="10" cy="5" r="3.6" fill="#7086FF"/><circle cx="22" cy="25.6" r="3.3" fill="none" stroke="#7086FF" stroke-width="2.8"/></svg>hauplex</a><span class="demobar-tag">Demo tasarım</span><span class="demobar-name"><b>Parçam Oto</b> · Otomotiv yedek parça · B2B sipariş portalı</span></div>
+  <div class="demobar-r"><a href="../referanslar.html">← Tüm referanslar</a><a class="go" href="../iletisim.html">Benzerini isteyin</a></div>
+</div></div>
+
+<style>
+.d{position:relative}
+.d [data-go],.d [data-act],.d [role="button"]{cursor:pointer}
+.d [role="button"]:focus-visible,.d button:focus-visible,.d select:focus-visible,.d input:focus-visible{outline:2px solid var(--k-accent,#2340E8);outline-offset:2px}
+.d button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit}
+.d section,.d [id]{scroll-margin-top:72px}
+.k-toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:200;display:grid;gap:8px;width:min(420px,calc(100vw - 32px));pointer-events:none}
+.k-toast{background:var(--k-ink,#111);color:var(--k-bg,#fff);padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.4;box-shadow:0 10px 30px -10px rgba(0,0,0,.45);animation:kIn .25s ease;pointer-events:auto}
+.k-toast.ok{border-left:4px solid #2FB57A}.k-toast.warn{border-left:4px solid #E5A11A}
+@keyframes kIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.k-back{position:fixed;inset:0;z-index:190;background:rgba(10,12,16,.55);display:grid;place-items:center;padding:16px;animation:kFade .2s ease}
+@keyframes kFade{from{opacity:0}to{opacity:1}}
+.k-modal{background:var(--k-bg,#fff);color:var(--k-ink,#111);width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);animation:kIn .25s ease}
+.k-mh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--k-line,rgba(0,0,0,.1))}
+.k-mh h3{margin:0;font-size:19px;line-height:1.25;text-transform:none;letter-spacing:0}
+.k-x{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;opacity:.7}
+.k-x:hover{opacity:1;background:var(--k-line,rgba(0,0,0,.08))}
+.k-mb{padding:20px 22px;display:grid;gap:14px;font-size:15px;line-height:1.55}
+.k-mb p{margin:0}
+.k-mf{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:0 22px 20px}
+.k-btn{font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;border:1px solid var(--k-line,rgba(0,0,0,.15))}
+.k-btn.p{background:var(--k-accent,#2340E8);color:var(--k-on,#fff);border-color:var(--k-accent,#2340E8)}
+.k-field{display:grid;gap:6px}
+.k-field label{font-size:13px;font-weight:600;opacity:.75}
+.k-field input,.k-field select,.k-field textarea{font:inherit;font-size:15px;color:inherit;background:transparent;border:1px solid var(--k-line,rgba(0,0,0,.18));border-radius:10px;padding:11px 12px;width:100%}
+.k-field textarea{min-height:90px;resize:vertical}
+.k-field input:focus,.k-field select:focus,.k-field textarea:focus{outline:none;border-color:var(--k-accent,#2340E8)}
+.k-err{font-size:13px;color:#D64545}
+.k-dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}
+.k-dl dt{opacity:.65}.k-dl dd{margin:0;font-weight:600}
+.k-note{font-size:12px;opacity:.65}
+</style>
+<style>
+.d{--k-accent:#D7263D;--k-on:#fff;--k-ink:#0F1B2B;--k-bg:#fff;--k-line:#DCE1E8;--bg:#EDF0F4;--card:#FFFFFF;--ink:#0F1B2B;--muted:#5D6B7E;--line:#DCE1E8;--navy:#0F1B2B;--navy2:#1A2A40;--red:#D7263D;--green:#1E9E5A;--amber:#D98E04;
+  font-family:"Barlow",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3,.d p{margin:0}.d ul{list-style:none;margin:0;padding:0}
+.d .w{max-width:1240px;margin:0 auto;padding-inline:clamp(16px,3vw,32px)}
+.d .top{background:var(--navy);color:#fff}
+.d .bar1{display:flex;align-items:center;gap:24px;height:72px}
+.d .logo{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:26px;letter-spacing:.02em;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.d .logo i{width:26px;height:26px;border:5px solid var(--red);border-radius:50%;position:relative}
+.d .logo i::after{content:"";position:absolute;inset:4px;background:#fff;border-radius:50%}
+.d .logo span{color:var(--red)}
+.d .search{flex:1;display:flex;min-width:0;background:#fff;border-radius:8px;overflow:hidden}
+.d .search span{flex:1;padding:12px 14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d .search b{background:var(--red);color:#fff;padding:12px 20px;font-weight:600}
+.d .acc{display:flex;gap:18px;font-size:14px;white-space:nowrap}
+.d .acc span{opacity:.8}.d .acc b{display:block;font-size:15px;opacity:1}
+.d .veh{background:var(--navy2)}
+.d .vrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-block:14px}
+.d .vrow label{font-size:12px;color:#ffffff99;text-transform:uppercase;letter-spacing:.08em;margin-right:4px}
+.d .sel{background:#ffffff14;border:1px solid #ffffff26;color:#fff;border-radius:8px;padding:9px 12px;font-size:14px;font-weight:500}
+.d .sel::after{content:" ▾";opacity:.6}
+.d .plate{display:inline-flex;align-items:stretch;border-radius:6px;overflow:hidden;border:2px solid #fff;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em}
+.d .plate i{background:#1D4FB8;color:#fff;font-style:normal;font-size:10px;padding:4px 5px;display:grid;place-items:end center}
+.d .plate b{background:#fff;color:var(--ink);padding:5px 10px}
+.d .main{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;padding-block:24px;align-items:start}
+.d .cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.d .cats li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;font-weight:600;font-size:14px;display:grid;gap:8px;justify-items:center}
+.d .cats li.on{border-color:var(--red);box-shadow:inset 0 -3px 0 var(--red)}
+.d .cats i{width:30px;height:30px;border-radius:8px;background:var(--bg);display:block}
+.d .cats li.on i{background:#D7263D1f}
+.d .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;min-width:0}
+.d .ph{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
+.d .ph h2{font-size:18px;font-weight:700}
+.d .ph p{font-size:13px;color:var(--muted)}
+.d .sort{font-size:13px;color:var(--muted)}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:720px}
+.d th{text-align:left;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:10px 16px;background:#F7F8FA}
+.d td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:middle;font-variant-numeric:tabular-nums}
+.d th.r,.d td.r{text-align:right}
+.d .pn b{display:block;font-weight:600;font-size:15px}
+.d .pn small{color:var(--muted);font-size:12px}
+.d .brand{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:16px;letter-spacing:.03em}
+.d .oem{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted)}
+.d .stock{display:flex;gap:10px;font-size:12px;font-weight:600;white-space:nowrap}
+.d .stock span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;background:var(--green)}
+.d .stock span.lo::before{background:var(--amber)}
+.d .stock span.no{color:var(--muted)}.d .stock span.no::before{background:var(--line)}
+.d .price b{display:block;font-size:17px;font-weight:700}
+.d .price small{font-size:12px;color:var(--muted)}
+.d .add{display:inline-block;background:var(--navy);color:#fff;font-weight:600;font-size:13px;padding:8px 12px;border-radius:8px;white-space:nowrap}
+.d .side{display:grid;gap:16px}
+.d .cart{padding:16px 18px;display:grid;gap:12px}
+.d .cart li{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.d .cart li span{color:var(--muted)}
+.d .cart .t{border-top:1px solid var(--line);padding-top:12px;font-size:17px;font-weight:700}
+.d .go{background:var(--red);color:#fff;text-align:center;font-weight:700;padding:13px;border-radius:10px}
+.d .ship{background:#1E9E5A14;border:1px solid #1E9E5A40;color:var(--ink);border-radius:12px;padding:14px 16px;font-size:14px}
+.d .ship b{color:var(--green)}
+.d .compat{padding:14px 18px;font-size:14px;display:grid;gap:8px}
+.d .compat span{color:var(--muted);font-size:13px}
+.d .search input{flex:1;min-width:0;border:0;padding:12px 14px;font:inherit;color:var(--ink);background:transparent}
+.d .search input:focus{outline:none}
+.d .search button{background:var(--red);color:#fff;padding:12px 20px;font-weight:600}
+.d select.sel{font:inherit;font-size:14px;font-weight:500;appearance:none;-webkit-appearance:none;padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);background-position:calc(100% - 15px) 55%,calc(100% - 10px) 55%;background-size:5px 5px;background-repeat:no-repeat;background-color:#ffffff14}
+.d select.sel option{color:#0F1B2B}
+.d .plate input{background:#fff;color:var(--ink);padding:5px 10px;border:0;width:120px;font:inherit;letter-spacing:.06em;text-transform:uppercase}
+.d .plate input:focus{outline:none}
+.d .cats button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;font-weight:600;font-size:14px;display:grid;gap:8px;justify-items:center;width:100%}
+.d .cats button:hover{border-color:#0F1B2B55}
+.d .cats button.on{border-color:var(--red);box-shadow:inset 0 -3px 0 var(--red)}
+.d .cats button i{width:30px;height:30px;border-radius:8px;background:var(--bg);display:block}
+.d .cats button.on i{background:#D7263D1f}
+.d .add:hover{background:var(--red)}
+.d .add.in{background:var(--green)}
+.d .add:disabled{background:var(--line);color:var(--muted);cursor:not-allowed}
+.d .cart li .rm{color:var(--muted);font-size:16px;line-height:1;margin-left:8px}
+.d .cart li .rm:hover{color:var(--red)}
+.d .go{display:block;width:100%}
+.d .go:disabled{opacity:.45;cursor:not-allowed}
+.d .cart .em{color:var(--muted);font-size:14px;justify-content:center}
+.d .empty{padding:28px 16px;text-align:center;color:var(--muted)}
+@media (max-width:1060px){.d .main{grid-template-columns:minmax(0,1fr)}.d .cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.d .acc{display:none}.d .bar1{gap:14px}.d .search b{padding:12px 14px}}
+</style>
+<div class="d">
+  <div class="top">
+    <div class="w bar1">
+      <div class="logo"><i></i>Parçam<span>Oto</span></div>
+      <form class="search" id="o-search"><input id="o-q" type="search" placeholder="OEM no, parça adı veya marka ile arayın" aria-label="Parça ara"><button type="submit">Ara</button></form>
+      <div class="acc"><div><span>Bakiye</span><b id="o-bal">₺24.610,00</b></div><div><span>Bayi</span><b>Çelik Oto Servis</b></div></div>
+    </div>
+    <div class="veh"><div class="w vrow">
+      <label>Araç</label>
+      <select class="sel" id="o-make" aria-label="Marka"></select><select class="sel" id="o-model" aria-label="Model"></select><select class="sel" id="o-engine" aria-label="Motor"></select><select class="sel" id="o-year" aria-label="Yıl"></select>
+      <label style="margin-left:8px">ya da plaka</label>
+      <form class="plate" id="o-plate"><i>TR</i><input id="o-plate-in" value="34 ABC 123" aria-label="Plaka" maxlength="10"></form>
+    </div></div>
+  </div>
+
+  <div class="w main">
+    <div>
+      <div class="cats" id="o-cats" role="group" aria-label="Kategori"></div>
+      <div class="panel">
+        <div class="ph"><div><h2 id="o-title">Fren sistemi</h2><p id="o-sub"></p></div><span class="sort">Stokta olanlar önce</span></div>
+        <div class="tw"><table>
+          <thead><tr><th>Parça</th><th>Marka</th><th>Depo stoğu</th><th class="r">Net fiyat</th><th></th></tr></thead>
+          <tbody id="o-rows"></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="ship"><b>Aynı gün kargo:</b> İstanbul deposundan 15:00'e kadar verilen siparişler bugün çıkar.</div>
+      <div class="panel">
+        <div class="ph"><h2>Sepetim</h2><span class="sort" id="o-count">0 kalem</span></div>
+        <ul class="cart"><li class="em" id="o-empty">Sepetiniz boş.</li></ul><div style="padding:0 18px 16px;display:grid;gap:12px"><div class="cart" style="padding:0" id="o-tot"></div><button type="button" class="go" id="o-go">Siparişi tamamla</button></div>
+      </div>
+      <div class="panel compat">
+        <b>Uyumluluk garantisi</b>
+        <span>Araç ya da plaka seçtiğinizde yalnızca o araca uyan parçalar listelenir. Yanlış parça iadesi ücretsizdir.</span>
+      </div>
+    </aside>
+  </div>
+</div>
+<script>
+function demoKit(root) {
+  var host = root.querySelector('.d');
+  var toasts = document.createElement('div');
+  toasts.className = 'k-toasts';
+  toasts.setAttribute('role', 'status');
+  host.appendChild(toasts);
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'k-toast ' + (type || 'ok');
+    t.textContent = msg;
+    toasts.appendChild(t);
+    setTimeout(function () { t.remove(); }, 3200);
+  }
+
+  // modal({ title, body: html, actions: [{ label, primary, onClick(close, el) }], form: { fields: [...], submit, onSubmit(data, close) } })
+  function modal(o) {
+    var back = document.createElement('div');
+    back.className = 'k-back';
+    var fields = '';
+    if (o.form) {
+      fields = o.form.fields.map(function (f, i) {
+        var id = 'kf-' + Date.now() + '-' + i;
+        var ctl;
+        if (f.type === 'select') ctl = '<select id="' + id + '" name="' + f.name + '">' + f.options.map(function (op) { return '<option>' + esc(op) + '</option>'; }).join('') + '</select>';
+        else if (f.type === 'textarea') ctl = '<textarea id="' + id + '" name="' + f.name + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '"></textarea>';
+        else ctl = '<input id="' + id + '" name="' + f.name + '" type="' + (f.type || 'text') + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '" value="' + esc(f.value || '') + '">';
+        return '<div class="k-field"><label for="' + id + '">' + esc(f.label) + '</label>' + ctl + '</div>';
+      }).join('') + '<div class="k-err" hidden></div>';
+    }
+    var acts = (o.actions || []).map(function (a, i) { return '<button type="button" class="k-btn' + (a.primary ? ' p' : '') + '" data-k="' + i + '">' + esc(a.label) + '</button>'; }).join('');
+    if (o.form) acts = '<button type="button" class="k-btn" data-k="cancel">Vazgeç</button><button type="submit" class="k-btn p">' + esc(o.form.submit || 'Gönder') + '</button>';
+    var inner = '<div class="k-mh"><h3>' + esc(o.title) + '</h3><button type="button" class="k-x" aria-label="Kapat">×</button></div>' +
+      '<div class="k-mb">' + (o.body || '') + fields + '</div>' + (acts ? '<div class="k-mf">' + acts + '</div>' : '');
+    back.innerHTML = o.form ? '<form class="k-modal" role="dialog" aria-modal="true" novalidate>' + inner + '</form>' : '<div class="k-modal" role="dialog" aria-modal="true">' + inner + '</div>';
+    host.appendChild(back);
+    var box = back.firstChild;
+    function close() { back.remove(); document.removeEventListener('keydown', onKey); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', onKey);
+    back.addEventListener('click', function (e) {
+      if (e.target === back || e.target.closest('.k-x') || e.target.closest('[data-k="cancel"]')) { close(); return; }
+      var b = e.target.closest('[data-k]');
+      if (b && o.actions) { var a = o.actions[+b.getAttribute('data-k')]; if (a.onClick) a.onClick(close, box); else close(); }
+    });
+    if (o.form) {
+      box.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var err = box.querySelector('.k-err'), data = {}, bad = null;
+        o.form.fields.forEach(function (f) {
+          var el = box.querySelector('[name="' + f.name + '"]');
+          data[f.name] = el.value.trim();
+          if (!bad && f.required && !data[f.name]) bad = el;
+          if (!bad && f.type === 'tel' && data[f.name] && data[f.name].replace(/\D/g, '').length < 10) bad = el;
+          if (!bad && f.type === 'email' && data[f.name] && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data[f.name])) bad = el;
+        });
+        if (bad) { err.hidden = false; err.textContent = 'Lütfen işaretli alanı doğru doldurun: ' + bad.previousSibling.textContent + '.'; bad.focus(); return; }
+        o.form.onSubmit(data, close);
+      });
+    }
+    var first = box.querySelector('input,select,textarea') || box.querySelector('.k-x');
+    if (first) first.focus();
+    return box;
+  }
+
+  function money(n) { return '₺' + n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+  function go(sel) {
+    var el = root.querySelector(sel);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // [data-go="#id"] scrolls; role=button elements respond to Enter and Space.
+  root.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-go]');
+    if (g) { e.preventDefault(); go(g.getAttribute('data-go')); }
+  });
+  root.addEventListener('keydown', function (e) {
+    var b = e.target.closest && e.target.closest('[role="button"]');
+    if (b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); b.click(); }
+  });
+  root.querySelectorAll('[data-go],[data-act]').forEach(function (el) {
+    if (el.tagName !== 'BUTTON' && el.tagName !== 'A' && !el.hasAttribute('role')) { el.setAttribute('role', 'button'); el.tabIndex = 0; }
+  });
+
+  return { toast: toast, modal: modal, money: money, go: go, esc: esc, host: host };
+}
+
+(function (root, kit) {
+var CARS = {
+  'Renault': { 'Clio IV': ['1.5 dCi · 90 HP', '0.9 TCe · 90 HP'], 'Megane IV': ['1.5 dCi · 110 HP', '1.3 TCe · 140 HP'] },
+  'Fiat': { 'Egea': ['1.3 Multijet · 95 HP', '1.4 Fire · 95 HP'], 'Doblo': ['1.6 Multijet · 105 HP'] },
+  'Volkswagen': { 'Passat B8': ['1.6 TDI · 120 HP', '2.0 TDI · 150 HP'], 'Golf 7': ['1.6 TDI · 110 HP', '1.4 TSI · 125 HP'] }
+};
+var CATS = ['Fren', 'Filtre', 'Motor', 'Süspansiyon', 'Elektrik', 'Aydınlatma'];
+var TITLES = { 'Fren': 'Fren sistemi', 'Filtre': 'Filtreler', 'Motor': 'Motor parçaları', 'Süspansiyon': 'Süspansiyon', 'Elektrik': 'Elektrik', 'Aydınlatma': 'Aydınlatma' };
+var P = [
+  ['Fren', 'Ön fren balatası takımı', 'BOSCH', 'OEM 410608481R', [42, 18, 3], 1480],
+  ['Fren', 'Ön fren diski (2 adet)', 'BREMBO', 'OEM 402060010R', [16, 2, 0], 3670],
+  ['Fren', 'Arka fren pabucu takımı', 'TRW', 'OEM 440604115R', [24, 11, 9], 1640],
+  ['Fren', 'Fren hidrolik yağı DOT4 1 L', 'BOSCH', 'Kod DOT4-1000', [120, 64, 40], 310],
+  ['Fren', 'Fren balata fişi (ön)', 'VALEO', 'OEM 8200460353', [0, 4, 0], 245],
+  ['Filtre', 'Yağ filtresi', 'MANN', 'OEM 152089599R', [80, 36, 22], 285],
+  ['Filtre', 'Hava filtresi', 'MANN', 'OEM 165469466R', [54, 20, 12], 420],
+  ['Filtre', 'Polen filtresi (karbonlu)', 'BOSCH', 'OEM 272773016R', [38, 14, 0], 390],
+  ['Filtre', 'Yakıt filtresi', 'DELPHI', 'OEM 164009008R', [12, 0, 6], 760],
+  ['Motor', 'Triger seti + devirdaim', 'GATES', 'OEM 130C11191R', [9, 4, 2], 6950],
+  ['Motor', 'Motor yağı 5W-30 5 L', 'CASTROL', 'Kod EDGE-5W30-5', [140, 70, 55], 2150],
+  ['Motor', 'Buji takımı (4 adet)', 'NGK', 'OEM 224018924R', [30, 12, 8], 980],
+  ['Süspansiyon', 'Ön amortisör (sağ)', 'SACHS', 'OEM 543022166R', [14, 6, 3], 3240],
+  ['Süspansiyon', 'Salıncak kolu (sol)', 'LEMFÖRDER', 'OEM 545010010R', [8, 0, 2], 2380],
+  ['Süspansiyon', 'Rotil', 'TRW', 'OEM 401600001R', [22, 9, 7], 640],
+  ['Elektrik', 'Akü 12V 60 Ah', 'VARTA', 'Kod E44-560', [26, 10, 8], 4150],
+  ['Elektrik', 'Marş motoru', 'VALEO', 'OEM 233000584R', [3, 1, 0], 8900],
+  ['Aydınlatma', 'Far ampulü H7 (2 adet)', 'OSRAM', 'Kod 64210NL', [90, 45, 30], 540],
+  ['Aydınlatma', 'Stop lambası (sol)', 'VALEO', 'OEM 265553489R', [5, 2, 0], 2760]
+].map(function (r, i) { return { id: i, cat: r[0], name: r[1], brand: r[2], code: r[3], stock: r[4], list: r[5], price: Math.round(r[5] * 0.8) }; });
+var PLATES = { '34ABC123': ['Renault', 'Clio IV', '1.5 dCi · 90 HP', '2016'], '06XYZ42': ['Fiat', 'Egea', '1.3 Multijet · 95 HP', '2019'], '35VW350': ['Volkswagen', 'Passat B8', '2.0 TDI · 150 HP', '2017'] };
+var cart = {}, cat = 'Fren', q = '', bal = 24610;
+var $ = function (s) { return root.querySelector(s); };
+function opts(el, list, v) { el.innerHTML = list.map(function (x) { return '<option' + (x === v ? ' selected' : '') + '>' + x + '</option>'; }).join(''); }
+function setCar(make, model, engine, year) {
+  opts($('#o-make'), Object.keys(CARS), make);
+  var models = Object.keys(CARS[make]); model = models.indexOf(model) > -1 ? model : models[0];
+  opts($('#o-model'), models, model);
+  var engines = CARS[make][model]; opts($('#o-engine'), engines, engines.indexOf(engine) > -1 ? engine : engines[0]);
+  var years = []; for (var y = 2024; y >= 2012; y--) years.push(String(y)); opts($('#o-year'), years, year || '2016');
+  renderRows();
+}
+['#o-make', '#o-model', '#o-engine', '#o-year'].forEach(function (id) {
+  $(id).addEventListener('change', function () { setCar($('#o-make').value, $('#o-model').value, $('#o-engine').value, $('#o-year').value); kit.toast('Araç güncellendi: ' + carLabel() + '. Liste bu araca göre filtrelendi.'); });
+});
+function carLabel() { return $('#o-make').value + ' ' + $('#o-model').value + ' ' + $('#o-engine').value.split(' · ')[0] + ' (' + $('#o-year').value + ')'; }
+$('#o-plate').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var k = $('#o-plate-in').value.toUpperCase().replace(/\s/g, ''), c = PLATES[k];
+  if (c) { setCar(c[0], c[1], c[2], c[3]); kit.toast('Plaka bulundu: ' + carLabel()); }
+  else kit.toast('Bu plaka için kayıt bulunamadı. Denemek için: 34 ABC 123, 06 XYZ 42, 35 VW 350', 'warn');
+});
+$('#o-cats').innerHTML = CATS.map(function (c) { return '<button type="button" data-cat="' + c + '"' + (c === cat ? ' class="on"' : '') + '><i></i>' + c + '</button>'; }).join('');
+$('#o-cats').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-cat]'); if (!b) return;
+  cat = b.getAttribute('data-cat'); q = ''; $('#o-q').value = '';
+  this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+  renderRows();
+});
+$('#o-search').addEventListener('submit', function (e) { e.preventDefault(); q = $('#o-q').value.trim().toLocaleLowerCase('tr'); renderRows(); });
+$('#o-q').addEventListener('input', function () { q = this.value.trim().toLocaleLowerCase('tr'); renderRows(); });
+function stockHtml(s) {
+  return ['İST', 'ANK', 'İZM'].map(function (d, i) { return '<span class="' + (s[i] === 0 ? 'no' : s[i] < 5 ? 'lo' : '') + '">' + d + ' ' + s[i] + '</span>'; }).join('');
+}
+function renderRows() {
+  var rows = P.filter(function (p) { return q ? (p.name + ' ' + p.brand + ' ' + p.code).toLocaleLowerCase('tr').indexOf(q) > -1 : p.cat === cat; });
+  rows.sort(function (a, b) { return (b.stock[0] + b.stock[1] + b.stock[2] > 0) - (a.stock[0] + a.stock[1] + a.stock[2] > 0); });
+  $('#o-title').textContent = q ? '"' + $('#o-q').value.trim() + '" için sonuçlar' : TITLES[cat];
+  $('#o-sub').textContent = carLabel() + ' ile uyumlu ' + rows.length + ' ürün';
+  $('#o-rows').innerHTML = rows.length ? rows.map(function (p) {
+    var total = p.stock[0] + p.stock[1] + p.stock[2];
+    return '<tr><td class="pn"><b>' + p.name + '</b><small class="oem">' + p.code + '</small></td><td class="brand">' + p.brand + '</td><td><div class="stock">' + stockHtml(p.stock) + '</div></td><td class="r price"><b>' + kit.money(p.price) + '</b><small>Liste ' + kit.money(p.list) + ' · %20</small></td><td class="r"><button type="button" class="add' + (cart[p.id] ? ' in' : '') + '" data-id="' + p.id + '"' + (total ? '' : ' disabled') + '>' + (total ? (cart[p.id] ? 'Sepette (' + cart[p.id] + ')' : 'Sepete ekle') : 'Stokta yok') + '</button></td></tr>';
+  }).join('') : '<tr><td colspan="5" class="empty">Sonuç bulunamadı. OEM numarasını ya da parça adını kontrol edin.</td></tr>';
+}
+$('#o-rows').addEventListener('click', function (e) {
+  var b = e.target.closest('.add'); if (!b || b.disabled) return;
+  var p = P[+b.getAttribute('data-id')], max = p.stock[0] + p.stock[1] + p.stock[2];
+  if ((cart[p.id] || 0) >= max) { kit.toast('Depolarda toplam ' + max + ' adet var.', 'warn'); return; }
+  cart[p.id] = (cart[p.id] || 0) + 1;
+  renderRows(); renderCart();
+  kit.toast(p.brand + ' ' + p.name + ' sepete eklendi.');
+});
+function renderCart() {
+  var ids = Object.keys(cart).filter(function (k) { return cart[k]; });
+  var sub = ids.reduce(function (s, k) { return s + P[k].price * cart[k]; }, 0), kdv = Math.round(sub * 0.2 * 100) / 100;
+  root.querySelector('.cart').innerHTML = ids.length ? ids.map(function (k) { return '<li><span>' + P[k].name + ' × ' + cart[k] + '</span><b>' + kit.money(P[k].price * cart[k]) + '<button type="button" class="rm" data-rm="' + k + '" aria-label="Çıkar">×</button></b></li>'; }).join('') : '<li class="em">Sepetiniz boş. Listeden parça ekleyin.</li>';
+  $('#o-tot').innerHTML = ids.length ? '<li><span>KDV (%20)</span><b>' + kit.money(kdv) + '</b></li><li class="t"><span style="color:var(--ink)">Toplam</span><b>' + kit.money(sub + kdv) + '</b></li>' : '';
+  $('#o-count').textContent = ids.length + ' kalem';
+  $('#o-go').disabled = !ids.length;
+  return sub + kdv;
+}
+root.querySelector('.cart').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-rm]'); if (!b) return;
+  delete cart[b.getAttribute('data-rm')]; renderRows(); renderCart();
+});
+$('#o-go').addEventListener('click', function () {
+  var total = renderCart();
+  kit.modal({
+    title: 'Siparişi tamamla',
+    body: '<dl class="k-dl"><dt>Tutar</dt><dd>' + kit.money(total) + '</dd><dt>Çıkış deposu</dt><dd>İstanbul (stok yetmeyen kalemler Ankara\'dan)</dd></dl>',
+    form: { submit: 'Siparişi ver', fields: [{ name: 'tes', label: 'Teslimat', type: 'select', options: ['Kargo ile adrese', 'Depodan teslim al', 'Kurye (İstanbul içi, 2 saat)'] }, { name: 'odeme', label: 'Ödeme', type: 'select', options: ['Cari hesaba işle (30 gün vade)', 'Kredi kartı'] }, { name: 'not', label: 'Sipariş notu', type: 'textarea', placeholder: 'İş emri no, araç plakası vb.' }],
+      onSubmit: function (d, close) {
+        close();
+        if (d.odeme.indexOf('Cari') === 0) { bal += total; $('#o-bal').textContent = kit.money(bal); }
+        var no = 'PO-' + (58200 + Math.floor(Math.random() * 99));
+        cart = {}; renderRows(); renderCart();
+        kit.modal({ title: 'Siparişiniz alındı', body: '<p><b>#' + no + '</b> numaralı siparişiniz depoya iletildi.</p><p>Teslimat: ' + d.tes + '. Kargo takip numarası SMS ile gönderilecek.</p>', actions: [{ label: 'Tamam', primary: true }] });
+      } }
+  });
+});
+setCar('Renault', 'Clio IV', '1.5 dCi · 90 HP', '2016');
+cart[0] = 4; cart[1] = 2; cart[3] = 6;
+renderRows(); renderCart();
+})(document, demoKit(document));
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!--meta title="Parçam Oto" kind="Otomotiv yedek parça · B2B sipariş portalı" fonts="Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700"-->
+<style>
+.d{--k-accent:#D7263D;--k-on:#fff;--k-ink:#0F1B2B;--k-bg:#fff;--k-line:#DCE1E8;--bg:#EDF0F4;--card:#FFFFFF;--ink:#0F1B2B;--muted:#5D6B7E;--line:#DCE1E8;--navy:#0F1B2B;--navy2:#1A2A40;--red:#D7263D;--green:#1E9E5A;--amber:#D98E04;
+  font-family:"Barlow",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3,.d p{margin:0}.d ul{list-style:none;margin:0;padding:0}
+.d .w{max-width:1240px;margin:0 auto;padding-inline:clamp(16px,3vw,32px)}
+.d .top{background:var(--navy);color:#fff}
+.d .bar1{display:flex;align-items:center;gap:24px;height:72px}
+.d .logo{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:26px;letter-spacing:.02em;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.d .logo i{width:26px;height:26px;border:5px solid var(--red);border-radius:50%;position:relative}
+.d .logo i::after{content:"";position:absolute;inset:4px;background:#fff;border-radius:50%}
+.d .logo span{color:var(--red)}
+.d .search{flex:1;display:flex;min-width:0;background:#fff;border-radius:8px;overflow:hidden}
+.d .search span{flex:1;padding:12px 14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d .search b{background:var(--red);color:#fff;padding:12px 20px;font-weight:600}
+.d .acc{display:flex;gap:18px;font-size:14px;white-space:nowrap}
+.d .acc span{opacity:.8}.d .acc b{display:block;font-size:15px;opacity:1}
+.d .veh{background:var(--navy2)}
+.d .vrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-block:14px}
+.d .vrow label{font-size:12px;color:#ffffff99;text-transform:uppercase;letter-spacing:.08em;margin-right:4px}
+.d .sel{background:#ffffff14;border:1px solid #ffffff26;color:#fff;border-radius:8px;padding:9px 12px;font-size:14px;font-weight:500}
+.d .sel::after{content:" ▾";opacity:.6}
+.d .plate{display:inline-flex;align-items:stretch;border-radius:6px;overflow:hidden;border:2px solid #fff;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em}
+.d .plate i{background:#1D4FB8;color:#fff;font-style:normal;font-size:10px;padding:4px 5px;display:grid;place-items:end center}
+.d .plate b{background:#fff;color:var(--ink);padding:5px 10px}
+.d .main{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;padding-block:24px;align-items:start}
+.d .cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.d .cats li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;font-weight:600;font-size:14px;display:grid;gap:8px;justify-items:center}
+.d .cats li.on{border-color:var(--red);box-shadow:inset 0 -3px 0 var(--red)}
+.d .cats i{width:30px;height:30px;border-radius:8px;background:var(--bg);display:block}
+.d .cats li.on i{background:#D7263D1f}
+.d .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;min-width:0}
+.d .ph{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
+.d .ph h2{font-size:18px;font-weight:700}
+.d .ph p{font-size:13px;color:var(--muted)}
+.d .sort{font-size:13px;color:var(--muted)}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:720px}
+.d th{text-align:left;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:10px 16px;background:#F7F8FA}
+.d td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:middle;font-variant-numeric:tabular-nums}
+.d th.r,.d td.r{text-align:right}
+.d .pn b{display:block;font-weight:600;font-size:15px}
+.d .pn small{color:var(--muted);font-size:12px}
+.d .brand{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:16px;letter-spacing:.03em}
+.d .oem{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted)}
+.d .stock{display:flex;gap:10px;font-size:12px;font-weight:600;white-space:nowrap}
+.d .stock span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;background:var(--green)}
+.d .stock span.lo::before{background:var(--amber)}
+.d .stock span.no{color:var(--muted)}.d .stock span.no::before{background:var(--line)}
+.d .price b{display:block;font-size:17px;font-weight:700}
+.d .price small{font-size:12px;color:var(--muted)}
+.d .add{display:inline-block;background:var(--navy);color:#fff;font-weight:600;font-size:13px;padding:8px 12px;border-radius:8px;white-space:nowrap}
+.d .side{display:grid;gap:16px}
+.d .cart{padding:16px 18px;display:grid;gap:12px}
+.d .cart li{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.d .cart li span{color:var(--muted)}
+.d .cart .t{border-top:1px solid var(--line);padding-top:12px;font-size:17px;font-weight:700}
+.d .go{background:var(--red);color:#fff;text-align:center;font-weight:700;padding:13px;border-radius:10px}
+.d .ship{background:#1E9E5A14;border:1px solid #1E9E5A40;color:var(--ink);border-radius:12px;padding:14px 16px;font-size:14px}
+.d .ship b{color:var(--green)}
+.d .compat{padding:14px 18px;font-size:14px;display:grid;gap:8px}
+.d .compat span{color:var(--muted);font-size:13px}
+.d .search input{flex:1;min-width:0;border:0;padding:12px 14px;font:inherit;color:var(--ink);background:transparent}
+.d .search input:focus{outline:none}
+.d .search button{background:var(--red);color:#fff;padding:12px 20px;font-weight:600}
+.d select.sel{font:inherit;font-size:14px;font-weight:500;appearance:none;-webkit-appearance:none;padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);background-position:calc(100% - 15px) 55%,calc(100% - 10px) 55%;background-size:5px 5px;background-repeat:no-repeat;background-color:#ffffff14}
+.d select.sel option{color:#0F1B2B}
+.d .plate input{background:#fff;color:var(--ink);padding:5px 10px;border:0;width:120px;font:inherit;letter-spacing:.06em;text-transform:uppercase}
+.d .plate input:focus{outline:none}
+.d .cats button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;font-weight:600;font-size:14px;display:grid;gap:8px;justify-items:center;width:100%}
+.d .cats button:hover{border-color:#0F1B2B55}
+.d .cats button.on{border-color:var(--red);box-shadow:inset 0 -3px 0 var(--red)}
+.d .cats button i{width:30px;height:30px;border-radius:8px;background:var(--bg);display:block}
+.d .cats button.on i{background:#D7263D1f}
+.d .add:hover{background:var(--red)}
+.d .add.in{background:var(--green)}
+.d .add:disabled{background:var(--line);color:var(--muted);cursor:not-allowed}
+.d .cart li .rm{color:var(--muted);font-size:16px;line-height:1;margin-left:8px}
+.d .cart li .rm:hover{color:var(--red)}
+.d .go{display:block;width:100%}
+.d .go:disabled{opacity:.45;cursor:not-allowed}
+.d .cart .em{color:var(--muted);font-size:14px;justify-content:center}
+.d .empty{padding:28px 16px;text-align:center;color:var(--muted)}
+@media (max-width:1060px){.d .main{grid-template-columns:minmax(0,1fr)}.d .cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.d .acc{display:none}.d .bar1{gap:14px}.d .search b{padding:12px 14px}}
+</style>
+<div class="d">
+  <div class="top">
+    <div class="w bar1">
+      <div class="logo"><i></i>Parçam<span>Oto</span></div>
+      <form class="search" id="o-search"><input id="o-q" type="search" placeholder="OEM no, parça adı veya marka ile arayın" aria-label="Parça ara"><button type="submit">Ara</button></form>
+      <div class="acc"><div><span>Bakiye</span><b id="o-bal">₺24.610,00</b></div><div><span>Bayi</span><b>Çelik Oto Servis</b></div></div>
+    </div>
+    <div class="veh"><div class="w vrow">
+      <label>Araç</label>
+      <select class="sel" id="o-make" aria-label="Marka"></select><select class="sel" id="o-model" aria-label="Model"></select><select class="sel" id="o-engine" aria-label="Motor"></select><select class="sel" id="o-year" aria-label="Yıl"></select>
+      <label style="margin-left:8px">ya da plaka</label>
+      <form class="plate" id="o-plate"><i>TR</i><input id="o-plate-in" value="34 ABC 123" aria-label="Plaka" maxlength="10"></form>
+    </div></div>
+  </div>
+
+  <div class="w main">
+    <div>
+      <div class="cats" id="o-cats" role="group" aria-label="Kategori"></div>
+      <div class="panel">
+        <div class="ph"><div><h2 id="o-title">Fren sistemi</h2><p id="o-sub"></p></div><span class="sort">Stokta olanlar önce</span></div>
+        <div class="tw"><table>
+          <thead><tr><th>Parça</th><th>Marka</th><th>Depo stoğu</th><th class="r">Net fiyat</th><th></th></tr></thead>
+          <tbody id="o-rows"></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="ship"><b>Aynı gün kargo:</b> İstanbul deposundan 15:00'e kadar verilen siparişler bugün çıkar.</div>
+      <div class="panel">
+        <div class="ph"><h2>Sepetim</h2><span class="sort" id="o-count">0 kalem</span></div>
+        <ul class="cart"><li class="em" id="o-empty">Sepetiniz boş.</li></ul><div style="padding:0 18px 16px;display:grid;gap:12px"><div class="cart" style="padding:0" id="o-tot"></div><button type="button" class="go" id="o-go">Siparişi tamamla</button></div>
+      </div>
+      <div class="panel compat">
+        <b>Uyumluluk garantisi</b>
+        <span>Araç ya da plaka seçtiğinizde yalnızca o araca uyan parçalar listelenir. Yanlış parça iadesi ücretsizdir.</span>
+      </div>
+    </aside>
+  </div>
+</div>
+<script>
+var CARS = {
+  'Renault': { 'Clio IV': ['1.5 dCi · 90 HP', '0.9 TCe · 90 HP'], 'Megane IV': ['1.5 dCi · 110 HP', '1.3 TCe · 140 HP'] },
+  'Fiat': { 'Egea': ['1.3 Multijet · 95 HP', '1.4 Fire · 95 HP'], 'Doblo': ['1.6 Multijet · 105 HP'] },
+  'Volkswagen': { 'Passat B8': ['1.6 TDI · 120 HP', '2.0 TDI · 150 HP'], 'Golf 7': ['1.6 TDI · 110 HP', '1.4 TSI · 125 HP'] }
+};
+var CATS = ['Fren', 'Filtre', 'Motor', 'Süspansiyon', 'Elektrik', 'Aydınlatma'];
+var TITLES = { 'Fren': 'Fren sistemi', 'Filtre': 'Filtreler', 'Motor': 'Motor parçaları', 'Süspansiyon': 'Süspansiyon', 'Elektrik': 'Elektrik', 'Aydınlatma': 'Aydınlatma' };
+var P = [
+  ['Fren', 'Ön fren balatası takımı', 'BOSCH', 'OEM 410608481R', [42, 18, 3], 1480],
+  ['Fren', 'Ön fren diski (2 adet)', 'BREMBO', 'OEM 402060010R', [16, 2, 0], 3670],
+  ['Fren', 'Arka fren pabucu takımı', 'TRW', 'OEM 440604115R', [24, 11, 9], 1640],
+  ['Fren', 'Fren hidrolik yağı DOT4 1 L', 'BOSCH', 'Kod DOT4-1000', [120, 64, 40], 310],
+  ['Fren', 'Fren balata fişi (ön)', 'VALEO', 'OEM 8200460353', [0, 4, 0], 245],
+  ['Filtre', 'Yağ filtresi', 'MANN', 'OEM 152089599R', [80, 36, 22], 285],
+  ['Filtre', 'Hava filtresi', 'MANN', 'OEM 165469466R', [54, 20, 12], 420],
+  ['Filtre', 'Polen filtresi (karbonlu)', 'BOSCH', 'OEM 272773016R', [38, 14, 0], 390],
+  ['Filtre', 'Yakıt filtresi', 'DELPHI', 'OEM 164009008R', [12, 0, 6], 760],
+  ['Motor', 'Triger seti + devirdaim', 'GATES', 'OEM 130C11191R', [9, 4, 2], 6950],
+  ['Motor', 'Motor yağı 5W-30 5 L', 'CASTROL', 'Kod EDGE-5W30-5', [140, 70, 55], 2150],
+  ['Motor', 'Buji takımı (4 adet)', 'NGK', 'OEM 224018924R', [30, 12, 8], 980],
+  ['Süspansiyon', 'Ön amortisör (sağ)', 'SACHS', 'OEM 543022166R', [14, 6, 3], 3240],
+  ['Süspansiyon', 'Salıncak kolu (sol)', 'LEMFÖRDER', 'OEM 545010010R', [8, 0, 2], 2380],
+  ['Süspansiyon', 'Rotil', 'TRW', 'OEM 401600001R', [22, 9, 7], 640],
+  ['Elektrik', 'Akü 12V 60 Ah', 'VARTA', 'Kod E44-560', [26, 10, 8], 4150],
+  ['Elektrik', 'Marş motoru', 'VALEO', 'OEM 233000584R', [3, 1, 0], 8900],
+  ['Aydınlatma', 'Far ampulü H7 (2 adet)', 'OSRAM', 'Kod 64210NL', [90, 45, 30], 540],
+  ['Aydınlatma', 'Stop lambası (sol)', 'VALEO', 'OEM 265553489R', [5, 2, 0], 2760]
+].map(function (r, i) { return { id: i, cat: r[0], name: r[1], brand: r[2], code: r[3], stock: r[4], list: r[5], price: Math.round(r[5] * 0.8) }; });
+var PLATES = { '34ABC123': ['Renault', 'Clio IV', '1.5 dCi · 90 HP', '2016'], '06XYZ42': ['Fiat', 'Egea', '1.3 Multijet · 95 HP', '2019'], '35VW350': ['Volkswagen', 'Passat B8', '2.0 TDI · 150 HP', '2017'] };
+var cart = {}, cat = 'Fren', q = '', bal = 24610;
+var $ = function (s) { return root.querySelector(s); };
+function opts(el, list, v) { el.innerHTML = list.map(function (x) { return '<option' + (x === v ? ' selected' : '') + '>' + x + '</option>'; }).join(''); }
+function setCar(make, model, engine, year) {
+  opts($('#o-make'), Object.keys(CARS), make);
+  var models = Object.keys(CARS[make]); model = models.indexOf(model) > -1 ? model : models[0];
+  opts($('#o-model'), models, model);
+  var engines = CARS[make][model]; opts($('#o-engine'), engines, engines.indexOf(engine) > -1 ? engine : engines[0]);
+  var years = []; for (var y = 2024; y >= 2012; y--) years.push(String(y)); opts($('#o-year'), years, year || '2016');
+  renderRows();
+}
+['#o-make', '#o-model', '#o-engine', '#o-year'].forEach(function (id) {
+  $(id).addEventListener('change', function () { setCar($('#o-make').value, $('#o-model').value, $('#o-engine').value, $('#o-year').value); kit.toast('Araç güncellendi: ' + carLabel() + '. Liste bu araca göre filtrelendi.'); });
+});
+function carLabel() { return $('#o-make').value + ' ' + $('#o-model').value + ' ' + $('#o-engine').value.split(' · ')[0] + ' (' + $('#o-year').value + ')'; }
+$('#o-plate').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var k = $('#o-plate-in').value.toUpperCase().replace(/\s/g, ''), c = PLATES[k];
+  if (c) { setCar(c[0], c[1], c[2], c[3]); kit.toast('Plaka bulundu: ' + carLabel()); }
+  else kit.toast('Bu plaka için kayıt bulunamadı. Denemek için: 34 ABC 123, 06 XYZ 42, 35 VW 350', 'warn');
+});
+$('#o-cats').innerHTML = CATS.map(function (c) { return '<button type="button" data-cat="' + c + '"' + (c === cat ? ' class="on"' : '') + '><i></i>' + c + '</button>'; }).join('');
+$('#o-cats').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-cat]'); if (!b) return;
+  cat = b.getAttribute('data-cat'); q = ''; $('#o-q').value = '';
+  this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+  renderRows();
+});
+$('#o-search').addEventListener('submit', function (e) { e.preventDefault(); q = $('#o-q').value.trim().toLocaleLowerCase('tr'); renderRows(); });
+$('#o-q').addEventListener('input', function () { q = this.value.trim().toLocaleLowerCase('tr'); renderRows(); });
+function stockHtml(s) {
+  return ['İST', 'ANK', 'İZM'].map(function (d, i) { return '<span class="' + (s[i] === 0 ? 'no' : s[i] < 5 ? 'lo' : '') + '">' + d + ' ' + s[i] + '</span>'; }).join('');
+}
+function renderRows() {
+  var rows = P.filter(function (p) { return q ? (p.name + ' ' + p.brand + ' ' + p.code).toLocaleLowerCase('tr').indexOf(q) > -1 : p.cat === cat; });
+  rows.sort(function (a, b) { return (b.stock[0] + b.stock[1] + b.stock[2] > 0) - (a.stock[0] + a.stock[1] + a.stock[2] > 0); });
+  $('#o-title').textContent = q ? '"' + $('#o-q').value.trim() + '" için sonuçlar' : TITLES[cat];
+  $('#o-sub').textContent = carLabel() + ' ile uyumlu ' + rows.length + ' ürün';
+  $('#o-rows').innerHTML = rows.length ? rows.map(function (p) {
+    var total = p.stock[0] + p.stock[1] + p.stock[2];
+    return '<tr><td class="pn"><b>' + p.name + '</b><small class="oem">' + p.code + '</small></td><td class="brand">' + p.brand + '</td><td><div class="stock">' + stockHtml(p.stock) + '</div></td><td class="r price"><b>' + kit.money(p.price) + '</b><small>Liste ' + kit.money(p.list) + ' · %20</small></td><td class="r"><button type="button" class="add' + (cart[p.id] ? ' in' : '') + '" data-id="' + p.id + '"' + (total ? '' : ' disabled') + '>' + (total ? (cart[p.id] ? 'Sepette (' + cart[p.id] + ')' : 'Sepete ekle') : 'Stokta yok') + '</button></td></tr>';
+  }).join('') : '<tr><td colspan="5" class="empty">Sonuç bulunamadı. OEM numarasını ya da parça adını kontrol edin.</td></tr>';
+}
+$('#o-rows').addEventListener('click', function (e) {
+  var b = e.target.closest('.add'); if (!b || b.disabled) return;
+  var p = P[+b.getAttribute('data-id')], max = p.stock[0] + p.stock[1] + p.stock[2];
+  if ((cart[p.id] || 0) >= max) { kit.toast('Depolarda toplam ' + max + ' adet var.', 'warn'); return; }
+  cart[p.id] = (cart[p.id] || 0) + 1;
+  renderRows(); renderCart();
+  kit.toast(p.brand + ' ' + p.name + ' sepete eklendi.');
+});
+function renderCart() {
+  var ids = Object.keys(cart).filter(function (k) { return cart[k]; });
+  var sub = ids.reduce(function (s, k) { return s + P[k].price * cart[k]; }, 0), kdv = Math.round(sub * 0.2 * 100) / 100;
+  root.querySelector('.cart').innerHTML = ids.length ? ids.map(function (k) { return '<li><span>' + P[k].name + ' × ' + cart[k] + '</span><b>' + kit.money(P[k].price * cart[k]) + '<button type="button" class="rm" data-rm="' + k + '" aria-label="Çıkar">×</button></b></li>'; }).join('') : '<li class="em">Sepetiniz boş. Listeden parça ekleyin.</li>';
+  $('#o-tot').innerHTML = ids.length ? '<li><span>KDV (%20)</span><b>' + kit.money(kdv) + '</b></li><li class="t"><span style="color:var(--ink)">Toplam</span><b>' + kit.money(sub + kdv) + '</b></li>' : '';
+  $('#o-count').textContent = ids.length + ' kalem';
+  $('#o-go').disabled = !ids.length;
+  return sub + kdv;
+}
+root.querySelector('.cart').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-rm]'); if (!b) return;
+  delete cart[b.getAttribute('data-rm')]; renderRows(); renderCart();
+});
+$('#o-go').addEventListener('click', function () {
+  var total = renderCart();
+  kit.modal({
+    title: 'Siparişi tamamla',
+    body: '<dl class="k-dl"><dt>Tutar</dt><dd>' + kit.money(total) + '</dd><dt>Çıkış deposu</dt><dd>İstanbul (stok yetmeyen kalemler Ankara\'dan)</dd></dl>',
+    form: { submit: 'Siparişi ver', fields: [{ name: 'tes', label: 'Teslimat', type: 'select', options: ['Kargo ile adrese', 'Depodan teslim al', 'Kurye (İstanbul içi, 2 saat)'] }, { name: 'odeme', label: 'Ödeme', type: 'select', options: ['Cari hesaba işle (30 gün vade)', 'Kredi kartı'] }, { name: 'not', label: 'Sipariş notu', type: 'textarea', placeholder: 'İş emri no, araç plakası vb.' }],
+      onSubmit: function (d, close) {
+        close();
+        if (d.odeme.indexOf('Cari') === 0) { bal += total; $('#o-bal').textContent = kit.money(bal); }
+        var no = 'PO-' + (58200 + Math.floor(Math.random() * 99));
+        cart = {}; renderRows(); renderCart();
+        kit.modal({ title: 'Siparişiniz alındı', body: '<p><b>#' + no + '</b> numaralı siparişiniz depoya iletildi.</p><p>Teslimat: ' + d.tes + '. Kargo takip numarası SMS ile gönderilecek.</p>', actions: [{ label: 'Tamam', primary: true }] });
+      } }
+  });
+});
+setCar('Renault', 'Clio IV', '1.5 dCi · 90 HP', '2016');
+cart[0] = 4; cart[1] = 2; cart[3] = 6;
+renderRows(); renderCart();
+</script>

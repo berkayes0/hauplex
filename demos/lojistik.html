@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rota Lojistik · Hauplex demo</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22 xmlns:c2pa=%22http://c2pa.org/manifest%22%3E%3Cmetadata%3E%3Cc2pa:manifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo1ODMxMDk0YS03NmFmLTQzOTctYTJjMC1hMWI2MjI5Y2VlMWIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaK81mBHbTk9w%2BFrl9%2BlK2oEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0ZGNkNWEwYS1jZTdhLTQ2ODgtODgxYy1mMTVkMGU5OWI5MWJscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo9JU%2BJ3CN52//6ZHVsOHP4AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggOALOs0bC6c9qwF2jLDxeIjE%2Bu/LjWiVm4vRLygZhRnWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBQJj3aVjFue5ewbs0S9ovcAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAfwCXyHIdXVaQD7N39F7Q3pMMpWbUWaZABRwoq4HtGi2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjU4MzEwOTRhLTc2YWYtNDM5Ny1hMmMwLWExYjYyMjljZWUxYi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmRkZDE1NGM4LTI1N2YtNDFlYy1iNWIxLTAxOGY0ZmUwYjQyZnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCA4As6zRsLpz2rAXaMsPF4iMT678uNaJWbi9EvKBmFGdaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggJ9zmNADvyhyK7JPMqjuuos/CSyTSIBJFsVZ1nxVj%2BGSiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggk56B955C3cOMHVIeAni5Up2m3uoxsRBikxuSTa0K%2BRh0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQLquS1CsjLCVX0/POQqSlNqDuq4Njbkymw9Sk1mZH6oUUvV61ppUPQx1i1vVMPPo2AQj82O6GKrBkYoRfX0pMa4=%3C/c2pa:manifest%3E%3C/metadata%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%232340E8%22/%3E%3Cg transform=%22translate%2816 16%29 scale%28.8%29 translate%28-16 -15.6%29%22%3E%3Cg fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%224%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4%22/%3E%3C/g%3E%3Ccircle cx=%2210%22 cy=%225%22 r=%223.6%22 fill=%22%23FFFFFF%22/%3E%3Ccircle cx=%2222%22 cy=%2225.6%22 r=%223.3%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%222.8%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Instrument+Sans:wght@500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>body{margin:0}
+.demobar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:#0E1420;color:#E8ECF2;font:500 14px/1.3 "Instrument Sans","Segoe UI",system-ui,sans-serif;border-bottom:1px solid #263042}
+.demobar-in{max-width:1240px;margin:0 auto;padding:10px clamp(16px,3vw,32px);display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap}
+.demobar a{color:inherit;text-decoration:none}
+.demobar-l{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap}
+.demobar-brand{display:inline-flex;align-items:center;gap:8px;font-family:"Bricolage Grotesque","Segoe UI",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.demobar-brand svg{width:24px;height:24px}
+.demobar-tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:4px 8px;border-radius:5px;background:#F2B4551f;color:#F2B455}
+.demobar-name{color:#8E98AB}.demobar-name b{color:#E8ECF2;font-weight:600}
+.demobar-r{display:flex;gap:8px;flex-wrap:wrap}
+.demobar-r a{padding:8px 14px;border-radius:999px;border:1px solid #263042;font-weight:600;font-size:13px;white-space:nowrap}
+.demobar-r a:hover{border-color:#E8ECF2}
+.demobar-r a.go{background:#7086FF;border-color:#7086FF;color:#0B0F16}
+@media (max-width:640px){.demobar-name{display:none}}
+</style>
+</head>
+<body>
+<div class="demobar"><div class="demobar-in">
+  <div class="demobar-l"><a class="demobar-brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="#7086FF" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4"/></g><circle cx="10" cy="5" r="3.6" fill="#7086FF"/><circle cx="22" cy="25.6" r="3.3" fill="none" stroke="#7086FF" stroke-width="2.8"/></svg>hauplex</a><span class="demobar-tag">Demo tasarım</span><span class="demobar-name"><b>Rota Lojistik</b> · Lojistik · Stok ve kargo bildirimleri</span></div>
+  <div class="demobar-r"><a href="../referanslar.html">← Tüm referanslar</a><a class="go" href="../iletisim.html">Benzerini isteyin</a></div>
+</div></div>
+
+<style>
+.d{position:relative}
+.d [data-go],.d [data-act],.d [role="button"]{cursor:pointer}
+.d [role="button"]:focus-visible,.d button:focus-visible,.d select:focus-visible,.d input:focus-visible{outline:2px solid var(--k-accent,#2340E8);outline-offset:2px}
+.d button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit}
+.d section,.d [id]{scroll-margin-top:72px}
+.k-toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:200;display:grid;gap:8px;width:min(420px,calc(100vw - 32px));pointer-events:none}
+.k-toast{background:var(--k-ink,#111);color:var(--k-bg,#fff);padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.4;box-shadow:0 10px 30px -10px rgba(0,0,0,.45);animation:kIn .25s ease;pointer-events:auto}
+.k-toast.ok{border-left:4px solid #2FB57A}.k-toast.warn{border-left:4px solid #E5A11A}
+@keyframes kIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.k-back{position:fixed;inset:0;z-index:190;background:rgba(10,12,16,.55);display:grid;place-items:center;padding:16px;animation:kFade .2s ease}
+@keyframes kFade{from{opacity:0}to{opacity:1}}
+.k-modal{background:var(--k-bg,#fff);color:var(--k-ink,#111);width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);animation:kIn .25s ease}
+.k-mh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--k-line,rgba(0,0,0,.1))}
+.k-mh h3{margin:0;font-size:19px;line-height:1.25;text-transform:none;letter-spacing:0}
+.k-x{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;opacity:.7}
+.k-x:hover{opacity:1;background:var(--k-line,rgba(0,0,0,.08))}
+.k-mb{padding:20px 22px;display:grid;gap:14px;font-size:15px;line-height:1.55}
+.k-mb p{margin:0}
+.k-mf{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:0 22px 20px}
+.k-btn{font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;border:1px solid var(--k-line,rgba(0,0,0,.15))}
+.k-btn.p{background:var(--k-accent,#2340E8);color:var(--k-on,#fff);border-color:var(--k-accent,#2340E8)}
+.k-field{display:grid;gap:6px}
+.k-field label{font-size:13px;font-weight:600;opacity:.75}
+.k-field input,.k-field select,.k-field textarea{font:inherit;font-size:15px;color:inherit;background:transparent;border:1px solid var(--k-line,rgba(0,0,0,.18));border-radius:10px;padding:11px 12px;width:100%}
+.k-field textarea{min-height:90px;resize:vertical}
+.k-field input:focus,.k-field select:focus,.k-field textarea:focus{outline:none;border-color:var(--k-accent,#2340E8)}
+.k-err{font-size:13px;color:#D64545}
+.k-dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}
+.k-dl dt{opacity:.65}.k-dl dd{margin:0;font-weight:600}
+.k-note{font-size:12px;opacity:.65}
+</style>
+<style>
+.d{--k-accent:#4A2C82;--k-on:#fff;--k-ink:#1E1730;--k-bg:#fff;--k-line:#E6E3EE;--bg:#F6F5FA;--card:#FFFFFF;--ink:#1E1730;--muted:#6E6782;--line:#E6E3EE;--plum:#4A2C82;--plum2:#6A47B0;--soft:#EEE8F8;--coral:#F2643F;--green:#1F9D6B;--amber:#D18A0B;--wa:#E7F6EC;
+  font-family:"Outfit",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5;padding:clamp(16px,3vw,32px)}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3,.d p{margin:0}.d ul,.d ol{list-style:none;margin:0;padding:0}
+.d .wrap{max-width:1220px;margin:0 auto;display:grid;gap:20px}
+.d .hd{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.d .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.d .logo i{width:32px;height:32px;border-radius:10px;background:var(--plum);position:relative}
+.d .logo i::after{content:"";position:absolute;left:8px;top:8px;width:16px;height:16px;border:3px solid #fff;border-left-color:transparent;border-radius:50%}
+.d .tabs{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;flex-wrap:wrap}
+.d .tabs button{padding:8px 14px;border-radius:9px;font-size:14px;font-weight:500;color:var(--muted)}
+.d .tabs button.on{background:var(--plum);color:#fff}
+.d .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.d .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;gap:2px;min-width:0}
+.d .kpi span{font-size:13px;color:var(--muted)}
+.d .kpi b{font-size:28px;font-weight:600;font-variant-numeric:tabular-nums}
+.d .kpi small{font-size:12px;font-weight:500;color:var(--green)}
+.d .kpi small.w{color:var(--coral)}
+.d .grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.d .card{background:var(--card);border:1px solid var(--line);border-radius:16px;min-width:0}
+.d .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line)}
+.d .ch h2{font-size:17px;font-weight:600}
+.d .ch span{font-size:13px;color:var(--muted)}
+.d .route{padding:20px}
+.d .rhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.d .rhead b{font-size:18px}.d .rhead span{color:var(--muted);font-size:14px}
+.d .eta{background:var(--soft);color:var(--plum);font-weight:600;font-size:13px;padding:6px 12px;border-radius:999px;align-self:start}
+.d .line{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.d .line::before{content:"";position:absolute;top:9px;left:10%;right:10%;height:3px;background:var(--line);border-radius:2px}
+.d .line::after{content:"";position:absolute;top:9px;left:10%;width:var(--p,60%);transition:width .4s;height:3px;background:var(--plum);border-radius:2px}
+.d .line li{position:relative;z-index:1;display:grid;justify-items:center;text-align:center;gap:8px}
+.d .line i{width:21px;height:21px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.d .line li.done i{background:var(--plum);border-color:var(--plum)}
+.d .line li.now i{border-color:var(--plum);box-shadow:0 0 0 5px #4A2C8226}
+.d .line b{font-size:13px;font-weight:600}
+.d .line small{font-size:12px;color:var(--muted)}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:560px;font-size:14px}
+.d th{text-align:left;font-size:12px;font-weight:500;color:var(--muted);padding:10px 20px;text-transform:uppercase;letter-spacing:.06em}
+.d td{padding:12px 20px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.d td small{display:block;color:var(--muted);font-size:12px}
+.d .lvl{display:flex;align-items:center;gap:8px}
+.d .lvl i{display:block;width:70px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.d .lvl i b{display:block;height:100%;background:var(--coral)}
+.d .st{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.d .st.s1{background:#1F9D6B1a;color:var(--green)}.d .st.s2{background:#D18A0B1f;color:var(--amber)}
+.d .phone{margin:20px auto;max-width:300px;border:10px solid var(--ink);border-radius:36px;background:#F2EFE9;overflow:hidden}
+.d .pt{background:#1F6E54;color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.d .pt i{width:30px;height:30px;border-radius:50%;background:#ffffff33}
+.d .pt b{display:block;font-size:14px}.d .pt span{font-size:11px;opacity:.8}
+.d .msgs{padding:14px;display:grid;gap:10px}
+.d .msg{background:#fff;border-radius:4px 12px 12px 12px;padding:10px 12px;font-size:13px;max-width:92%;box-shadow:0 1px 0 #0000000f}
+.d .msg time{display:block;text-align:right;font-size:10px;color:var(--muted);margin-top:4px}
+.d .msg u{text-decoration:none;color:#1F6E54;font-weight:600}
+.d .rules{padding:6px 20px 14px}
+.d .rules li{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
+.d .rules li:first-child{border-top:0}
+.d .rules small{display:block;color:var(--muted);font-size:12px}
+.d .tg{flex:none;width:40px;height:22px;border-radius:999px;background:var(--plum);position:relative}
+.d .tg::after{content:"";position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+.d .tg.off{background:var(--line)}.d .tg.off::after{right:auto;left:3px}
+@media (max-width:1000px){.d .grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){.d .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.d .line b{font-size:12px}.d .line small{display:none}}
+.d .tabs button:hover{color:var(--ink)}.d .tabs button.on:hover{color:#fff}
+.d .view[hidden]{display:none}
+.d .tg{cursor:pointer}
+.d .tg:focus-visible{outline:2px solid var(--plum);outline-offset:2px}
+.d .sim{font-size:13px;font-weight:600;background:var(--plum);color:#fff;padding:9px 14px;border-radius:10px}
+.d .sim:hover{background:var(--plum2)}
+.d .sim:disabled{opacity:.5;cursor:not-allowed}
+.d .mini{font-size:12px;font-weight:600;padding:6px 10px;border-radius:8px;border:1px solid var(--line)}
+.d .mini:hover{border-color:var(--plum);color:var(--plum)}
+.d .mini.p{background:var(--plum);color:#fff;border-color:var(--plum)}
+.d .msg.new{animation:lMsg .4s ease}
+@keyframes lMsg{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.d .msgs{max-height:340px;overflow:auto}
+.d .filter{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-width:220px;color:var(--ink);background:var(--card)}
+.d .filter:focus{outline:none;border-color:var(--plum)}
+.d .st.s3{background:#4A2C821a;color:var(--plum)}
+.d .addrule{font-size:13px;font-weight:600;color:var(--plum)}
+</style>
+<div class="d">
+  <div class="wrap">
+    <div class="hd">
+      <div class="logo"><i></i>Rota Lojistik</div>
+      <nav class="tabs" aria-label="Bölümler"><button type="button" class="on" data-tab="genel">Genel bakış</button><button type="button" data-tab="gonderi">Gönderiler</button><button type="button" data-tab="stok">Stok</button><button type="button" data-tab="kural">Bildirim kuralları</button></nav>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Bugün çıkan gönderi</span><b id="l-out">186</b><small>Hepsi müşteriye bildirildi</small></div>
+      <div class="kpi"><span>Dağıtımda</span><b>412</b><small>Zamanında %97</small></div>
+      <div class="kpi"><span>Kritik stok</span><b id="l-crit">4</b><small class="w" id="l-crit-s">1 tanesi onay bekliyor</small></div>
+      <div class="kpi"><span>Gönderilen bildirim</span><b id="l-msgs">1.284</b><small>WhatsApp, SMS, e-posta</small></div>
+    </div>
+
+    <section class="view grid" data-tab="genel">
+      <div style="display:grid;gap:20px;min-width:0">
+        <div class="card">
+          <div class="ch"><h2>Gönderi takibi</h2><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span id="l-no">RT-558210</span><button type="button" class="sim" id="l-sim">Sonraki adımı simüle et</button></div></div>
+          <div class="route">
+            <div class="rhead"><div><b id="l-route">İstanbul → İzmir</b><br><span id="l-who">Alıcı: Ege Mobilya · 14 koli, 312 kg</span></div><span class="eta" id="l-eta">Tahmini teslim: yarın 11:00</span></div>
+            <ol class="line" id="l-line"></ol>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><h2>Kritik stok uyarıları</h2><span>Otomatik kontrol: her 15 dk</span></div>
+          <div class="tw"><table><thead><tr><th>Ürün</th><th>Depo</th><th>Seviye</th><th>Otomatik işlem</th></tr></thead><tbody class="l-stock"></tbody></table></div>
+        </div>
+      </div>
+      <div style="display:grid;gap:20px;min-width:0">
+        <div class="card">
+          <div class="ch"><h2>Müşteriye giden mesajlar</h2><span>önizleme</span></div>
+          <div class="phone" aria-hidden="true">
+            <div class="pt"><i></i><div><b>Rota Lojistik</b><span>Onaylı işletme hesabı</span></div></div>
+            <div class="msgs" id="l-msgbox"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><h2>Bildirim kuralları</h2><span class="l-active">4 aktif</span></div>
+          <ul class="rules l-rules"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" data-tab="gonderi" hidden>
+      <div class="card">
+        <div class="ch"><h2>Gönderiler</h2><input class="filter" id="l-filter" type="search" placeholder="Gönderi no, alıcı veya şehir" aria-label="Gönderi ara"></div>
+        <div class="tw"><table><thead><tr><th>Gönderi</th><th>Alıcı</th><th>Güzergâh</th><th>Durum</th><th></th></tr></thead><tbody id="l-ships"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="view" data-tab="stok" hidden>
+      <div class="card">
+        <div class="ch"><h2>Stok seviyeleri</h2><span>Kritik eşik altındakiler üstte</span></div>
+        <div class="tw"><table><thead><tr><th>Ürün</th><th>Depo</th><th>Seviye</th><th>Otomatik işlem</th></tr></thead><tbody class="l-stock" data-all="1"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="view" data-tab="kural" hidden>
+      <div class="card" style="max-width:720px">
+        <div class="ch"><h2>Bildirim kuralları</h2><div style="display:flex;gap:12px;align-items:center"><span class="l-active">4 aktif</span><button type="button" class="addrule" id="l-add">+ Yeni kural</button></div></div>
+        <ul class="rules l-rules"></ul>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+function demoKit(root) {
+  var host = root.querySelector('.d');
+  var toasts = document.createElement('div');
+  toasts.className = 'k-toasts';
+  toasts.setAttribute('role', 'status');
+  host.appendChild(toasts);
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'k-toast ' + (type || 'ok');
+    t.textContent = msg;
+    toasts.appendChild(t);
+    setTimeout(function () { t.remove(); }, 3200);
+  }
+
+  // modal({ title, body: html, actions: [{ label, primary, onClick(close, el) }], form: { fields: [...], submit, onSubmit(data, close) } })
+  function modal(o) {
+    var back = document.createElement('div');
+    back.className = 'k-back';
+    var fields = '';
+    if (o.form) {
+      fields = o.form.fields.map(function (f, i) {
+        var id = 'kf-' + Date.now() + '-' + i;
+        var ctl;
+        if (f.type === 'select') ctl = '<select id="' + id + '" name="' + f.name + '">' + f.options.map(function (op) { return '<option>' + esc(op) + '</option>'; }).join('') + '</select>';
+        else if (f.type === 'textarea') ctl = '<textarea id="' + id + '" name="' + f.name + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '"></textarea>';
+        else ctl = '<input id="' + id + '" name="' + f.name + '" type="' + (f.type || 'text') + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '" value="' + esc(f.value || '') + '">';
+        return '<div class="k-field"><label for="' + id + '">' + esc(f.label) + '</label>' + ctl + '</div>';
+      }).join('') + '<div class="k-err" hidden></div>';
+    }
+    var acts = (o.actions || []).map(function (a, i) { return '<button type="button" class="k-btn' + (a.primary ? ' p' : '') + '" data-k="' + i + '">' + esc(a.label) + '</button>'; }).join('');
+    if (o.form) acts = '<button type="button" class="k-btn" data-k="cancel">Vazgeç</button><button type="submit" class="k-btn p">' + esc(o.form.submit || 'Gönder') + '</button>';
+    var inner = '<div class="k-mh"><h3>' + esc(o.title) + '</h3><button type="button" class="k-x" aria-label="Kapat">×</button></div>' +
+      '<div class="k-mb">' + (o.body || '') + fields + '</div>' + (acts ? '<div class="k-mf">' + acts + '</div>' : '');
+    back.innerHTML = o.form ? '<form class="k-modal" role="dialog" aria-modal="true" novalidate>' + inner + '</form>' : '<div class="k-modal" role="dialog" aria-modal="true">' + inner + '</div>';
+    host.appendChild(back);
+    var box = back.firstChild;
+    function close() { back.remove(); document.removeEventListener('keydown', onKey); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', onKey);
+    back.addEventListener('click', function (e) {
+      if (e.target === back || e.target.closest('.k-x') || e.target.closest('[data-k="cancel"]')) { close(); return; }
+      var b = e.target.closest('[data-k]');
+      if (b && o.actions) { var a = o.actions[+b.getAttribute('data-k')]; if (a.onClick) a.onClick(close, box); else close(); }
+    });
+    if (o.form) {
+      box.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var err = box.querySelector('.k-err'), data = {}, bad = null;
+        o.form.fields.forEach(function (f) {
+          var el = box.querySelector('[name="' + f.name + '"]');
+          data[f.name] = el.value.trim();
+          if (!bad && f.required && !data[f.name]) bad = el;
+          if (!bad && f.type === 'tel' && data[f.name] && data[f.name].replace(/\D/g, '').length < 10) bad = el;
+          if (!bad && f.type === 'email' && data[f.name] && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data[f.name])) bad = el;
+        });
+        if (bad) { err.hidden = false; err.textContent = 'Lütfen işaretli alanı doğru doldurun: ' + bad.previousSibling.textContent + '.'; bad.focus(); return; }
+        o.form.onSubmit(data, close);
+      });
+    }
+    var first = box.querySelector('input,select,textarea') || box.querySelector('.k-x');
+    if (first) first.focus();
+    return box;
+  }
+
+  function money(n) { return '₺' + n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+  function go(sel) {
+    var el = root.querySelector(sel);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // [data-go="#id"] scrolls; role=button elements respond to Enter and Space.
+  root.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-go]');
+    if (g) { e.preventDefault(); go(g.getAttribute('data-go')); }
+  });
+  root.addEventListener('keydown', function (e) {
+    var b = e.target.closest && e.target.closest('[role="button"]');
+    if (b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); b.click(); }
+  });
+  root.querySelectorAll('[data-go],[data-act]').forEach(function (el) {
+    if (el.tagName !== 'BUTTON' && el.tagName !== 'A' && !el.hasAttribute('role')) { el.setAttribute('role', 'button'); el.tabIndex = 0; }
+  });
+
+  return { toast: toast, modal: modal, money: money, go: go, esc: esc, host: host };
+}
+
+(function (root, kit) {
+var $ = function (s) { return root.querySelector(s); };
+var STEPS = ['Sipariş', 'Hazırlandı', 'Yola çıktı', 'Transfer', 'Teslim'];
+var SHIPS = [
+  { no: 'RT-558210', who: 'Ege Mobilya', load: '14 koli, 312 kg', from: 'İstanbul', to: 'İzmir', via: 'Bursa', step: 3, times: ['09:12', '11:40', '13:05', 'Bursa', ''] },
+  { no: 'RT-558214', who: 'Akdeniz Market', load: '6 palet, 2,4 ton', from: 'İstanbul', to: 'Antalya', via: 'Afyon', step: 2, times: ['08:30', '10:15', '12:40', '', ''] },
+  { no: 'RT-558219', who: 'Başkent Elektronik', load: '22 koli, 180 kg', from: 'İzmir', to: 'Ankara', via: 'Eskişehir', step: 1, times: ['10:02', '13:20', '', '', ''] },
+  { no: 'RT-558223', who: 'Karadeniz Tekstil', load: '9 koli, 96 kg', from: 'Bursa', to: 'Samsun', via: 'Ankara', step: 4, times: ['Dün', 'Dün', 'Dün', 'Ankara', '10:48'] },
+  { no: 'RT-558227', who: 'Trakya Yapı', load: '3 palet, 1,1 ton', from: 'İstanbul', to: 'Tekirdağ', via: 'Çorlu', step: 0, times: ['14:10', '', '', '', ''] }
+];
+var STOCK = [
+  { n: 'Streç film 50 cm', sku: 'AMB-0042', d: 'Tuzla', c: 24, max: 200, st: 1 },
+  { n: 'Koli 60×40×40', sku: 'AMB-0108', d: 'Tuzla', c: 180, max: 1000, st: 1 },
+  { n: 'Palet (EUR)', sku: 'PLT-0001', d: 'Kemalpaşa', c: 44, max: 200, st: 2 },
+  { n: 'Etiket rulosu 100×150', sku: 'ETK-0310', d: 'Kemalpaşa', c: 9, max: 100, st: 1 },
+  { n: 'Koli bandı 45 mm', sku: 'AMB-0011', d: 'Tuzla', c: 620, max: 1000, st: 0 },
+  { n: 'Köpük dolgu 1 m³', sku: 'AMB-0230', d: 'Kemalpaşa', c: 140, max: 300, st: 0 }
+];
+var RULES = [
+  { n: 'Yola çıkışta WhatsApp', d: 'Alıcıya takip bağlantısıyla', on: true },
+  { n: 'Gecikme riskinde SMS', d: 'Tahmini saat 2 saatten fazla kayarsa', on: true },
+  { n: 'Kritik stokta tedarikçiye e-posta', d: 'Seviye %25\'in altına inince', on: true },
+  { n: 'Teslimde e-fatura gönderimi', d: 'Teslim imzası alınınca', on: true },
+  { n: 'Haftalık özet raporu', d: 'Pazartesi 08:00, yöneticiye', on: false }
+];
+var cur = 0, msgCount = 1284, out = 186, clock = 16 * 60 + 48;
+function hhmm() { clock += 23 + Math.floor(Math.random() * 40); return String(Math.floor(clock / 60) % 24).padStart(2, '0') + ':' + String(clock % 60).padStart(2, '0'); }
+function tabs(t) {
+  root.querySelectorAll('.tabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-tab') === t); });
+  root.querySelectorAll('.view').forEach(function (v) { v.hidden = v.getAttribute('data-tab') !== t; });
+}
+$('.tabs').addEventListener('click', function (e) { var b = e.target.closest('[data-tab]'); if (b) tabs(b.getAttribute('data-tab')); });
+
+function msg(text, time) {
+  var box = $('#l-msgbox'), m = document.createElement('div');
+  m.className = 'msg new'; m.innerHTML = text + '<time>' + time + '</time>';
+  box.appendChild(m); box.scrollTop = box.scrollHeight;
+}
+function renderTrack() {
+  var s = SHIPS[cur];
+  $('#l-no').textContent = s.no; $('#l-route').textContent = s.from + ' → ' + s.to;
+  $('#l-who').textContent = 'Alıcı: ' + s.who + ' · ' + s.load;
+  $('#l-eta').textContent = s.step === 4 ? 'Teslim edildi' : 'Tahmini teslim: ' + (s.step >= 3 ? 'bugün 18:30' : 'yarın 11:00');
+  $('#l-line').innerHTML = STEPS.map(function (n, i) { return '<li class="' + (i < s.step ? 'done' : i === s.step ? (s.step === 4 ? 'done' : 'now') : '') + '"><i></i><b>' + n + '</b><small>' + (s.times[i] || (i > s.step ? 'Bekleniyor' : '')) + '</small></li>'; }).join('');
+  var pct = Math.min(s.step, 4) / 4 * 80;
+  $('#l-line').style.setProperty('--p', pct + '%');
+  $('#l-line').setAttribute('style', '--p:' + pct + '%');
+  $('#l-sim').disabled = s.step === 4;
+  $('#l-sim').textContent = s.step === 4 ? 'Teslim edildi' : 'Sonraki adımı simüle et';
+}
+function resetMsgs() {
+  var s = SHIPS[cur]; $('#l-msgbox').innerHTML = '';
+  if (s.step >= 2) msg('Merhaba ' + s.who + ', ' + s.no + ' numaralı gönderiniz yola çıktı. ' + s.load + '. Takip: <u>rota.link/' + s.no.slice(3) + '</u>', s.times[2] || '13:05');
+  if (s.step >= 3) msg('Gönderiniz ' + s.via + ' transfer merkezine ulaştı ve plana uygun ilerliyor.', '16:48');
+  if (s.step >= 4) msg('Gönderiniz teslim edildi. e-Faturanız e-posta adresinize gönderildi. Bizi tercih ettiğiniz için teşekkürler.', s.times[4]);
+  if (s.step < 2) msg('Merhaba ' + s.who + ', siparişiniz alındı ve depomuzda hazırlanıyor. Yola çıktığında size haber vereceğiz.', s.times[0]);
+}
+$('#l-sim').addEventListener('click', function () {
+  var s = SHIPS[cur]; if (s.step >= 4) return;
+  s.step++; var t = hhmm(); s.times[s.step] = s.step === 3 ? s.via : t;
+  var texts = [null, null,
+    'Merhaba ' + s.who + ', ' + s.no + ' numaralı gönderiniz yola çıktı. ' + s.load + '. Takip: <u>rota.link/' + s.no.slice(3) + '</u>',
+    'Gönderiniz ' + s.via + ' transfer merkezine ulaştı ve plana uygun ilerliyor.',
+    'Gönderiniz teslim edildi. e-Faturanız e-posta adresinize gönderildi. Bizi tercih ettiğiniz için teşekkürler.'];
+  var rule = s.step === 2 ? RULES[0] : s.step === 4 ? RULES[3] : null;
+  if (texts[s.step] && (!rule || rule.on)) { msg(texts[s.step], t); msgCount++; $('#l-msgs').textContent = msgCount.toLocaleString('tr-TR'); }
+  else if (rule && !rule.on) kit.toast('"' + rule.n + '" kuralı kapalı olduğu için müşteriye mesaj gitmedi.', 'warn');
+  if (s.step === 2) { out++; $('#l-out').textContent = out; }
+  renderTrack(); renderShips();
+  kit.toast(s.no + ': ' + STEPS[s.step] + (s.step === 3 ? ' (' + s.via + ')' : '') + '.');
+});
+
+function renderShips() {
+  var f = ($('#l-filter').value || '').trim().toLocaleLowerCase('tr');
+  var rows = SHIPS.map(function (s, i) { return [s, i]; }).filter(function (x) { var s = x[0]; return !f || (s.no + ' ' + s.who + ' ' + s.from + ' ' + s.to).toLocaleLowerCase('tr').indexOf(f) > -1; });
+  $('#l-ships').innerHTML = rows.length ? rows.map(function (x) {
+    var s = x[0], cls = s.step === 4 ? 's1' : s.step >= 2 ? 's3' : 's2';
+    return '<tr><td>' + s.no + '<small>' + s.load + '</small></td><td>' + s.who + '</td><td>' + s.from + ' → ' + s.to + '</td><td><span class="st ' + cls + '">' + STEPS[s.step] + '</span></td><td><button type="button" class="mini" data-track="' + x[1] + '">Takip et</button></td></tr>';
+  }).join('') : '<tr><td colspan="5" style="color:var(--muted)">Eşleşen gönderi yok.</td></tr>';
+}
+$('#l-filter').addEventListener('input', renderShips);
+$('#l-ships').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-track]'); if (!b) return;
+  cur = +b.getAttribute('data-track'); renderTrack(); resetMsgs(); tabs('genel');
+});
+
+function renderStock() {
+  var sorted = STOCK.slice().sort(function (a, b) { return a.c / a.max - b.c / b.max; });
+  root.querySelectorAll('.l-stock').forEach(function (tb) {
+    var list = tb.getAttribute('data-all') ? sorted : sorted.filter(function (x) { return x.c / x.max < 0.25; });
+    tb.innerHTML = list.map(function (x) {
+      var pct = Math.round(x.c / x.max * 100), act;
+      if (x.st === 1) act = '<span class="st s1">Tedarikçiye sipariş gitti</span>';
+      else if (x.st === 2) act = '<button type="button" class="mini p" data-ok="' + x.sku + '">Satın almayı onayla</button>';
+      else act = '<span style="color:var(--muted);font-size:13px">Yeterli</span>';
+      return '<tr><td>' + x.n + '<small>SKU ' + x.sku + '</small></td><td>' + x.d + '</td><td><div class="lvl"><i><b style="width:' + Math.min(pct, 100) + '%;' + (pct >= 25 ? 'background:var(--green)' : '') + '"></b></i>' + x.c + ' / ' + x.max + '</div></td><td>' + act + '</td></tr>';
+    }).join('');
+  });
+  var crit = STOCK.filter(function (x) { return x.c / x.max < 0.25; }), wait = crit.filter(function (x) { return x.st === 2; }).length;
+  $('#l-crit').textContent = crit.length;
+  $('#l-crit-s').textContent = wait ? wait + ' tanesi onay bekliyor' : 'Hepsi için sipariş verildi';
+  $('#l-crit-s').className = wait ? 'w' : '';
+}
+root.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-ok]'); if (!b) return;
+  var x = STOCK.filter(function (s) { return s.sku === b.getAttribute('data-ok'); })[0];
+  kit.modal({ title: 'Satın alma onayı', body: '<dl class="k-dl"><dt>Ürün</dt><dd>' + x.n + '</dd><dt>Depo</dt><dd>' + x.d + '</dd><dt>Önerilen miktar</dt><dd>' + (x.max - x.c) + ' adet</dd><dt>Tedarikçi</dt><dd>Anadolu Palet A.Ş.</dd></dl>', actions: [{ label: 'Vazgeç' }, { label: 'Onayla ve sipariş ver', primary: true, onClick: function (close) { close(); x.st = 1; renderStock(); kit.toast(x.n + ' için tedarikçiye sipariş e-postası gönderildi.'); } }] });
+});
+
+function renderRules() {
+  var html = RULES.map(function (r, i) { return '<li><div>' + kit.esc(r.n) + '<small>' + kit.esc(r.d) + '</small></div><button type="button" class="tg' + (r.on ? '' : ' off') + '" role="switch" aria-checked="' + r.on + '" aria-label="' + kit.esc(r.n) + '" data-rule="' + i + '"></button></li>'; }).join('');
+  root.querySelectorAll('.l-rules').forEach(function (u) { u.innerHTML = html; });
+  var n = RULES.filter(function (r) { return r.on; }).length;
+  root.querySelectorAll('.l-active').forEach(function (s) { s.textContent = n + ' aktif'; });
+}
+root.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-rule]'); if (!b) return;
+  var r = RULES[+b.getAttribute('data-rule')]; r.on = !r.on; renderRules();
+  kit.toast('"' + r.n + '" ' + (r.on ? 'açıldı.' : 'kapatıldı.'));
+});
+$('#l-add').addEventListener('click', function () {
+  kit.modal({ title: 'Yeni bildirim kuralı', form: { submit: 'Kuralı ekle', fields: [
+    { name: 'ne', label: 'Ne olduğunda', type: 'select', options: ['Gönderi teslim edildiğinde', 'Teslimat başarısız olduğunda', 'Gönderi depoda 24 saatten fazla beklediğinde', 'Stok %10\'un altına indiğinde'] },
+    { name: 'kim', label: 'Kime', type: 'select', options: ['Alıcıya', 'Gönderici firmaya', 'Operasyon ekibine', 'Tedarikçiye'] },
+    { name: 'kanal', label: 'Kanal', type: 'select', options: ['WhatsApp', 'SMS', 'E-posta'] }
+  ], onSubmit: function (d, close) { close(); RULES.push({ n: d.ne + ' ' + d.kanal, d: d.kim, on: true }); renderRules(); kit.toast('Kural eklendi ve aktif.'); } } });
+});
+renderTrack(); resetMsgs(); renderShips(); renderStock(); renderRules();
+})(document, demoKit(document));
+</script>
+</body>
+</html>

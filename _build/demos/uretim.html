@@ -1,0 +1,214 @@
+<!--meta title="Ersan Metal" kind="Üretim · Sipariş ve fatura otomasyonu" fonts="IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600"-->
+<style>
+.d{--k-accent:#FF7A1A;--k-on:#1A1D23;--k-ink:#E7E9EC;--k-bg:#1A1D23;--k-line:#2B3039;--bg:#121418;--panel:#1A1D23;--panel2:#20242B;--line:#2B3039;--fg:#E7E9EC;--muted:#8B93A1;--orange:#FF7A1A;--green:#4CC38A;--red:#F0605D;--blue:#5AA7F0;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;color:var(--fg);background:var(--bg);font-size:15px;line-height:1.5;padding:clamp(16px,3vw,32px)}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d p{margin:0}.d ul,.d ol{list-style:none;margin:0;padding:0}
+.d .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.d .wrap{max-width:1200px;margin:0 auto;display:grid;gap:20px}
+.d .hd{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.d .brand{display:flex;align-items:center;gap:12px}
+.d .brand i{width:34px;height:34px;background:var(--orange);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.d .brand b{display:block;font-size:18px}.d .brand span{font-size:12px;color:var(--muted)}
+.d .status{display:flex;gap:10px;flex-wrap:wrap}
+.d .pill{font-family:"IBM Plex Mono",monospace;font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
+.d .pill.ok{color:var(--green);border-color:#4CC38A55}
+.d .pill.ok::before{content:"● "}
+.d .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.d .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:6px;min-width:0}
+.d .kpi span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.d .kpi b{font-family:"IBM Plex Mono",monospace;font-size:30px;font-weight:600;line-height:1}
+.d .kpi small{font-size:12px;color:var(--muted)}
+.d .kpi.hot b{color:var(--orange)}
+.d .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-width:0}
+.d .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
+.d .ch h2{font-size:15px;font-weight:600}
+.d .ch span{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+.d .flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;padding:22px 18px;overflow-x:auto}
+.d .node{position:relative;padding-right:18px;min-width:130px}
+.d .node:not(:last-child)::after{content:"";position:absolute;top:22px;right:0;width:18px;height:2px;background:var(--orange)}
+.d .nb{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:4px;height:100%}
+.d .nb em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--orange)}
+.d .nb b{font-size:14px;font-weight:600}
+.d .nb small{font-size:12px;color:var(--muted)}
+.d .nb.run{border-color:var(--orange);box-shadow:0 0 0 3px #FF7A1A22}
+.d .row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:560px;font-size:14px}
+.d th{text-align:left;font-weight:500;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:10px 18px}
+.d td{padding:11px 18px;border-top:1px solid var(--line);white-space:nowrap}
+.d td.mono{font-size:13px;color:var(--muted)}
+.d .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:3px 8px;border-radius:4px}
+.d .t-ok{background:#4CC38A22;color:var(--green)}.d .t-run{background:#FF7A1A22;color:var(--orange)}.d .t-err{background:#F0605D22;color:var(--red)}
+.d .alerts{padding:6px 18px 16px;display:grid;gap:0}
+.d .alerts li{padding:14px 0;border-top:1px solid var(--line);display:grid;gap:6px}
+.d .alerts li:first-child{border-top:0}
+.d .alerts b{font-size:14px}.d .alerts p{font-size:13px;color:var(--muted)}
+.d .alerts .act{display:flex;gap:8px}
+.d .alerts .act span{font-size:12px;font-weight:600;padding:6px 10px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.d .alerts .act span:first-child{background:var(--orange);color:#1A1D23;border-color:var(--orange)}
+.d .chart{padding:18px;display:grid;gap:12px}
+.d .bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;align-items:end;height:150px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(0deg,transparent 0 49px,#2B303966 49px 50px)}
+.d .bars div{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.d .bars i{display:block;background:var(--orange);border-radius:3px 3px 0 0}
+.d .bars i+i{background:#8B93A1;border-radius:0;opacity:.6}
+.d .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:center}
+.d .legend{display:flex;gap:16px;font-size:12px;color:var(--muted)}
+.d .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--orange)}
+.d .legend span+span::before{background:#8B93A1}
+.d .pill{cursor:pointer}.d .pill:hover{border-color:var(--muted)}
+.d .ctl{font-family:"IBM Plex Mono",monospace;font-size:12px;padding:6px 10px;border-radius:6px;border:1px solid var(--line);color:var(--fg)}
+.d .ctl:hover{border-color:var(--orange);color:var(--orange)}
+.d .nb{transition:border-color .3s,box-shadow .3s}
+.d .nb.done{border-color:#4CC38A66}
+.d .alerts .act button{font-size:12px;font-weight:600;padding:6px 10px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.d .alerts .act button:first-child{background:var(--orange);color:#1A1D23;border-color:var(--orange)}
+.d .alerts .ok{color:var(--muted);font-size:13px;padding:14px 0}
+.d tr.new td{animation:uNew 1.2s ease}
+@keyframes uNew{from{background:#FF7A1A22}to{background:transparent}}
+.d tbody tr{cursor:pointer}.d tbody tr:hover td{background:#ffffff06}
+@media (max-width:980px){.d .row{grid-template-columns:minmax(0,1fr)}.d .flow{grid-template-columns:repeat(6,150px)}}
+@media (max-width:700px){.d .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<div class="d">
+  <div class="wrap">
+    <div class="hd">
+      <div class="brand"><i></i><div><b>Ersan Metal</b><span>Operasyon merkezi · 10 Ekim 2026</span></div></div>
+      <div class="status"><button type="button" class="pill ok" data-svc="ERP (Logo Tiger)">ERP bağlantısı</button><button type="button" class="pill ok" data-svc="e-Fatura servisi (GİB)">e-Fatura servisi</button><button type="button" class="pill ok" data-svc="Kargo API">Kargo API</button><span class="pill" id="u-sync">Son eşitleme 14:32</span></div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Bugün gelen sipariş</span><b id="u-orders">24</b><small>Portal 17 · e-posta 7</small></div>
+      <div class="kpi"><span>Otomatik kesilen fatura</span><b id="u-inv">21</b><small>Elle giriş yok</small></div>
+      <div class="kpi hot"><span>Onay bekleyen</span><b id="u-wait">2</b><small>Kredi limiti kontrolü</small></div>
+      <div class="kpi"><span>Ortalama işlem süresi</span><b>14 sn</b><small>Siparişten faturaya</small></div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h2>Sipariş → fatura akışı</h2><div style="display:flex;gap:10px;align-items:center"><span id="u-cur">#SP-7781 işleniyor</span><button type="button" class="ctl" id="u-pause">Duraklat</button></div></div>
+      <ol class="flow">
+        <li class="node"><div class="nb done" data-step="0"><em>01</em><b>Sipariş alındı</b><small>Portal / e-posta okuma</small></div></li>
+        <li class="node"><div class="nb done" data-step="1"><em>02</em><b>Cari ve limit</b><small>ERP'de kontrol</small></div></li>
+        <li class="node"><div class="nb run" data-step="2"><em>03</em><b>Üretim emri</b><small>Malzeme rezervasyonu</small></div></li>
+        <li class="node"><div class="nb" data-step="3"><em>04</em><b>Kalite onayı</b><small>QC formu tamamlanınca</small></div></li>
+        <li class="node"><div class="nb" data-step="4"><em>05</em><b>e-Fatura</b><small>GİB entegrasyonu</small></div></li>
+        <li class="node"><div class="nb" data-step="5"><em>06</em><b>Sevk ve bildirim</b><small>İrsaliye, kargo, e-posta</small></div></li>
+      </ol>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="ch"><h2>Son işlemler</h2><span id="u-live">● canlı</span></div>
+        <div class="tw"><table>
+          <thead><tr><th>Saat</th><th>Sipariş</th><th>Müşteri</th><th>Adım</th><th>Durum</th></tr></thead>
+          <tbody id="u-log">
+            <tr data-no="SP-7781"><td class="mono">14:32:08</td><td>#SP-7781</td><td>Delta Makina</td><td>Üretim emri</td><td><span class="tag t-run">işleniyor</span></td></tr>
+            <tr data-no="SP-7780"><td class="mono">14:29:51</td><td>#SP-7780</td><td>Kılıç Otomotiv</td><td>e-Fatura kesildi</td><td><span class="tag t-ok">tamam</span></td></tr>
+            <tr data-no="SP-7779"><td class="mono">14:21:17</td><td>#SP-7779</td><td>Anadolu Tarım</td><td>Cari ve limit</td><td><span class="tag t-err">onay gerekli</span></td></tr>
+            <tr data-no="SP-7778"><td class="mono">14:12:40</td><td>#SP-7778</td><td>Polat Yapı</td><td>Sevk ve bildirim</td><td><span class="tag t-ok">tamam</span></td></tr>
+            <tr data-no="SP-7777"><td class="mono">13:58:02</td><td>#SP-7777</td><td>Delta Makina</td><td>e-Fatura kesildi</td><td><span class="tag t-ok">tamam</span></td></tr>
+            <tr data-no="SP-7776"><td class="mono">13:44:26</td><td>#SP-7776</td><td>Ege Hidrolik</td><td>Sevk ve bildirim</td><td><span class="tag t-ok">tamam</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div style="display:grid;gap:20px">
+        <div class="card">
+          <div class="ch"><h2>İnsan onayı gerekenler</h2><span id="u-wait2">2</span></div>
+          <ul class="alerts" id="u-alerts">
+            <li data-no="SP-7779"><b>#SP-7779 · Anadolu Tarım</b><p>Sipariş tutarı kalan kredi limitini ₺38.400 aşıyor.</p><div class="act"><button type="button" data-a="approve">Onayla</button><button type="button" data-a="call">Müşteriyi ara</button></div></li>
+            <li data-no="SP-7772"><b>#SP-7772 · Ege Hidrolik</b><p>Siparişte stok kartı bulunamayan 1 kalem var: "Hidrolik rakor 1/2 düz".</p><div class="act"><button type="button" data-a="match">Eşleştir</button><button type="button" data-a="detail">Detay</button></div></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="ch"><h2>Son 7 gün</h2><span>sipariş adedi</span></div>
+          <div class="chart">
+            <div class="bars">
+              <div><i style="height:18%"></i><i style="height:0%"></i></div>
+              <div><i style="height:52%"></i><i style="height:6%"></i></div>
+              <div><i style="height:60%"></i><i style="height:4%"></i></div>
+              <div><i style="height:44%"></i><i style="height:8%"></i></div>
+              <div><i style="height:70%"></i><i style="height:4%"></i></div>
+              <div><i style="height:64%"></i><i style="height:2%"></i></div>
+              <div><i style="height:44%"></i><i style="height:4%"></i></div>
+            </div>
+            <div class="days"><span>Pz</span><span>Pt</span><span>Sa</span><span>Ça</span><span>Pe</span><span>Cu</span><span>Bugün</span></div>
+            <div class="legend"><span>Otomatik</span><span>Elle müdahale</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var STEPS = ['Sipariş alındı', 'Cari ve limit', 'Üretim emri', 'Kalite onayı', 'e-Fatura kesildi', 'Sevk ve bildirim'];
+var CUSTOMERS = ['Delta Makina', 'Kılıç Otomotiv', 'Polat Yapı', 'Ege Hidrolik', 'Marmara Enerji', 'Atlas Tarım Makinaları', 'Yüksel Çelik'];
+var $ = function (s) { return root.querySelector(s); };
+var cur = { no: 7781, cust: 'Delta Makina', step: 2 }, nextNo = 7782, orders = 24, inv = 21, paused = false;
+var clock = new Date(2026, 9, 10, 14, 32, 8);
+function t() { clock = new Date(clock.getTime() + 7000 + Math.floor(Math.random() * 20000)); return clock.toTimeString().slice(0, 8); }
+function tag(cls, txt) { return '<span class="tag ' + cls + '">' + txt + '</span>'; }
+function log(no, cust, step, cls, txt) {
+  var tr = document.createElement('tr');
+  tr.className = 'new'; tr.setAttribute('data-no', 'SP-' + no);
+  tr.innerHTML = '<td class="mono">' + t() + '</td><td>#SP-' + no + '</td><td>' + cust + '</td><td>' + step + '</td><td>' + tag(cls, txt) + '</td>';
+  var body = $('#u-log'); body.insertBefore(tr, body.firstChild);
+  while (body.children.length > 8) body.lastChild.remove();
+  $('#u-sync').textContent = 'Son eşitleme ' + clock.toTimeString().slice(0, 5);
+}
+function paint() {
+  root.querySelectorAll('.nb[data-step]').forEach(function (n) {
+    var i = +n.getAttribute('data-step');
+    n.classList.toggle('done', i < cur.step); n.classList.toggle('run', i === cur.step);
+  });
+  $('#u-cur').textContent = '#SP-' + cur.no + ' · ' + cur.cust;
+  $('#u-orders').textContent = orders; $('#u-inv').textContent = inv;
+}
+function tick() {
+  if (paused) return;
+  if (cur.step < STEPS.length - 1) {
+    cur.step++;
+    if (cur.step === 4) inv++;
+    log(cur.no, cur.cust, STEPS[cur.step], cur.step === STEPS.length - 1 ? 't-ok' : 't-run', cur.step === STEPS.length - 1 ? 'tamam' : 'işleniyor');
+  } else {
+    cur = { no: nextNo++, cust: CUSTOMERS[Math.floor(Math.random() * CUSTOMERS.length)], step: 0 };
+    orders++;
+    log(cur.no, cur.cust, STEPS[0], 't-run', 'yeni');
+  }
+  paint();
+}
+var timer = setInterval(tick, 2600);
+$('#u-pause').addEventListener('click', function () {
+  paused = !paused;
+  this.textContent = paused ? 'Devam et' : 'Duraklat';
+  $('#u-live').textContent = paused ? '❚❚ duraklatıldı' : '● canlı';
+  kit.toast(paused ? 'Akış duraklatıldı. Yeni siparişler kuyrukta bekleyecek.' : 'Akış yeniden başladı.');
+});
+root.querySelectorAll('[data-svc]').forEach(function (b) {
+  b.addEventListener('click', function () { kit.toast(b.getAttribute('data-svc') + ': bağlantı aktif, son yanıt ' + (80 + Math.floor(Math.random() * 120)) + ' ms.'); });
+});
+function waitCount() {
+  var n = root.querySelectorAll('#u-alerts li[data-no]').length;
+  $('#u-wait').textContent = n; $('#u-wait2').textContent = n;
+  if (!n) $('#u-alerts').innerHTML = '<li class="ok">Onay bekleyen iş kalmadı. Tüm siparişler otomatik akışta.</li>';
+}
+function resolve(li, msg) {
+  var no = li.getAttribute('data-no');
+  root.querySelectorAll('#u-log tr[data-no="' + no + '"] td:last-child').forEach(function (td) { td.innerHTML = tag('t-ok', 'onaylandı'); });
+  li.remove(); waitCount(); kit.toast(msg);
+}
+$('#u-alerts').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-a]'); if (!b) return;
+  var li = b.closest('li'), no = li.getAttribute('data-no'), a = b.getAttribute('data-a');
+  if (a === 'approve') kit.modal({ title: '#' + no + ' onaylansın mı?', body: '<p>Anadolu Tarım için limit aşımı tek seferlik onaylanacak ve sipariş üretim emrine geçecek. İşlem kaydı onaylayan kişiyle birlikte tutulur.</p>', actions: [{ label: 'Vazgeç' }, { label: 'Onayla', primary: true, onClick: function (close) { close(); resolve(li, '#' + no + ' onaylandı ve üretim emrine aktarıldı.'); } }] });
+  if (a === 'call') kit.modal({ title: 'Anadolu Tarım', body: '<dl class="k-dl"><dt>Yetkili</dt><dd>Hakan Demir · Satın alma</dd><dt>Telefon</dt><dd>0322 000 00 00</dd><dt>Açık bakiye</dt><dd>₺412.600,00</dd></dl>', form: { submit: 'Notu kaydet', fields: [{ name: 'note', label: 'Görüşme notu', type: 'textarea', required: true, placeholder: 'Örneğin: Cuma günü ödeme yapacak, sipariş onaylanabilir.' }], onSubmit: function (d, close) { close(); kit.toast('Görüşme notu müşteri kartına eklendi.'); } } });
+  if (a === 'match') kit.modal({ title: 'Stok kartı eşleştir', body: '<p>Siparişteki kalem: <b>Hidrolik rakor 1/2 düz</b></p>', form: { submit: 'Eşleştir', fields: [{ name: 'kart', label: 'Stok kartı', type: 'select', options: ['HR-1204 · Rakor düz 1/2" BSP', 'HR-1206 · Rakor dirsek 1/2" BSP', 'HR-1208 · Rakor T 1/2" BSP'] }], onSubmit: function (d, close) { close(); resolve(li, '"' + d.kart + '" ile eşleştirildi. Bir dahaki siparişte otomatik tanınacak.'); } } });
+  if (a === 'detail') kit.modal({ title: '#' + no + ' · Ege Hidrolik', body: '<dl class="k-dl"><dt>Kanal</dt><dd>e-posta (PDF sipariş formu)</dd><dt>Kalem</dt><dd>6 kalem, 1 tanesi eşleşmedi</dd><dt>Tutar</dt><dd>₺58.240,00</dd><dt>İstenen termin</dt><dd>17 Ekim 2026</dd></dl>', actions: [{ label: 'Kapat' }] });
+});
+$('#u-log').addEventListener('click', function (e) {
+  var tr = e.target.closest('tr[data-no]'); if (!tr) return;
+  var c = tr.children;
+  kit.modal({ title: '#' + tr.getAttribute('data-no'), body: '<dl class="k-dl"><dt>Müşteri</dt><dd>' + c[2].textContent + '</dd><dt>Son adım</dt><dd>' + c[3].textContent + '</dd><dt>Saat</dt><dd>' + c[0].textContent + '</dd><dt>Durum</dt><dd>' + c[4].textContent + '</dd></dl>', actions: [{ label: 'Kapat' }] });
+});
+paint();
+</script>

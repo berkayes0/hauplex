@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ersan Metal · Hauplex demo</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22 xmlns:c2pa=%22http://c2pa.org/manifest%22%3E%3Cmetadata%3E%3Cc2pa:manifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo1ODMxMDk0YS03NmFmLTQzOTctYTJjMC1hMWI2MjI5Y2VlMWIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaK81mBHbTk9w%2BFrl9%2BlK2oEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0ZGNkNWEwYS1jZTdhLTQ2ODgtODgxYy1mMTVkMGU5OWI5MWJscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo9JU%2BJ3CN52//6ZHVsOHP4AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggOALOs0bC6c9qwF2jLDxeIjE%2Bu/LjWiVm4vRLygZhRnWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBQJj3aVjFue5ewbs0S9ovcAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAfwCXyHIdXVaQD7N39F7Q3pMMpWbUWaZABRwoq4HtGi2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjU4MzEwOTRhLTc2YWYtNDM5Ny1hMmMwLWExYjYyMjljZWUxYi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmRkZDE1NGM4LTI1N2YtNDFlYy1iNWIxLTAxOGY0ZmUwYjQyZnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCA4As6zRsLpz2rAXaMsPF4iMT678uNaJWbi9EvKBmFGdaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggJ9zmNADvyhyK7JPMqjuuos/CSyTSIBJFsVZ1nxVj%2BGSiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggk56B955C3cOMHVIeAni5Up2m3uoxsRBikxuSTa0K%2BRh0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQLquS1CsjLCVX0/POQqSlNqDuq4Njbkymw9Sk1mZH6oUUvV61ppUPQx1i1vVMPPo2AQj82O6GKrBkYoRfX0pMa4=%3C/c2pa:manifest%3E%3C/metadata%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%232340E8%22/%3E%3Cg transform=%22translate%2816 16%29 scale%28.8%29 translate%28-16 -15.6%29%22%3E%3Cg fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%224%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4%22/%3E%3C/g%3E%3Ccircle cx=%2210%22 cy=%225%22 r=%223.6%22 fill=%22%23FFFFFF%22/%3E%3Ccircle cx=%2222%22 cy=%2225.6%22 r=%223.3%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%222.8%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Instrument+Sans:wght@500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>body{margin:0}
+.demobar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:#0E1420;color:#E8ECF2;font:500 14px/1.3 "Instrument Sans","Segoe UI",system-ui,sans-serif;border-bottom:1px solid #263042}
+.demobar-in{max-width:1240px;margin:0 auto;padding:10px clamp(16px,3vw,32px);display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap}
+.demobar a{color:inherit;text-decoration:none}
+.demobar-l{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap}
+.demobar-brand{display:inline-flex;align-items:center;gap:8px;font-family:"Bricolage Grotesque","Segoe UI",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.demobar-brand svg{width:24px;height:24px}
+.demobar-tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:4px 8px;border-radius:5px;background:#F2B4551f;color:#F2B455}
+.demobar-name{color:#8E98AB}.demobar-name b{color:#E8ECF2;font-weight:600}
+.demobar-r{display:flex;gap:8px;flex-wrap:wrap}
+.demobar-r a{padding:8px 14px;border-radius:999px;border:1px solid #263042;font-weight:600;font-size:13px;white-space:nowrap}
+.demobar-r a:hover{border-color:#E8ECF2}
+.demobar-r a.go{background:#7086FF;border-color:#7086FF;color:#0B0F16}
+@media (max-width:640px){.demobar-name{display:none}}
+</style>
+</head>
+<body>
+<div class="demobar"><div class="demobar-in">
+  <div class="demobar-l"><a class="demobar-brand" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="#7086FF" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6v19M10 17.5a6 6 0 0 1 12 0v4.4"/></g><circle cx="10" cy="5" r="3.6" fill="#7086FF"/><circle cx="22" cy="25.6" r="3.3" fill="none" stroke="#7086FF" stroke-width="2.8"/></svg>hauplex</a><span class="demobar-tag">Demo tasarım</span><span class="demobar-name"><b>Ersan Metal</b> · Üretim · Sipariş ve fatura otomasyonu</span></div>
+  <div class="demobar-r"><a href="../referanslar.html">← Tüm referanslar</a><a class="go" href="../iletisim.html">Benzerini isteyin</a></div>
+</div></div>
+
+<style>
+.d{position:relative}
+.d [data-go],.d [data-act],.d [role="button"]{cursor:pointer}
+.d [role="button"]:focus-visible,.d button:focus-visible,.d select:focus-visible,.d input:focus-visible{outline:2px solid var(--k-accent,#2340E8);outline-offset:2px}
+.d button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:inherit}
+.d section,.d [id]{scroll-margin-top:72px}
+.k-toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:200;display:grid;gap:8px;width:min(420px,calc(100vw - 32px));pointer-events:none}
+.k-toast{background:var(--k-ink,#111);color:var(--k-bg,#fff);padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.4;box-shadow:0 10px 30px -10px rgba(0,0,0,.45);animation:kIn .25s ease;pointer-events:auto}
+.k-toast.ok{border-left:4px solid #2FB57A}.k-toast.warn{border-left:4px solid #E5A11A}
+@keyframes kIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.k-back{position:fixed;inset:0;z-index:190;background:rgba(10,12,16,.55);display:grid;place-items:center;padding:16px;animation:kFade .2s ease}
+@keyframes kFade{from{opacity:0}to{opacity:1}}
+.k-modal{background:var(--k-bg,#fff);color:var(--k-ink,#111);width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);animation:kIn .25s ease}
+.k-mh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--k-line,rgba(0,0,0,.1))}
+.k-mh h3{margin:0;font-size:19px;line-height:1.25;text-transform:none;letter-spacing:0}
+.k-x{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;opacity:.7}
+.k-x:hover{opacity:1;background:var(--k-line,rgba(0,0,0,.08))}
+.k-mb{padding:20px 22px;display:grid;gap:14px;font-size:15px;line-height:1.55}
+.k-mb p{margin:0}
+.k-mf{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:0 22px 20px}
+.k-btn{font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;border:1px solid var(--k-line,rgba(0,0,0,.15))}
+.k-btn.p{background:var(--k-accent,#2340E8);color:var(--k-on,#fff);border-color:var(--k-accent,#2340E8)}
+.k-field{display:grid;gap:6px}
+.k-field label{font-size:13px;font-weight:600;opacity:.75}
+.k-field input,.k-field select,.k-field textarea{font:inherit;font-size:15px;color:inherit;background:transparent;border:1px solid var(--k-line,rgba(0,0,0,.18));border-radius:10px;padding:11px 12px;width:100%}
+.k-field textarea{min-height:90px;resize:vertical}
+.k-field input:focus,.k-field select:focus,.k-field textarea:focus{outline:none;border-color:var(--k-accent,#2340E8)}
+.k-err{font-size:13px;color:#D64545}
+.k-dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}
+.k-dl dt{opacity:.65}.k-dl dd{margin:0;font-weight:600}
+.k-note{font-size:12px;opacity:.65}
+</style>
+<style>
+.d{--k-accent:#FF7A1A;--k-on:#1A1D23;--k-ink:#E7E9EC;--k-bg:#1A1D23;--k-line:#2B3039;--bg:#121418;--panel:#1A1D23;--panel2:#20242B;--line:#2B3039;--fg:#E7E9EC;--muted:#8B93A1;--orange:#FF7A1A;--green:#4CC38A;--red:#F0605D;--blue:#5AA7F0;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;color:var(--fg);background:var(--bg);font-size:15px;line-height:1.5;padding:clamp(16px,3vw,32px)}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d p{margin:0}.d ul,.d ol{list-style:none;margin:0;padding:0}
+.d .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.d .wrap{max-width:1200px;margin:0 auto;display:grid;gap:20px}
+.d .hd{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.d .brand{display:flex;align-items:center;gap:12px}
+.d .brand i{width:34px;height:34px;background:var(--orange);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.d .brand b{display:block;font-size:18px}.d .brand span{font-size:12px;color:var(--muted)}
+.d .status{display:flex;gap:10px;flex-wrap:wrap}
+.d .pill{font-family:"IBM Plex Mono",monospace;font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
+.d .pill.ok{color:var(--green);border-color:#4CC38A55}
+.d .pill.ok::before{content:"● "}
+.d .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.d .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:6px;min-width:0}
+.d .kpi span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.d .kpi b{font-family:"IBM Plex Mono",monospace;font-size:30px;font-weight:600;line-height:1}
+.d .kpi small{font-size:12px;color:var(--muted)}
+.d .kpi.hot b{color:var(--orange)}
+.d .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-width:0}
+.d .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
+.d .ch h2{font-size:15px;font-weight:600}
+.d .ch span{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+.d .flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;padding:22px 18px;overflow-x:auto}
+.d .node{position:relative;padding-right:18px;min-width:130px}
+.d .node:not(:last-child)::after{content:"";position:absolute;top:22px;right:0;width:18px;height:2px;background:var(--orange)}
+.d .nb{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:4px;height:100%}
+.d .nb em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--orange)}
+.d .nb b{font-size:14px;font-weight:600}
+.d .nb small{font-size:12px;color:var(--muted)}
+.d .nb.run{border-color:var(--orange);box-shadow:0 0 0 3px #FF7A1A22}
+.d .row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:560px;font-size:14px}
+.d th{text-align:left;font-weight:500;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:10px 18px}
+.d td{padding:11px 18px;border-top:1px solid var(--line);white-space:nowrap}
+.d td.mono{font-size:13px;color:var(--muted)}
+.d .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:3px 8px;border-radius:4px}
+.d .t-ok{background:#4CC38A22;color:var(--green)}.d .t-run{background:#FF7A1A22;color:var(--orange)}.d .t-err{background:#F0605D22;color:var(--red)}
+.d .alerts{padding:6px 18px 16px;display:grid;gap:0}
+.d .alerts li{padding:14px 0;border-top:1px solid var(--line);display:grid;gap:6px}
+.d .alerts li:first-child{border-top:0}
+.d .alerts b{font-size:14px}.d .alerts p{font-size:13px;color:var(--muted)}
+.d .alerts .act{display:flex;gap:8px}
+.d .alerts .act span{font-size:12px;font-weight:600;padding:6px 10px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.d .alerts .act span:first-child{background:var(--orange);color:#1A1D23;border-color:var(--orange)}
+.d .chart{padding:18px;display:grid;gap:12px}
+.d .bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;align-items:end;height:150px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(0deg,transparent 0 49px,#2B303966 49px 50px)}
+.d .bars div{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.d .bars i{display:block;background:var(--orange);border-radius:3px 3px 0 0}
+.d .bars i+i{background:#8B93A1;border-radius:0;opacity:.6}
+.d .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:center}
+.d .legend{display:flex;gap:16px;font-size:12px;color:var(--muted)}
+.d .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--orange)}
+.d .legend span+span::before{background:#8B93A1}
+.d .pill{cursor:pointer}.d .pill:hover{border-color:var(--muted)}
+.d .ctl{font-family:"IBM Plex Mono",monospace;font-size:12px;padding:6px 10px;border-radius:6px;border:1px solid var(--line);color:var(--fg)}
+.d .ctl:hover{border-color:var(--orange);color:var(--orange)}
+.d .nb{transition:border-color .3s,box-shadow .3s}
+.d .nb.done{border-color:#4CC38A66}
+.d .alerts .act button{font-size:12px;font-weight:600;padding:6px 10px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.d .alerts .act button:first-child{background:var(--orange);color:#1A1D23;border-color:var(--orange)}
+.d .alerts .ok{color:var(--muted);font-size:13px;padding:14px 0}
+.d tr.new td{animation:uNew 1.2s ease}
+@keyframes uNew{from{background:#FF7A1A22}to{background:transparent}}
+.d tbody tr{cursor:pointer}.d tbody tr:hover td{background:#ffffff06}
+@media (max-width:980px){.d .row{grid-template-columns:minmax(0,1fr)}.d .flow{grid-template-columns:repeat(6,150px)}}
+@media (max-width:700px){.d .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<div class="d">
+  <div class="wrap">
+    <div class="hd">
+      <div class="brand"><i></i><div><b>Ersan Metal</b><span>Operasyon merkezi · 10 Ekim 2026</span></div></div>
+      <div class="status"><button type="button" class="pill ok" data-svc="ERP (Logo Tiger)">ERP bağlantısı</button><button type="button" class="pill ok" data-svc="e-Fatura servisi (GİB)">e-Fatura servisi</button><button type="button" class="pill ok" data-svc="Kargo API">Kargo API</button><span class="pill" id="u-sync">Son eşitleme 14:32</span></div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Bugün gelen sipariş</span><b id="u-orders">24</b><small>Portal 17 · e-posta 7</small></div>
+      <div class="kpi"><span>Otomatik kesilen fatura</span><b id="u-inv">21</b><small>Elle giriş yok</small></div>
+      <div class="kpi hot"><span>Onay bekleyen</span><b id="u-wait">2</b><small>Kredi limiti kontrolü</small></div>
+      <div class="kpi"><span>Ortalama işlem süresi</span><b>14 sn</b><small>Siparişten faturaya</small></div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h2>Sipariş → fatura akışı</h2><div style="display:flex;gap:10px;align-items:center"><span id="u-cur">#SP-7781 işleniyor</span><button type="button" class="ctl" id="u-pause">Duraklat</button></div></div>
+      <ol class="flow">
+        <li class="node"><div class="nb done" data-step="0"><em>01</em><b>Sipariş alındı</b><small>Portal / e-posta okuma</small></div></li>
+        <li class="node"><div class="nb done" data-step="1"><em>02</em><b>Cari ve limit</b><small>ERP'de kontrol</small></div></li>
+        <li class="node"><div class="nb run" data-step="2"><em>03</em><b>Üretim emri</b><small>Malzeme rezervasyonu</small></div></li>
+        <li class="node"><div class="nb" data-step="3"><em>04</em><b>Kalite onayı</b><small>QC formu tamamlanınca</small></div></li>
+        <li class="node"><div class="nb" data-step="4"><em>05</em><b>e-Fatura</b><small>GİB entegrasyonu</small></div></li>
+        <li class="node"><div class="nb" data-step="5"><em>06</em><b>Sevk ve bildirim</b><small>İrsaliye, kargo, e-posta</small></div></li>
+      </ol>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="ch"><h2>Son işlemler</h2><span id="u-live">● canlı</span></div>
+        <div class="tw"><table>
+          <thead><tr><th>Saat</th><th>Sipariş</th><th>Müşteri</th><th>Adım</th><th>Durum</th></tr></thead>
+          <tbody id="u-log">
+            <tr data-no="SP-7781"><td class="mono">14:32:08</td><td>#SP-7781</td><td>Delta Makina</td><td>Üretim emri</td><td><span class="tag t-run">işleniyor</span></td></tr>
+            <tr data-no="SP-7780"><td class="mono">14:29:51</td><td>#SP-7780</td><td>Kılıç Otomotiv</td><td>e-Fatura kesildi</td><td><span class="tag t-ok">tamam</span></td></tr>
+            <tr data-no="SP-7779"><td class="mono">14:21:17</td><td>#SP-7779</td><td>Anadolu Tarım</td><td>Cari ve limit</td><td><span class="tag t-err">onay gerekli</span></td></tr>
+            <tr data-no="SP-7778"><td class="mono">14:12:40</td><td>#SP-7778</td><td>Polat Yapı</td><td>Sevk ve bildirim</td><td><span class="tag t-ok">tamam</span></td></tr>
+            <tr data-no="SP-7777"><td class="mono">13:58:02</td><td>#SP-7777</td><td>Delta Makina</td><td>e-Fatura kesildi</td><td><span class="tag t-ok">tamam</span></td></tr>
+            <tr data-no="SP-7776"><td class="mono">13:44:26</td><td>#SP-7776</td><td>Ege Hidrolik</td><td>Sevk ve bildirim</td><td><span class="tag t-ok">tamam</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div style="display:grid;gap:20px">
+        <div class="card">
+          <div class="ch"><h2>İnsan onayı gerekenler</h2><span id="u-wait2">2</span></div>
+          <ul class="alerts" id="u-alerts">
+            <li data-no="SP-7779"><b>#SP-7779 · Anadolu Tarım</b><p>Sipariş tutarı kalan kredi limitini ₺38.400 aşıyor.</p><div class="act"><button type="button" data-a="approve">Onayla</button><button type="button" data-a="call">Müşteriyi ara</button></div></li>
+            <li data-no="SP-7772"><b>#SP-7772 · Ege Hidrolik</b><p>Siparişte stok kartı bulunamayan 1 kalem var: "Hidrolik rakor 1/2 düz".</p><div class="act"><button type="button" data-a="match">Eşleştir</button><button type="button" data-a="detail">Detay</button></div></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="ch"><h2>Son 7 gün</h2><span>sipariş adedi</span></div>
+          <div class="chart">
+            <div class="bars">
+              <div><i style="height:18%"></i><i style="height:0%"></i></div>
+              <div><i style="height:52%"></i><i style="height:6%"></i></div>
+              <div><i style="height:60%"></i><i style="height:4%"></i></div>
+              <div><i style="height:44%"></i><i style="height:8%"></i></div>
+              <div><i style="height:70%"></i><i style="height:4%"></i></div>
+              <div><i style="height:64%"></i><i style="height:2%"></i></div>
+              <div><i style="height:44%"></i><i style="height:4%"></i></div>
+            </div>
+            <div class="days"><span>Pz</span><span>Pt</span><span>Sa</span><span>Ça</span><span>Pe</span><span>Cu</span><span>Bugün</span></div>
+            <div class="legend"><span>Otomatik</span><span>Elle müdahale</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function demoKit(root) {
+  var host = root.querySelector('.d');
+  var toasts = document.createElement('div');
+  toasts.className = 'k-toasts';
+  toasts.setAttribute('role', 'status');
+  host.appendChild(toasts);
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'k-toast ' + (type || 'ok');
+    t.textContent = msg;
+    toasts.appendChild(t);
+    setTimeout(function () { t.remove(); }, 3200);
+  }
+
+  // modal({ title, body: html, actions: [{ label, primary, onClick(close, el) }], form: { fields: [...], submit, onSubmit(data, close) } })
+  function modal(o) {
+    var back = document.createElement('div');
+    back.className = 'k-back';
+    var fields = '';
+    if (o.form) {
+      fields = o.form.fields.map(function (f, i) {
+        var id = 'kf-' + Date.now() + '-' + i;
+        var ctl;
+        if (f.type === 'select') ctl = '<select id="' + id + '" name="' + f.name + '">' + f.options.map(function (op) { return '<option>' + esc(op) + '</option>'; }).join('') + '</select>';
+        else if (f.type === 'textarea') ctl = '<textarea id="' + id + '" name="' + f.name + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '"></textarea>';
+        else ctl = '<input id="' + id + '" name="' + f.name + '" type="' + (f.type || 'text') + '"' + (f.required ? ' required' : '') + ' placeholder="' + esc(f.placeholder || '') + '" value="' + esc(f.value || '') + '">';
+        return '<div class="k-field"><label for="' + id + '">' + esc(f.label) + '</label>' + ctl + '</div>';
+      }).join('') + '<div class="k-err" hidden></div>';
+    }
+    var acts = (o.actions || []).map(function (a, i) { return '<button type="button" class="k-btn' + (a.primary ? ' p' : '') + '" data-k="' + i + '">' + esc(a.label) + '</button>'; }).join('');
+    if (o.form) acts = '<button type="button" class="k-btn" data-k="cancel">Vazgeç</button><button type="submit" class="k-btn p">' + esc(o.form.submit || 'Gönder') + '</button>';
+    var inner = '<div class="k-mh"><h3>' + esc(o.title) + '</h3><button type="button" class="k-x" aria-label="Kapat">×</button></div>' +
+      '<div class="k-mb">' + (o.body || '') + fields + '</div>' + (acts ? '<div class="k-mf">' + acts + '</div>' : '');
+    back.innerHTML = o.form ? '<form class="k-modal" role="dialog" aria-modal="true" novalidate>' + inner + '</form>' : '<div class="k-modal" role="dialog" aria-modal="true">' + inner + '</div>';
+    host.appendChild(back);
+    var box = back.firstChild;
+    function close() { back.remove(); document.removeEventListener('keydown', onKey); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    document.addEventListener('keydown', onKey);
+    back.addEventListener('click', function (e) {
+      if (e.target === back || e.target.closest('.k-x') || e.target.closest('[data-k="cancel"]')) { close(); return; }
+      var b = e.target.closest('[data-k]');
+      if (b && o.actions) { var a = o.actions[+b.getAttribute('data-k')]; if (a.onClick) a.onClick(close, box); else close(); }
+    });
+    if (o.form) {
+      box.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var err = box.querySelector('.k-err'), data = {}, bad = null;
+        o.form.fields.forEach(function (f) {
+          var el = box.querySelector('[name="' + f.name + '"]');
+          data[f.name] = el.value.trim();
+          if (!bad && f.required && !data[f.name]) bad = el;
+          if (!bad && f.type === 'tel' && data[f.name] && data[f.name].replace(/\D/g, '').length < 10) bad = el;
+          if (!bad && f.type === 'email' && data[f.name] && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data[f.name])) bad = el;
+        });
+        if (bad) { err.hidden = false; err.textContent = 'Lütfen işaretli alanı doğru doldurun: ' + bad.previousSibling.textContent + '.'; bad.focus(); return; }
+        o.form.onSubmit(data, close);
+      });
+    }
+    var first = box.querySelector('input,select,textarea') || box.querySelector('.k-x');
+    if (first) first.focus();
+    return box;
+  }
+
+  function money(n) { return '₺' + n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+  function go(sel) {
+    var el = root.querySelector(sel);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // [data-go="#id"] scrolls; role=button elements respond to Enter and Space.
+  root.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-go]');
+    if (g) { e.preventDefault(); go(g.getAttribute('data-go')); }
+  });
+  root.addEventListener('keydown', function (e) {
+    var b = e.target.closest && e.target.closest('[role="button"]');
+    if (b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); b.click(); }
+  });
+  root.querySelectorAll('[data-go],[data-act]').forEach(function (el) {
+    if (el.tagName !== 'BUTTON' && el.tagName !== 'A' && !el.hasAttribute('role')) { el.setAttribute('role', 'button'); el.tabIndex = 0; }
+  });
+
+  return { toast: toast, modal: modal, money: money, go: go, esc: esc, host: host };
+}
+
+(function (root, kit) {
+var STEPS = ['Sipariş alındı', 'Cari ve limit', 'Üretim emri', 'Kalite onayı', 'e-Fatura kesildi', 'Sevk ve bildirim'];
+var CUSTOMERS = ['Delta Makina', 'Kılıç Otomotiv', 'Polat Yapı', 'Ege Hidrolik', 'Marmara Enerji', 'Atlas Tarım Makinaları', 'Yüksel Çelik'];
+var $ = function (s) { return root.querySelector(s); };
+var cur = { no: 7781, cust: 'Delta Makina', step: 2 }, nextNo = 7782, orders = 24, inv = 21, paused = false;
+var clock = new Date(2026, 9, 10, 14, 32, 8);
+function t() { clock = new Date(clock.getTime() + 7000 + Math.floor(Math.random() * 20000)); return clock.toTimeString().slice(0, 8); }
+function tag(cls, txt) { return '<span class="tag ' + cls + '">' + txt + '</span>'; }
+function log(no, cust, step, cls, txt) {
+  var tr = document.createElement('tr');
+  tr.className = 'new'; tr.setAttribute('data-no', 'SP-' + no);
+  tr.innerHTML = '<td class="mono">' + t() + '</td><td>#SP-' + no + '</td><td>' + cust + '</td><td>' + step + '</td><td>' + tag(cls, txt) + '</td>';
+  var body = $('#u-log'); body.insertBefore(tr, body.firstChild);
+  while (body.children.length > 8) body.lastChild.remove();
+  $('#u-sync').textContent = 'Son eşitleme ' + clock.toTimeString().slice(0, 5);
+}
+function paint() {
+  root.querySelectorAll('.nb[data-step]').forEach(function (n) {
+    var i = +n.getAttribute('data-step');
+    n.classList.toggle('done', i < cur.step); n.classList.toggle('run', i === cur.step);
+  });
+  $('#u-cur').textContent = '#SP-' + cur.no + ' · ' + cur.cust;
+  $('#u-orders').textContent = orders; $('#u-inv').textContent = inv;
+}
+function tick() {
+  if (paused) return;
+  if (cur.step < STEPS.length - 1) {
+    cur.step++;
+    if (cur.step === 4) inv++;
+    log(cur.no, cur.cust, STEPS[cur.step], cur.step === STEPS.length - 1 ? 't-ok' : 't-run', cur.step === STEPS.length - 1 ? 'tamam' : 'işleniyor');
+  } else {
+    cur = { no: nextNo++, cust: CUSTOMERS[Math.floor(Math.random() * CUSTOMERS.length)], step: 0 };
+    orders++;
+    log(cur.no, cur.cust, STEPS[0], 't-run', 'yeni');
+  }
+  paint();
+}
+var timer = setInterval(tick, 2600);
+$('#u-pause').addEventListener('click', function () {
+  paused = !paused;
+  this.textContent = paused ? 'Devam et' : 'Duraklat';
+  $('#u-live').textContent = paused ? '❚❚ duraklatıldı' : '● canlı';
+  kit.toast(paused ? 'Akış duraklatıldı. Yeni siparişler kuyrukta bekleyecek.' : 'Akış yeniden başladı.');
+});
+root.querySelectorAll('[data-svc]').forEach(function (b) {
+  b.addEventListener('click', function () { kit.toast(b.getAttribute('data-svc') + ': bağlantı aktif, son yanıt ' + (80 + Math.floor(Math.random() * 120)) + ' ms.'); });
+});
+function waitCount() {
+  var n = root.querySelectorAll('#u-alerts li[data-no]').length;
+  $('#u-wait').textContent = n; $('#u-wait2').textContent = n;
+  if (!n) $('#u-alerts').innerHTML = '<li class="ok">Onay bekleyen iş kalmadı. Tüm siparişler otomatik akışta.</li>';
+}
+function resolve(li, msg) {
+  var no = li.getAttribute('data-no');
+  root.querySelectorAll('#u-log tr[data-no="' + no + '"] td:last-child').forEach(function (td) { td.innerHTML = tag('t-ok', 'onaylandı'); });
+  li.remove(); waitCount(); kit.toast(msg);
+}
+$('#u-alerts').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-a]'); if (!b) return;
+  var li = b.closest('li'), no = li.getAttribute('data-no'), a = b.getAttribute('data-a');
+  if (a === 'approve') kit.modal({ title: '#' + no + ' onaylansın mı?', body: '<p>Anadolu Tarım için limit aşımı tek seferlik onaylanacak ve sipariş üretim emrine geçecek. İşlem kaydı onaylayan kişiyle birlikte tutulur.</p>', actions: [{ label: 'Vazgeç' }, { label: 'Onayla', primary: true, onClick: function (close) { close(); resolve(li, '#' + no + ' onaylandı ve üretim emrine aktarıldı.'); } }] });
+  if (a === 'call') kit.modal({ title: 'Anadolu Tarım', body: '<dl class="k-dl"><dt>Yetkili</dt><dd>Hakan Demir · Satın alma</dd><dt>Telefon</dt><dd>0322 000 00 00</dd><dt>Açık bakiye</dt><dd>₺412.600,00</dd></dl>', form: { submit: 'Notu kaydet', fields: [{ name: 'note', label: 'Görüşme notu', type: 'textarea', required: true, placeholder: 'Örneğin: Cuma günü ödeme yapacak, sipariş onaylanabilir.' }], onSubmit: function (d, close) { close(); kit.toast('Görüşme notu müşteri kartına eklendi.'); } } });
+  if (a === 'match') kit.modal({ title: 'Stok kartı eşleştir', body: '<p>Siparişteki kalem: <b>Hidrolik rakor 1/2 düz</b></p>', form: { submit: 'Eşleştir', fields: [{ name: 'kart', label: 'Stok kartı', type: 'select', options: ['HR-1204 · Rakor düz 1/2" BSP', 'HR-1206 · Rakor dirsek 1/2" BSP', 'HR-1208 · Rakor T 1/2" BSP'] }], onSubmit: function (d, close) { close(); resolve(li, '"' + d.kart + '" ile eşleştirildi. Bir dahaki siparişte otomatik tanınacak.'); } } });
+  if (a === 'detail') kit.modal({ title: '#' + no + ' · Ege Hidrolik', body: '<dl class="k-dl"><dt>Kanal</dt><dd>e-posta (PDF sipariş formu)</dd><dt>Kalem</dt><dd>6 kalem, 1 tanesi eşleşmedi</dd><dt>Tutar</dt><dd>₺58.240,00</dd><dt>İstenen termin</dt><dd>17 Ekim 2026</dd></dl>', actions: [{ label: 'Kapat' }] });
+});
+$('#u-log').addEventListener('click', function (e) {
+  var tr = e.target.closest('tr[data-no]'); if (!tr) return;
+  var c = tr.children;
+  kit.modal({ title: '#' + tr.getAttribute('data-no'), body: '<dl class="k-dl"><dt>Müşteri</dt><dd>' + c[2].textContent + '</dd><dt>Son adım</dt><dd>' + c[3].textContent + '</dd><dt>Saat</dt><dd>' + c[0].textContent + '</dd><dt>Durum</dt><dd>' + c[4].textContent + '</dd></dl>', actions: [{ label: 'Kapat' }] });
+});
+paint();
+})(document, demoKit(document));
+</script>
+</body>
+</html>

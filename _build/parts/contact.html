@@ -1,0 +1,40 @@
+  <section class="section" id="iletisim" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact-card">
+        <div class="contact-info">
+          <span class="eyebrow">İletişim</span>
+          <h2>Projenizi konuşalım.</h2>
+          <p>Ne yapmak istediğinizi birkaç cümleyle anlatın; size bir iş günü içinde dönüş yapalım ve ücretsiz keşif görüşmesi planlayalım.</p>
+          <ul class="contact-list">
+            <li><small>E-posta</small><span>info@hauplex.com</span></li>
+            <li><small>Telefon / WhatsApp</small><span>+90 5XX XXX XX XX</span></li>
+            <li><small>Adres</small><span>İstanbul, Türkiye</span></li>
+            <li><small>Çalışma saatleri</small><span>Hafta içi 09:00 – 18:00</span></li>
+          </ul>
+        </div>
+        <form class="form" id="contact-form" name="iletisim" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="iletisim"><p hidden><label>Bu alanı boş bırakın <input name="bot-field"></label></p>
+          <div class="field"><label for="f-name">Ad soyad</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-company">Firma adı</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
+          <div class="field"><label for="f-email">E-posta</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-phone">Telefon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="05XX XXX XX XX"></div>
+          <div class="field full">
+            <label for="f-service">İlgilendiğiniz hizmet</label>
+            <select id="f-service" name="service">
+              <option>Kurumsal web sitesi</option>
+              <option>B2B sipariş portalı</option>
+              <option>İş süreci otomasyonu</option>
+              <option>E-ticaret sitesi</option>
+              <option>Henüz emin değilim</option>
+            </select>
+          </div>
+          <div class="field full"><label for="f-message">Projenizden kısaca bahsedin</label><textarea id="f-message" name="message" required placeholder="Örneğin: Bayilerimizin sipariş verebileceği bir portal ve Logo entegrasyonu istiyoruz."></textarea></div>
+          <div class="form-status" id="form-status" role="status" hidden></div>
+          <div class="form-foot">
+            <small>Formu göndererek kişisel verilerinizin KVKK kapsamında işlenmesini kabul etmiş olursunuz.</small>
+            <button class="btn btn-primary" type="submit">Gönder <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
