@@ -270,7 +270,7 @@ def home():
 '''
     refs = links(part('refs')).replace('{{CARDS_HOME}}', cards([d for d in DEMOS if d[0] in ('insaat', 'gida', 'rakip')]))
     refs = refs.replace('      </div>\n    </div>\n  </section>', f'      </div>\n      <div class="section-foot"><a class="text-link" href="referanslar.html">Tüm referansları görün {ARROW}</a></div>\n    </div>\n  </section>', 1)
-    return (links(part('hero')) + integrations_strip() + services + links(part('band')) + refs
+    return (links(part('hero')) + integrations_strip() + part('video') + services + links(part('band')) + refs
             + cta('Projenizi birlikte planlayalım.', 'Ne yapmak istediğinizi anlatın; ihtiyacınıza uygun çözümü ve net bir teklifi birlikte çıkaralım.', ('hizmetler.html', 'Hizmetleri inceleyin')))
 
 def hizmetler():

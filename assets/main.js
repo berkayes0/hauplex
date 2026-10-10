@@ -71,3 +71,12 @@
       });
   });
 })();
+
+// Intro video: custom play button over the poster
+(function () {
+  var v = document.getElementById('tanitim-video');
+  if (!v) return;
+  var frame = v.parentNode, btn = frame.querySelector('.video-play');
+  btn.addEventListener('click', function () { frame.classList.add('playing'); v.controls = true; v.play(); });
+  v.addEventListener('play', function () { frame.classList.add('playing'); v.controls = true; });
+})();
