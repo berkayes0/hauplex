@@ -1,0 +1,610 @@
+<!--meta title="Nova Kozmetik" kind="E-ticaret · Çok kanallı pazaryeri yönetimi" fonts="Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500"-->
+<style>
+.d{--k-accent:#7C3AED;--k-on:#fff;--k-ink:#1D1530;--k-bg:#fff;--k-line:#ECE7F4;--bg:#F7F5FB;--card:#fff;--ink:#1D1530;--muted:#6B6480;--line:#ECE7F4;--vi:#7C3AED;--vi2:#6D28D9;--soft:#F3EDFE;--green:#14995F;--amber:#B87A06;--red:#D23B4A;
+  font-family:"Manrope",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5;padding:clamp(16px,3vw,32px)}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3,.d p{margin:0}.d ul,.d ol{list-style:none;margin:0;padding:0}
+.d .mono{font-family:"DM Mono",ui-monospace,monospace}
+.d .serif{font-family:"Fraunces",Georgia,serif}
+.d .wrap{max-width:1240px;margin:0 auto;display:grid;gap:20px}
+.d .hd{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.d .brand{display:flex;align-items:center;gap:12px;min-width:0}
+.d .brand svg{width:40px;height:40px;flex:none}
+.d .brand b{display:block;font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:22px;letter-spacing:-.01em;line-height:1.15}
+.d .brand span{font-size:13px;color:var(--muted)}
+.d .acts{display:flex;gap:10px;flex-wrap:wrap}
+.d .btn{font-size:14px;font-weight:700;padding:10px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:border-color .15s,background .15s}
+.d .btn:hover{border-color:var(--vi);color:var(--vi)}
+.d .btn.p{background:var(--vi);border-color:var(--vi);color:#fff}
+.d .btn.p:hover{background:var(--vi2);color:#fff}
+.d .btn:disabled{opacity:.55;cursor:not-allowed}
+.d .btn svg{width:16px;height:16px}
+.d .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.d .kpi{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:grid;gap:4px;min-width:0;align-content:start}
+.d .kpi span{font-size:13px;color:var(--muted);font-weight:600}
+.d .kpi b{font-family:"Fraunces",Georgia,serif;font-size:30px;font-weight:600;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d .kpi small{font-size:12px;color:var(--muted)}
+.d .kpi.sync b{font-size:22px;display:flex;align-items:center;gap:8px;padding:4px 0 2px}
+.d .kpi.sync b i{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #14995F22;flex:none}
+.d .kpi.sync.w b i{background:var(--amber);box-shadow:0 0 0 4px #B87A0622}
+.d .kpi.sync.run b i{background:var(--vi);box-shadow:0 0 0 4px #7C3AED22;animation:pzPulse 1s infinite}
+@keyframes pzPulse{50%{opacity:.35}}
+.d .bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}
+.d .bar i{display:block;height:100%;width:0;background:var(--vi);transition:width .35s ease}
+.d .chs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.d .chc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px;min-width:0;transition:opacity .2s,border-color .3s}
+.d .chc.off{background:#FBFAFD}
+.d .chc.off .cm{opacity:.45}
+.d .chc.fl{border-color:var(--vi)}
+.d .chtop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.d .bd{display:inline-flex;align-items:center;font-weight:800;font-size:12px;padding:3px 8px;border-radius:6px;white-space:nowrap;letter-spacing:.01em}
+.d .bd-site{background:var(--soft);color:var(--vi)}
+.d .bd-ty{background:#FFEFE2;color:#D9600A}
+.d .bd-hb{background:#FFE9DA;color:#C24A00;font-style:italic}
+.d .bd-amz{background:#232F3E;color:#FF9F1C}
+.d .bd-n11{background:#FDE6EC;color:#C21843}
+.d .bd-sys{background:#EEF0F4;color:#4B5263}
+.d .cm{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}
+.d .cm div{min-width:0}
+.d .cm small{display:block;font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.d .cm b{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.d .chf{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:10px;font-size:12px}
+.d .hl{display:flex;align-items:center;gap:6px;color:var(--muted);min-width:0}
+.d .hl i{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none}
+.d .hl.w i{background:var(--amber)}.d .hl.w{color:var(--amber)}
+.d .hl.p i{background:#B9B3C8}
+.d .hl span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d .mini{font-size:12px;font-weight:700;padding:5px 10px;border-radius:8px;border:1px solid var(--line);white-space:nowrap;background:var(--card)}
+.d .mini:hover{border-color:var(--vi);color:var(--vi)}
+.d .mini.p{background:var(--vi);border-color:var(--vi);color:#fff}
+.d .mini.p:hover{background:var(--vi2);color:#fff}
+.d .mini:disabled{opacity:.5;cursor:not-allowed}
+.d .tg{flex:none;width:38px;height:22px;border-radius:999px;background:var(--vi);position:relative;transition:background .2s}
+.d .tg::after{content:"";position:absolute;top:3px;left:19px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 2px #0003}
+.d .tg.off{background:#D8D3E3}.d .tg.off::after{left:3px}
+.d .sub{font-size:12px;color:var(--muted);margin-top:-6px}
+.d .card{background:var(--card);border:1px solid var(--line);border-radius:18px;min-width:0}
+.d .ch{display:flex;justify-content:space-between;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line)}
+.d .ch h2{font-family:"Fraunces",Georgia,serif;font-size:19px;font-weight:600;letter-spacing:-.01em}
+.d .ch .meta{font-size:13px;color:var(--muted)}
+.d .ch .tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.d .row{display:grid;grid-template-columns:minmax(0,2.25fr) minmax(0,1fr);gap:20px;align-items:start}
+.d .fbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line);background:#FCFBFE}
+.d .chips{display:flex;gap:6px;flex-wrap:wrap}
+.d .chip{font-size:12px;font-weight:700;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted)}
+.d .chip:hover{color:var(--ink)}
+.d .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.d .sel{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:var(--card);color:var(--ink)}
+.d .sel:focus{outline:none;border-color:var(--vi)}
+.d .cnt{font-size:12px;color:var(--muted);margin-left:auto}
+.d .autosw{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted)}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;font-size:14px}
+.d th{text-align:left;font-size:11px;font-weight:700;color:var(--muted);padding:10px 14px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.d th:first-child,.d td:first-child{padding-left:20px}
+.d th:last-child,.d td:last-child{padding-right:20px}
+.d td{padding:11px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:middle}
+.d td small{display:block;color:var(--muted);font-size:12px}
+.d td .mono{font-size:13px}
+.d .ot{min-width:720px}
+.d .ot th,.d .ot td{padding-left:10px;padding-right:10px}
+.d .ono{display:flex;align-items:center;gap:8px}
+.d .ono .bd{font-size:11px;padding:2px 6px}
+.d .ono .mono{font-size:12.5px}
+.d .sc{display:grid;gap:6px;justify-items:start}
+.d .pt{min-width:900px}
+.d .num{text-align:right}
+.d .st{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.d .s-bek{background:#B87A061c;color:var(--amber)}
+.d .s-isl{background:var(--soft);color:var(--vi)}
+.d .s-haz{background:#2563EB14;color:#1F55C9}
+.d .s-kar{background:#14995F18;color:var(--green)}
+.d .steps{display:flex;gap:4px;align-items:center}
+.d .steps span{font-size:11px;font-weight:700;padding:3px 7px;border-radius:6px;background:#F1EFF5;color:#A39DB3;transition:background .25s,color .25s}
+.d .steps span.ok{background:#14995F18;color:var(--green)}
+.d .steps span.now{background:var(--soft);color:var(--vi);animation:pzPulse .8s infinite}
+.d tr.new td{animation:pzNew 1.6s ease}
+@keyframes pzNew{from{background:#7C3AED18}to{background:transparent}}
+.d .empty{color:var(--muted);text-align:center;padding:26px 14px}
+.d .log{max-height:520px;overflow:auto;padding:4px 0}
+.d .log li{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;padding:10px 20px;border-top:1px solid var(--line);font-size:13px;align-items:start}
+.d .log li:first-child{border-top:0}
+.d .log time{font-family:"DM Mono",monospace;font-size:12px;color:var(--muted);padding-top:2px}
+.d .log p{line-height:1.45}
+.d .log p .bd{margin-right:6px;font-size:11px;padding:1px 6px;vertical-align:1px}
+.d .log li.w p{color:var(--amber)}
+.d .log li.new{animation:pzNew 1.4s ease}
+.d .pname b{display:block;font-weight:700}
+.d .stk{display:flex;align-items:center;gap:8px}
+.d .stk b{font-size:17px;font-weight:800;min-width:34px}
+.d .stk b.lo{color:var(--red)}
+.d .lotag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--red);background:#D23B4A14;padding:2px 6px;border-radius:5px}
+.d .pc b{font-weight:700}
+.d .pc small{font-size:12px}
+.d .pc .mg{color:var(--green)}
+.d .pc .mg.lo{color:var(--amber)}
+.d .pc.paused b,.d .pc.paused small{color:#B4AEC2;text-decoration:line-through}
+.d .pc.paused em{display:block;font-style:normal;font-size:11px;font-weight:700;color:var(--muted);text-decoration:none}
+.d .pc.zero b{color:var(--red)}
+.d td.fl{animation:pzCell 1s ease}
+@keyframes pzCell{0%{background:#7C3AED26}100%{background:transparent}}
+.d .rulebar{display:flex;gap:8px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line);background:#FCFBFE}
+.d .rule{font-size:12px;color:var(--muted);background:var(--card);border:1px dashed #D9D0EC;border-radius:8px;padding:4px 9px}
+.d .rule b{color:var(--ink);font-weight:700}
+.d th .bd{font-size:11px;text-transform:none;letter-spacing:.01em}
+/* modals */
+.d .rr{display:grid;gap:8px;padding:12px 0;border-top:1px solid var(--line)}
+.d .rr:first-of-type{border-top:0;padding-top:0}
+.d .rrh{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.d .rrc{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:8px}
+.d .rrc select,.d .rrc input{font:inherit;font-size:14px;color:inherit;background:transparent;border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:100%}
+.d .rrc input:disabled{opacity:.45}
+.d .rrc select:focus,.d .rrc input:focus{outline:none;border-color:var(--vi)}
+.d .rrp{font-size:12px;color:var(--muted)}
+.d .rrp b{color:var(--ink)}
+.d .formula{font-size:13px;background:var(--soft);color:#4C2A93;border-radius:12px;padding:10px 12px}
+.d .label{border:2px solid var(--ink);border-radius:10px;padding:14px;display:grid;gap:10px;font-size:13px;background:#fff}
+.d .label .lh{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px dashed #0003;padding-bottom:8px}
+.d .label .lh b{font-size:16px;font-weight:800}
+.d .barcode{height:56px;background:repeating-linear-gradient(90deg,#111 0 2px,#fff 2px 4px,#111 4px 5px,#fff 5px 8px,#111 8px 11px,#fff 11px 12px,#111 12px 13px,#fff 13px 16px)}
+.d .label .tn{font-family:"DM Mono",monospace;text-align:center;letter-spacing:.12em;font-size:14px}
+.d .label .lg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.d .label .lg small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.d .tl{display:grid;gap:8px;font-size:14px}
+.d .tl li{display:flex;gap:10px;align-items:baseline}
+.d .tl li time{font-family:"DM Mono",monospace;font-size:12px;color:var(--muted);min-width:62px}
+.d .tl li.off{color:var(--muted)}
+@media (max-width:1100px){.d .chs{grid-template-columns:repeat(3,minmax(0,1fr))}.d .row{grid-template-columns:minmax(0,1fr)}.d .log{max-height:380px}}
+@media (max-width:760px){.d .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.d .chs{grid-template-columns:repeat(2,minmax(0,1fr))}.d .kpi b{font-size:24px}.d .kpi.sync b{font-size:18px}}
+@media (max-width:520px){.d .kpi b{font-size:21px}.d .kpi.sync b{font-size:16px;white-space:normal;align-items:flex-start;line-height:1.25}.d .kpi.sync b i{margin-top:4px}.d .chf{flex-wrap:wrap}.d .chf .mini{width:100%;text-align:center}.d .acts{width:100%}.d .acts .btn{flex:1 1 0;justify-content:center;padding:10px 10px;font-size:13px}.d .chc{padding:14px 12px}.d .cm b{font-size:14px}.d .cnt{margin-left:0;width:100%}.d .ch,.d .fbar,.d .rulebar{padding-left:16px;padding-right:16px}.d .log li{padding:10px 16px;grid-template-columns:56px minmax(0,1fr)}}
+</style>
+<div class="d">
+  <div class="wrap">
+    <div class="hd">
+      <div class="brand">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#7C3AED"/><path d="M20 8c5 6 8 10.5 8 14.5a8 8 0 0 1-16 0C12 18.5 15 14 20 8z" fill="#fff"/><circle cx="23" cy="22" r="2.4" fill="#C4B5FD"/></svg>
+        <div><b>Nova Kozmetik</b><span>Kanal yönetimi · Cumartesi, 10 Ekim 2026</span></div>
+      </div>
+      <div class="acts">
+        <button type="button" class="btn" id="pz-syncall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>Tümünü senkronize et</button>
+        <button type="button" class="btn p" id="pz-sim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Yeni sipariş simüle et</button>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Bugünkü sipariş · tüm kanallar</span><b id="pz-k-orders">157</b><small id="pz-k-orders-s">5 kanal · 3 işlem bekliyor</small></div>
+      <div class="kpi"><span>Bugünkü ciro</span><b id="pz-k-rev">₺0</b><small>KDV dahil, iadeler düşülmüş</small></div>
+      <div class="kpi"><span>Ort. net marj</span><b id="pz-k-margin">%0</b><small>Komisyon, kargo ve ürün maliyeti sonrası</small></div>
+      <div class="kpi sync" id="pz-k-sync"><span>Senkronizasyon</span><b><i></i><em id="pz-k-sync-t" style="font-style:normal">Eşitlendi</em></b><div class="bar" hidden><i id="pz-k-bar"></i></div><small id="pz-k-sync-s">Son tam eşitleme 14:35</small></div>
+    </div>
+
+    <div class="chs" id="pz-chs"></div>
+
+    <div class="row">
+      <div class="card" id="pz-orders">
+        <div class="ch"><div><h2>Birleşik sipariş listesi</h2><div class="meta">Fatura ve kargo etiketi sistem tarafından oluşturulur</div></div>
+          <div class="tools"><span class="autosw"><button type="button" class="tg off" role="switch" aria-checked="false" aria-label="Yeni siparişleri otomatik işle" id="pz-auto"></button>Otomatik işle</span><button type="button" class="mini p" id="pz-procall">Bekleyenleri işle</button></div></div>
+        <div class="fbar">
+          <div class="chips" id="pz-fch" role="group" aria-label="Kanala göre filtrele"></div>
+          <select class="sel" id="pz-fst" aria-label="Duruma göre filtrele"><option value="">Tüm durumlar</option><option value="bek">İşlem bekliyor</option><option value="isl">İşleniyor</option><option value="haz">Kargoya hazır</option><option value="kar">Kargoda</option></select>
+          <span class="cnt" id="pz-fcnt"></span>
+        </div>
+        <div class="tw"><table class="ot"><thead><tr><th>Sipariş</th><th>Ürün</th><th class="num">Tutar</th><th>Kargo</th><th>Durum</th></tr></thead><tbody id="pz-olist"></tbody></table></div>
+      </div>
+
+      <div class="card">
+        <div class="ch"><div><h2>Senkronizasyon günlüğü</h2><div class="meta">Stok, fiyat ve sipariş olayları</div></div><button type="button" class="mini" id="pz-logclr">Temizle</button></div>
+        <ul class="log" id="pz-log" aria-live="polite"></ul>
+      </div>
+    </div>
+
+    <div class="card" id="pz-products">
+      <div class="ch"><div><h2>Ürünler ve kanal fiyatları</h2><div class="meta">Tek stok sayısı, tüm kanallara aynı anda gönderilir</div></div><button type="button" class="btn" id="pz-rules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Fiyat kuralları</button></div>
+      <div class="rulebar" id="pz-rulebar"></div>
+      <div class="tw"><table class="pt"><thead id="pz-phead"></thead><tbody id="pz-plist"></tbody></table></div>
+    </div>
+  </div>
+</div>
+<script>
+var $ = function (s) { return root.querySelector(s); };
+var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+var CH = [
+  { id: 'site', name: 'Kendi site', badge: 'novakozmetik', com: 2.4, comNote: 'sanal POS', ship: 42, cargo: 'Aras Kargo', orders: 38, rev: 31846.2, sync: '14:35:58', ms: 0.2, health: 'ok', on: true, queue: 0, w: 24, rule: { mode: 'base', pct: 0 } },
+  { id: 'ty', name: 'Trendyol', badge: 'trendyol', com: 19, ship: 39, cargo: 'Trendyol Express', orders: 64, rev: 47910.4, sync: '14:35:58', ms: 0.3, health: 'ok', on: true, queue: 0, w: 40, rule: { mode: 'fark', pct: 0 } },
+  { id: 'hb', name: 'Hepsiburada', badge: 'hepsiburada', com: 18, ship: 41, cargo: 'HepsiJet', orders: 29, rev: 21982.7, sync: '14:35:57', ms: 0.4, health: 'ok', on: true, queue: 0, w: 18, rule: { mode: 'yuzde', pct: 12 } },
+  { id: 'amz', name: 'Amazon', badge: 'amazon', com: 15, ship: 46, cargo: 'Yurtiçi Kargo', orders: 17, rev: 11894.3, sync: '14:31:12', ms: 1.9, health: 'warn', on: true, queue: 0, w: 11, rule: { mode: 'yuzde', pct: 10 } },
+  { id: 'n11', name: 'n11', badge: 'n11', com: 17, ship: 44, cargo: 'Yurtiçi Kargo', orders: 9, rev: 5861.1, sync: '14:35:56', ms: 0.5, health: 'ok', on: true, queue: 0, w: 7, rule: { mode: 'fark', pct: 0 } }
+];
+var PR = [
+  { sku: 'NVK-HA30', n: 'Hyalüronik Asit Nem Serumu', s: 'Hyalüronik serum', v: '30 ml', p: 449.9, cost: 142, stock: 48 },
+  { sku: 'NVK-VC30', n: 'C Vitamini Aydınlatıcı Serum', s: 'C vitamini serum', v: '30 ml', p: 489.9, cost: 156, stock: 132 },
+  { sku: 'NVK-NA30', n: 'Niasinamid %10 Gözenek Serumu', s: 'Niasinamid serum', v: '30 ml', p: 399.9, cost: 118, stock: 86 },
+  { sku: 'NVK-SB50', n: 'Seramid Bariyer Nemlendirici', s: 'Seramid nemlendirici', v: '50 ml', p: 529.9, cost: 168, stock: 17 },
+  { sku: 'NVK-SP50', n: 'SPF 50+ Hafif Güneş Kremi', s: 'SPF 50+ güneş kremi', v: '50 ml', p: 579.9, cost: 181, stock: 214 },
+  { sku: 'NVK-JT200', n: 'Arındırıcı Jel Temizleyici', s: 'Jel temizleyici', v: '200 ml', p: 329.9, cost: 94, stock: 9 }
+];
+var ST = { bek: ['İşlem bekliyor', 's-bek'], isl: ['İşleniyor', 's-isl'], haz: ['Kargoya hazır', 's-haz'], kar: ['Kargoda', 's-kar'] };
+var NAMES = ['Ay*** K***', 'Ze*** D***', 'Mel** A***', 'Bu*** Ş***', 'Ec** Y***', 'Se*** T***', 'Ca*** Ö***', 'De*** G***', 'İr** B***', 'Ha*** P***'];
+var CITIES = ['İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya', 'Eskişehir', 'Kocaeli', 'Mersin', 'Samsun', 'Kayseri'];
+var clock = new Date(2026, 9, 10, 14, 36, 12), invNo = 18342, siteNo = 24872, autoOn = false, syncing = false, lastFull = '14:35', fCh = '', fSt = '';
+function chById(id) { return CH.filter(function (c) { return c.id === id; })[0]; }
+function pad(n) { return String(n).padStart(2, '0'); }
+function hms(d) { return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()); }
+function tick(sec) { clock = new Date(clock.getTime() + sec * 1000); return hms(clock); }
+function pct(n, dig) { return '%' + n.toLocaleString('tr-TR', { minimumFractionDigits: dig == null ? 1 : dig, maximumFractionDigits: dig == null ? 1 : dig }); }
+function digits(n) { var s = ''; for (var i = 0; i < n; i++) s += Math.floor(Math.random() * 10); return s.replace(/^0/, '7'); }
+function bd(c) { return c ? '<span class="bd bd-' + c.id + '">' + c.badge + '</span>' : '<span class="bd bd-sys">sistem</span>'; }
+
+/* prices */
+function priceFor(pr, c, rule) {
+  var r = rule || c.rule, x;
+  if (c.id === 'site' || r.mode === 'ayni') return pr.p;
+  if (r.mode === 'fark') x = pr.p * (1 - CH[0].com / 100) / (1 - c.com / 100);
+  else x = pr.p * (1 + (+r.pct || 0) / 100);
+  return Math.round(x) - 0.1;
+}
+function marginFor(pr, c, rule) {
+  var p = priceFor(pr, c, rule), netSales = p / 1.2;
+  return (netSales - p * c.com / 100 - pr.cost - c.ship) / netSales * 100;
+}
+function chMargin(c, rule) { return PR.reduce(function (s, pr) { return s + marginFor(pr, c, rule); }, 0) / PR.length; }
+function ruleText(c, rule) {
+  var r = rule || c.rule;
+  if (c.id === 'site') return 'Baz fiyat';
+  if (r.mode === 'fark') return 'Site fiyatı + komisyon farkı';
+  if (r.mode === 'ayni') return 'Site fiyatıyla aynı';
+  return 'Site fiyatı + ' + pct(+r.pct, 0);
+}
+
+/* orders */
+var ORDERS = [];
+function mkNo(c) {
+  if (c.id === 'site') return 'NV-' + (siteNo++);
+  if (c.id === 'ty') return '1098' + digits(7);
+  if (c.id === 'hb') return '44' + digits(8);
+  if (c.id === 'amz') return '406-' + digits(7) + '-' + digits(7);
+  return '2110' + digits(8);
+}
+function addOrder(o, top) {
+  var c = chById(o.ch), pr = PR[o.pi];
+  o.amount = priceFor(pr, c) * o.qty; o.cargo = c.cargo;
+  o.cust = o.cust || NAMES[Math.floor(Math.random() * NAMES.length)];
+  o.city = o.city || CITIES[Math.floor(Math.random() * CITIES.length)];
+  if (!o.log) {
+    o.log = [];
+    if (o.st === 'haz' || o.st === 'kar') {
+      var b = o.t.split(':'), base = new Date(2026, 9, 10, +b[0], +b[1], +b[2]);
+      [70, 74, 78].concat(o.st === 'kar' ? [1500] : []).forEach(function (s) { o.log.push(hms(new Date(base.getTime() + s * 1000))); });
+    }
+  }
+  if (top) ORDERS.unshift(o); else ORDERS.push(o);
+  return o;
+}
+[
+  { no: '10984527316', ch: 'ty', pi: 0, qty: 1, st: 'bek', t: '14:34:09', cust: 'Ay*** K***', city: 'İstanbul' },
+  { no: 'NV-24871', ch: 'site', pi: 3, qty: 2, st: 'bek', t: '14:31:47', cust: 'Ze*** D***', city: 'İzmir' },
+  { no: '4417820935', ch: 'hb', pi: 4, qty: 1, st: 'bek', t: '14:27:20', cust: 'Mel** A***', city: 'Ankara' },
+  { no: '406-8812044-5531207', ch: 'amz', pi: 1, qty: 1, st: 'haz', t: '14:18:02', inv: 'NVA2026000018341', trk: '307512448190' },
+  { no: '10984511082', ch: 'ty', pi: 2, qty: 2, st: 'haz', t: '14:09:35', inv: 'NVA2026000018340', trk: '733001928451' },
+  { no: '211029384756', ch: 'n11', pi: 5, qty: 1, st: 'kar', t: '13:52:14', inv: 'NVA2026000018337', trk: '301984420675' },
+  { no: 'NV-24868', ch: 'site', pi: 0, qty: 1, st: 'kar', t: '13:40:51', inv: 'NVA2026000018335', trk: '41208843177' },
+  { no: '10984470915', ch: 'ty', pi: 4, qty: 1, st: 'kar', t: '13:21:06', inv: 'NVA2026000018331', trk: '733001907316' },
+  { no: '4417798102', ch: 'hb', pi: 1, qty: 1, st: 'kar', t: '12:58:44', inv: 'NVA2026000018326', trk: 'HJ0098812734' }
+].forEach(function (o) { addOrder(o); });
+
+/* log */
+function log(c, msg, warn, time) {
+  var li = document.createElement('li');
+  li.className = 'new' + (warn ? ' w' : '');
+  li.innerHTML = '<time>' + (time || hms(clock)) + '</time><p>' + bd(c) + msg + '</p>';
+  var ul = $('#pz-log'); ul.insertBefore(li, ul.firstChild);
+  while (ul.children.length > 40) ul.lastChild.remove();
+}
+
+/* render */
+function renderKpis() {
+  var orders = 0, rev = 0, w = 0;
+  CH.forEach(function (c) { orders += c.orders; rev += c.rev; w += c.rev * chMargin(c); });
+  var wait = ORDERS.filter(function (o) { return o.st === 'bek'; }).length;
+  $('#pz-k-orders').textContent = orders;
+  $('#pz-k-orders-s').textContent = CH.filter(function (c) { return c.on; }).length + ' aktif kanal · ' + (wait ? wait + ' işlem bekliyor' : 'bekleyen yok');
+  $('#pz-k-rev').textContent = kit.money(rev);
+  $('#pz-k-margin').textContent = pct(w / rev);
+  if (syncing) return;
+  var k = $('#pz-k-sync'), paused = CH.filter(function (c) { return !c.on; }), slow = CH.filter(function (c) { return c.on && c.health === 'warn'; });
+  k.classList.remove('run');
+  k.classList.toggle('w', !!(paused.length || slow.length));
+  $('#pz-k-sync-t').textContent = paused.length ? paused.length + ' kanal duraklatıldı' : slow.length ? slow[0].name + ' yavaş yanıt' : 'Eşitlendi';
+  $('#pz-k-sync-s').textContent = 'Son tam eşitleme ' + lastFull + (paused.length ? ' · ' + paused.map(function (c) { return c.name; }).join(', ') + ' kapalı' : '');
+}
+function renderChannels() {
+  $('#pz-chs').innerHTML = CH.map(function (c) {
+    var hl = !c.on ? ['p', 'Satışa kapalı'] : c.health === 'warn' ? ['w', 'Yavaş yanıt · ' + c.ms.toLocaleString('tr-TR') + ' sn'] : ['', 'Sağlıklı · ' + c.ms.toLocaleString('tr-TR') + ' sn'];
+    return '<div class="chc' + (c.on ? '' : ' off') + '" data-chc="' + c.id + '">' +
+      '<div class="chtop">' + bd(c) + '<button type="button" class="tg' + (c.on ? '' : ' off') + '" role="switch" aria-checked="' + c.on + '" aria-label="' + c.name + ' satışını aç/kapat" data-tog="' + c.id + '"></button></div>' +
+      '<div class="sub">' + c.name + (c.on ? ' · ' + PR.length + ' ilan yayında' : ' · ' + PR.length + ' ilan duraklatıldı') + '</div>' +
+      '<div class="cm"><div><small>Sipariş</small><b>' + c.orders + '</b></div><div><small>Ciro</small><b>' + kit.money(c.rev).replace(/,\d\d$/, '') + '</b></div>' +
+      '<div><small>Komisyon</small><b>' + pct(c.com, c.com % 1 ? 1 : 0) + '</b></div><div><small>Net marj</small><b>' + pct(chMargin(c)) + '</b></div></div>' +
+      '<div class="chf"><span class="hl ' + hl[0] + '"><i></i><span title="Son senkron ' + c.sync + '">' + hl[1] + '</span></span><button type="button" class="mini" data-chsync="' + c.id + '"' + (c.on && !syncing ? '' : ' disabled') + '>Eşitle</button></div>' +
+      '<div class="sub" style="margin-top:-4px">Son senkron <span class="mono">' + c.sync + '</span>' + (c.queue ? ' · <b style="color:var(--amber)">' + c.queue + ' güncelleme kuyrukta</b>' : '') + '</div>' +
+      '</div>';
+  }).join('');
+}
+function renderFilters() {
+  $('#pz-fch').innerHTML = '<button type="button" class="chip' + (fCh ? '' : ' on') + '" data-fch="">Tümü</button>' + CH.map(function (c) { return '<button type="button" class="chip' + (fCh === c.id ? ' on' : '') + '" data-fch="' + c.id + '">' + c.name + '</button>'; }).join('');
+}
+function actCell(o, i) {
+  if (o.st === 'bek') return '<button type="button" class="mini p" data-proc="' + i + '">Siparişi işle</button>';
+  if (o.st === 'isl') return '<div class="steps">' + ['Fatura', 'Etiket', 'Takip'].map(function (s, k) { return '<span class="' + (k < o.step ? 'ok' : k === o.step ? 'now' : '') + '">' + (k < o.step ? '✓ ' : '') + s + '</span>'; }).join('') + '</div>';
+  if (o.st === 'haz') return '<button type="button" class="mini" data-label="' + i + '">Etiketi gör</button>';
+  return '<button type="button" class="mini" data-detail="' + i + '">Detay</button>';
+}
+function renderOrders() {
+  var rows = ORDERS.map(function (o, i) { return [o, i]; }).filter(function (x) { return (!fCh || x[0].ch === fCh) && (!fSt || x[0].st === fSt); });
+  $('#pz-olist').innerHTML = rows.length ? rows.map(function (x) {
+    var o = x[0], c = chById(o.ch), pr = PR[o.pi];
+    return '<tr' + (o.fresh ? ' class="new"' : '') + '><td><div class="ono">' + bd(c) + '<span class="mono">' + o.no + '</span></div><small>' + o.t.slice(0, 5) + ' · ' + o.city + '</small></td>' +
+      '<td>' + pr.s + '<small>' + o.qty + ' adet · ' + pr.v + '</small></td><td class="num"><b>' + kit.money(o.amount) + '</b></td>' +
+      '<td>' + o.cargo + '<small class="mono">' + (o.trk || 'etiket bekliyor') + '</small></td><td><div class="sc"><span class="st ' + ST[o.st][1] + '">' + ST[o.st][0] + '</span>' + actCell(o, x[1]) + '</div></td></tr>';
+  }).join('') : '<tr><td colspan="5" class="empty">Bu filtreye uyan sipariş yok.</td></tr>';
+  ORDERS.forEach(function (o) { o.fresh = false; });
+  var wait = ORDERS.filter(function (o) { return o.st === 'bek'; }).length;
+  $('#pz-fcnt').textContent = rows.length + ' / ' + ORDERS.length + ' sipariş gösteriliyor';
+  $('#pz-procall').disabled = !wait;
+  $('#pz-procall').textContent = wait ? 'Bekleyenleri işle (' + wait + ')' : 'Bekleyen yok';
+}
+function renderProducts() {
+  $('#pz-phead').innerHTML = '<tr><th>Ürün</th><th>Ortak stok</th>' + CH.map(function (c) { return '<th>' + bd(c) + '</th>'; }).join('') + '</tr>';
+  $('#pz-rulebar').innerHTML = CH.slice(1).map(function (c) { return '<span class="rule"><b>' + c.name + '</b> = ' + ruleText(c).toLocaleLowerCase('tr') + '</span>'; }).join('');
+  $('#pz-plist').innerHTML = PR.map(function (pr, i) {
+    var lo = pr.stock < 10;
+    return '<tr data-pr="' + i + '"><td class="pname"><b>' + pr.n + '</b><small>' + pr.sku + ' · ' + pr.v + '</small></td>' +
+      '<td><div class="stk"><b class="' + (lo ? 'lo' : '') + '">' + pr.stock + '</b>' + (pr.stock === 0 ? '<span class="lotag">Tükendi</span>' : lo ? '<span class="lotag">Az stok</span>' : '') + '<button type="button" class="mini" data-stock="' + i + '">Düzenle</button></div></td>' +
+      CH.map(function (c) {
+        var m = marginFor(pr, c), cls = 'pc' + (!c.on ? ' paused' : '') + (pr.stock === 0 ? ' zero' : '');
+        return '<td class="' + cls + '" data-cell="' + c.id + '"><b>' + kit.money(priceFor(pr, c)) + '</b><small class="mg' + (m < 30 ? ' lo' : '') + '">net ' + pct(m) + '</small>' + (!c.on ? '<em>Duraklatıldı</em>' : '') + '</td>';
+      }).join('') + '</tr>';
+  }).join('');
+}
+function renderAll() { renderKpis(); renderChannels(); renderOrders(); renderProducts(); }
+function flashCell(pi, cid) {
+  var td = root.querySelector('#pz-plist tr[data-pr="' + pi + '"] td[data-cell="' + cid + '"]');
+  if (td) { td.classList.remove('fl'); void td.offsetWidth; td.classList.add('fl'); }
+  var card = root.querySelector('[data-chc="' + cid + '"]');
+  if (card) { card.classList.add('fl'); setTimeout(function () { card.classList.remove('fl'); }, 600); }
+}
+
+/* stock propagation */
+function propagate(pi, from, to, done) {
+  var pr = PR[pi];
+  CH.forEach(function (c, k) {
+    setTimeout(function () {
+      var t = tick(1);
+      if (c.on) { c.sync = t; log(c, 'stok ' + from + ' → ' + to + ' güncellendi · ' + pr.s); }
+      else { c.queue++; log(c, 'duraklatıldı, stok ' + from + ' → ' + to + ' kuyruğa alındı · ' + pr.s, true); }
+      renderChannels(); flashCell(pi, c.id);
+      if (k === CH.length - 1) {
+        if (to === 0) log(null, pr.s + ' tükendi, tüm kanallarda satışa kapatıldı.', true);
+        else if (to < 10 && from >= 10) log(null, pr.s + ' kritik seviyede (' + to + ' adet). Satın alma ekibine bildirim gönderildi.', true);
+        renderKpis();
+        if (done) done();
+      }
+    }, 380 * (k + 1));
+  });
+}
+
+/* simulate order */
+$('#pz-sim').addEventListener('click', function () {
+  var act = CH.filter(function (c) { return c.on; });
+  if (!act.length) { kit.toast('Tüm kanallar duraklatılmış. Önce en az bir kanalı açın.', 'warn'); return; }
+  var avail = PR.map(function (p, i) { return i; }).filter(function (i) { return PR[i].stock > 0; });
+  if (!avail.length) { kit.toast('Satılabilir stok kalmadı. Stok girişi yapın.', 'warn'); return; }
+  var tot = act.reduce(function (s, c) { return s + c.w; }, 0), r = Math.random() * tot, c = act[0];
+  for (var j = 0; j < act.length; j++) { r -= act[j].w; if (r <= 0) { c = act[j]; break; } }
+  var pi = avail[Math.floor(Math.random() * avail.length)], pr = PR[pi];
+  var qty = Math.random() < 0.82 || pr.stock < 2 ? 1 : 2;
+  var t = tick(25 + Math.floor(Math.random() * 70));
+  var o = addOrder({ no: mkNo(c), ch: c.id, pi: pi, qty: qty, st: 'bek', t: t, fresh: true }, true);
+  c.orders++; c.rev += o.amount; c.sync = t;
+  var from = pr.stock; pr.stock -= qty;
+  log(c, 'yeni sipariş <span class="mono">#' + o.no + '</span> · ' + pr.s + ' × ' + qty + ' · ' + kit.money(o.amount));
+  renderAll(); flashCell(pi, c.id);
+  kit.toast(c.name + ' siparişi alındı. Stok ' + from + ' → ' + pr.stock + ', tüm kanallara gönderiliyor.');
+  propagate(pi, from, pr.stock, function () { if (autoOn && o.st === 'bek') processOrder(o); });
+});
+
+/* process order */
+function processOrder(o, done) {
+  if (o.st !== 'bek') { if (done) done(); return; }
+  var c = chById(o.ch);
+  o.st = 'isl'; o.step = 0; renderOrders(); renderKpis();
+  var steps = [
+    function () { o.inv = 'NVA2026' + String(++invNo).padStart(9, '0'); log(c, 'e-Arşiv fatura kesildi <span class="mono">' + o.inv + '</span> · #' + o.no); },
+    function () { o.trk = o.cargo === 'HepsiJet' ? 'HJ00' + digits(8) : digits(12); log(c, o.cargo + ' etiketi oluşturuldu · takip <span class="mono">' + o.trk + '</span>'); },
+    function () { log(c, 'takip numarası ' + c.name + ' paneline gönderildi · #' + o.no); }
+  ];
+  var k = 0;
+  (function next() {
+    setTimeout(function () {
+      var t = tick(2 + Math.floor(Math.random() * 3));
+      steps[k](); o.log.push(t); k++; o.step = k;
+      if (k === steps.length) { o.st = 'haz'; renderOrders(); renderKpis(); kit.toast('#' + o.no + ' kargoya hazır: fatura, etiket ve takip no tamam.'); if (done) done(); }
+      else { renderOrders(); next(); }
+    }, 750);
+  })();
+}
+root.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-proc]');
+  if (b) { processOrder(ORDERS[+b.getAttribute('data-proc')]); return; }
+  b = e.target.closest('[data-label]');
+  if (b) { labelModal(ORDERS[+b.getAttribute('data-label')]); return; }
+  b = e.target.closest('[data-detail]');
+  if (b) { detailModal(ORDERS[+b.getAttribute('data-detail')]); return; }
+  b = e.target.closest('[data-tog]');
+  if (b) { toggleCh(chById(b.getAttribute('data-tog'))); return; }
+  b = e.target.closest('[data-chsync]');
+  if (b) { syncChannels([chById(b.getAttribute('data-chsync'))]); return; }
+  b = e.target.closest('[data-fch]');
+  if (b) { fCh = b.getAttribute('data-fch'); renderFilters(); renderOrders(); return; }
+  b = e.target.closest('[data-stock]');
+  if (b) { stockModal(+b.getAttribute('data-stock')); return; }
+});
+$('#pz-fst').addEventListener('change', function () { fSt = this.value; renderOrders(); });
+$('#pz-procall').addEventListener('click', function () {
+  var q = ORDERS.filter(function (o) { return o.st === 'bek'; });
+  if (!q.length) return;
+  kit.toast(q.length + ' sipariş sırayla işleniyor.');
+  (function run(i) { if (i < q.length) processOrder(q[i], function () { run(i + 1); }); })(0);
+});
+$('#pz-auto').addEventListener('click', function () {
+  autoOn = !autoOn; this.classList.toggle('off', !autoOn); this.setAttribute('aria-checked', autoOn);
+  kit.toast(autoOn ? 'Otomatik işleme açık: yeni siparişlerin faturası ve kargo etiketi kendiliğinden oluşturulacak.' : 'Otomatik işleme kapatıldı. Siparişler onayınızı bekleyecek.');
+  if (autoOn) { var q = ORDERS.filter(function (o) { return o.st === 'bek'; }); (function run(i) { if (i < q.length) processOrder(q[i], function () { run(i + 1); }); })(0); }
+});
+
+function labelModal(o) {
+  var c = chById(o.ch), pr = PR[o.pi];
+  kit.modal({ title: 'Kargo etiketi · #' + o.no, body:
+    '<div class="label"><div class="lh"><b>' + o.cargo + '</b>' + bd(c) + '</div>' +
+    '<div class="lg"><div><small>Gönderen</small>Nova Kozmetik A.Ş.<br>Kemalpaşa Depo, İzmir</div><div><small>Alıcı</small>' + o.cust + '<br>' + o.city + '</div></div>' +
+    '<div class="barcode" aria-hidden="true"></div><div class="tn">' + o.trk + '</div>' +
+    '<div class="lg"><div><small>İçerik</small>' + pr.s + ' × ' + o.qty + '</div><div><small>Desi · Fatura</small>1 · <span class="mono">' + o.inv + '</span></div></div></div>' +
+    '<p class="k-note">Etiket ve e-Arşiv fatura PDF\'i depo yazıcısına otomatik gönderildi. Takip numarası ' + c.name + ' paneline iletildi.</p>',
+    actions: [
+      { label: 'Yeniden yazdır', onClick: function () { kit.toast('Etiket Kemalpaşa depo yazıcısına (Zebra ZD421) gönderildi.'); } },
+      { label: 'Kargoya teslim edildi', primary: true, onClick: function (close) { close(); o.st = 'kar'; o.log.push(tick(40)); log(c, '#' + o.no + ' ' + o.cargo + ' kuryesine teslim edildi, müşteriye SMS gitti.'); renderOrders(); renderKpis(); kit.toast('#' + o.no + ' kargoda olarak işaretlendi.'); } }
+    ] });
+}
+function detailModal(o) {
+  var c = chById(o.ch), pr = PR[o.pi], ts = o.log.length ? o.log : [o.t, o.t, o.t];
+  kit.modal({ title: 'Sipariş #' + o.no, body:
+    '<dl class="k-dl"><dt>Kanal</dt><dd>' + c.name + '</dd><dt>Müşteri</dt><dd>' + o.cust + ' · ' + o.city + '</dd><dt>Ürün</dt><dd>' + pr.n + ' × ' + o.qty + '</dd><dt>Tutar</dt><dd>' + kit.money(o.amount) + '</dd>' +
+    '<dt>Komisyon</dt><dd>' + kit.money(o.amount * c.com / 100) + ' (' + pct(c.com, c.com % 1 ? 1 : 0) + ')</dd><dt>e-Arşiv</dt><dd class="mono">' + o.inv + '</dd><dt>Kargo</dt><dd>' + o.cargo + ' · <span class="mono">' + o.trk + '</span></dd></dl>' +
+    '<ol class="tl"><li><time>' + o.t.slice(0, 5) + '</time>Sipariş ' + c.name + ' üzerinden alındı</li><li><time>' + o.t.slice(0, 5) + '</time>Stok tüm kanallarda düşüldü</li><li><time>' + ts[0].slice(0, 5) + '</time>e-Arşiv fatura kesildi, müşteriye e-postayla gitti</li><li><time>' + ts[1].slice(0, 5) + '</time>Kargo etiketi oluşturuldu, takip no kanala iletildi</li><li><time>' + (o.log[3] || ts[2]).slice(0, 5) + '</time>Kuryeye teslim edildi</li></ol>',
+    actions: [{ label: 'Faturayı e-postayla tekrar gönder', onClick: function () { kit.toast(o.inv + ' numaralı fatura müşteriye yeniden gönderildi.'); } }, { label: 'Kapat', primary: true }] });
+}
+
+/* channels */
+function toggleCh(c) {
+  c.on = !c.on; var t = tick(3);
+  if (!c.on) { log(c, PR.length + ' ilan satışa kapatıldı (kanal duraklatıldı).', true); kit.toast(c.name + ' duraklatıldı. ' + PR.length + ' ilan satışa kapalı, stok güncellemeleri kuyrukta bekleyecek.', 'warn'); }
+  else {
+    c.sync = t;
+    log(c, PR.length + ' ilan yeniden satışa açıldı' + (c.queue ? ', kuyruktaki ' + c.queue + ' stok güncellemesi gönderildi.' : '.'));
+    kit.toast(c.name + ' yeniden aktif.' + (c.queue ? ' Kuyruktaki ' + c.queue + ' güncelleme gönderildi.' : ''));
+    c.queue = 0;
+  }
+  renderAll();
+}
+function syncChannels(list, full) {
+  if (syncing) return;
+  var act = list.filter(function (c) { return c.on; });
+  var skipped = list.filter(function (c) { return !c.on; });
+  if (!act.length) { kit.toast('Senkronize edilecek aktif kanal yok.', 'warn'); return; }
+  syncing = true; $('#pz-syncall').disabled = true; renderChannels();
+  var k = $('#pz-k-sync'), bar = $('#pz-k-bar');
+  k.classList.remove('w'); k.classList.add('run'); bar.parentNode.hidden = false; bar.style.width = '0%';
+  skipped.forEach(function (c) { log(c, 'duraklatılmış olduğu için atlandı.', true, tick(1)); });
+  var steps = act.length * 2, s = 0;
+  function upd(label) { s++; var p = Math.round(s / steps * 100); bar.style.width = p + '%'; $('#pz-k-sync-t').textContent = 'Eşitleniyor ' + pct(p, 0); $('#pz-k-sync-s').textContent = label; }
+  $('#pz-k-sync-t').textContent = 'Eşitleniyor %0'; $('#pz-k-sync-s').textContent = act[0].name + ' bağlanıyor…';
+  (function run(i, phase) {
+    if (i >= act.length) {
+      setTimeout(function () {
+        syncing = false; $('#pz-syncall').disabled = false; bar.parentNode.hidden = true;
+        if (full) lastFull = hms(clock).slice(0, 5);
+        renderAll();
+        kit.toast(full ? 'Tüm kanallar eşitlendi: ' + act.length * PR.length + ' ilan kontrol edildi, fark kalmadı.' : act[0].name + ' eşitlendi.');
+      }, 350);
+      return;
+    }
+    var c = act[i];
+    setTimeout(function () {
+      if (phase === 0) { upd(c.name + ': stoklar gönderiliyor'); run(i, 1); return; }
+      var t = tick(2);
+      if (c.health === 'warn') { c.health = 'ok'; c.ms = 0.4; log(c, 'API bağlantısı yenilendi, yanıt süresi 1,9 sn → 0,4 sn.', false, t); }
+      c.sync = t; c.queue = 0;
+      log(c, PR.length + ' ürün stok ve fiyat eşitlendi, fark yok.', false, t);
+      upd(c.name + ' tamam'); renderChannels(); flashCell(-1, c.id);
+      run(i + 1, 0);
+    }, 420);
+  })(0, 0);
+}
+$('#pz-syncall').addEventListener('click', function () { syncChannels(CH.slice(), true); });
+
+/* stock modal */
+function stockModal(i) {
+  var pr = PR[i], box;
+  box = kit.modal({ title: 'Stok düzenle · ' + pr.s, body: '<p>Ortak stok: <b>' + pr.stock + ' adet</b>. Kaydettiğinizde yeni sayı ' + CH.filter(function (c) { return c.on; }).length + ' aktif kanala aynı anda gönderilir' + (CH.some(function (c) { return !c.on; }) ? ', duraklatılmış kanallar kuyruğa alınır' : '') + '.</p>',
+    form: { submit: 'Kaydet ve gönder', fields: [
+      { name: 'qty', label: 'Yeni stok adedi', type: 'number', required: true, value: String(pr.stock) },
+      { name: 'why', label: 'Sebep', type: 'select', options: ['Depo sayımı', 'Tedarikçiden mal kabul', 'Hasarlı / fire', 'İade girişi'] }
+    ], onSubmit: function (d, close) {
+      var n = +d.qty, err = box.querySelector('.k-err');
+      if (!/^\d+$/.test(d.qty) || n > 99999) { err.hidden = false; err.textContent = 'Stok 0 veya daha büyük bir tam sayı olmalı.'; return; }
+      close();
+      if (n === pr.stock) { kit.toast('Stok değişmedi.'); return; }
+      var from = pr.stock; pr.stock = n; tick(20);
+      log(null, pr.s + ' stoku elle güncellendi (' + d.why.toLocaleLowerCase('tr') + '): ' + from + ' → ' + n);
+      renderAll();
+      kit.toast(pr.s + ': ' + from + ' → ' + n + '. Tüm kanallara gönderiliyor.');
+      propagate(i, from, n);
+    } } });
+}
+
+/* price rules modal */
+$('#pz-rules').addEventListener('click', function () {
+  var ex = PR[0];
+  var body = '<div class="formula"><b>Komisyon farkı</b>: kanal fiyatı = site fiyatı × (1 − site komisyonu) ÷ (1 − kanal komisyonu). Böylece her kanalda siteyle aynı net tutar kalır.</div>' +
+    CH.slice(1).map(function (c) {
+      return '<div class="rr" data-rr="' + c.id + '"><div class="rrh">' + bd(c) + '<span>Komisyon ' + pct(c.com, 0) + ' · kargo ' + kit.money(c.ship) + '</span></div>' +
+        '<div class="rrc"><select aria-label="' + c.name + ' fiyat kuralı" data-m><option value="fark"' + (c.rule.mode === 'fark' ? ' selected' : '') + '>Site fiyatı + komisyon farkı</option><option value="yuzde"' + (c.rule.mode === 'yuzde' ? ' selected' : '') + '>Site fiyatı + sabit yüzde</option><option value="ayni"' + (c.rule.mode === 'ayni' ? ' selected' : '') + '>Site fiyatıyla aynı</option></select>' +
+        '<input type="number" min="0" max="60" step="1" aria-label="' + c.name + ' ek yüzde" data-p value="' + (c.rule.mode === 'yuzde' ? c.rule.pct : Math.round(((1 - CH[0].com / 100) / (1 - c.com / 100) - 1) * 100)) + '"></div>' +
+        '<div class="rrp" data-prev></div></div>';
+    }).join('') + '<p class="k-note">Örnek ürün: ' + ex.n + ' (site ' + kit.money(ex.p) + '). Net marj KDV hariç satış üzerinden hesaplanır.</p>';
+  var box = kit.modal({ title: 'Fiyat kuralları', body: body, actions: [{ label: 'Vazgeç' }, { label: 'Kuralları uygula', primary: true, onClick: function (close) {
+    var changed = [];
+    CH.slice(1).forEach(function (c) { var r = read(c); if (r.mode !== c.rule.mode || (r.mode === 'yuzde' && r.pct !== c.rule.pct)) { c.rule = r; changed.push(c); } });
+    close();
+    if (!changed.length) { kit.toast('Kurallarda değişiklik yok.'); return; }
+    changed.forEach(function (c) {
+      var t = tick(2);
+      if (c.on) { c.sync = t; log(c, 'fiyat kuralı: ' + ruleText(c).toLocaleLowerCase('tr') + ' · ' + PR.length + ' ürün fiyatı gönderildi (ör. ' + kit.money(priceFor(ex, c)) + ')'); }
+      else { c.queue += PR.length; log(c, 'fiyat kuralı kaydedildi, kanal duraklatıldığı için ' + PR.length + ' fiyat kuyruğa alındı.', true); }
+    });
+    renderAll();
+    changed.forEach(function (c) { PR.forEach(function (p, i) { flashCell(i, c.id); }); });
+    kit.toast(changed.map(function (c) { return c.name; }).join(', ') + ' fiyatları yeniden hesaplandı.');
+  } }] });
+  function read(c) {
+    var row = box.querySelector('[data-rr="' + c.id + '"]'), m = row.querySelector('[data-m]').value, p = Math.max(0, Math.min(60, Math.round(+row.querySelector('[data-p]').value || 0)));
+    return { mode: m, pct: m === 'yuzde' ? p : 0 };
+  }
+  function prev() {
+    CH.slice(1).forEach(function (c) {
+      var row = box.querySelector('[data-rr="' + c.id + '"]'), r = read(c), inp = row.querySelector('[data-p]');
+      inp.disabled = r.mode !== 'yuzde';
+      var m = marginFor(ex, c, r);
+      row.querySelector('[data-prev]').innerHTML = 'Fiyat <b>' + kit.money(priceFor(ex, c, r)) + '</b> · net marj <b style="color:' + (m < 30 ? 'var(--amber)' : 'var(--green)') + '">' + pct(m) + '</b> · kanal ortalaması ' + pct(chMargin(c, r));
+    });
+  }
+  box.addEventListener('input', prev); box.addEventListener('change', prev); prev();
+});
+$('#pz-logclr').addEventListener('click', function () { $('#pz-log').innerHTML = ''; log(null, 'Günlük ekranı temizlendi. Kayıtlar arşivde 90 gün saklanır.'); });
+
+/* initial log (oldest first) */
+[
+  ['14:20:14', 'hb', 'fiyat güncellendi · SPF 50+ güneş kremi ' + kit.money(priceFor(PR[4], CH[2]))],
+  ['14:27:20', 'hb', 'yeni sipariş <span class="mono">#4417820935</span> · SPF 50+ güneş kremi × 1'],
+  ['14:27:22', null, 'SPF 50+ güneş kremi stok 215 → 214 tüm kanallara gönderildi'],
+  ['14:31:12', 'amz', 'API yanıtı 1,9 sn sürdü, istek yeniden denendi ve başarılı oldu.', true],
+  ['14:31:47', 'site', 'yeni sipariş <span class="mono">#NV-24871</span> · Seramid nemlendirici × 2'],
+  ['14:31:49', null, 'Seramid nemlendirici stok 19 → 17 tüm kanallara gönderildi'],
+  ['14:34:09', 'ty', 'yeni sipariş <span class="mono">#10984527316</span> · Hyalüronik serum × 1'],
+  ['14:34:10', 'ty', 'stok 49 → 48 güncellendi · Hyalüronik serum'],
+  ['14:34:11', 'hb', 'stok 49 → 48 güncellendi · Hyalüronik serum'],
+  ['14:35:58', null, 'Planlı tam eşitleme tamamlandı · 30 ilan, fark yok']
+].forEach(function (x) { log(x[1] ? chById(x[1]) : null, x[2], x[3], x[0]); });
+$$('#pz-log li').forEach(function (li) { li.classList.remove('new'); });
+renderFilters(); renderAll();
+</script>

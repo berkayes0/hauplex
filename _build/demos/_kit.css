@@ -17,8 +17,8 @@
 .k-mb{padding:20px 22px;display:grid;gap:14px;font-size:15px;line-height:1.55}
 .k-mb p{margin:0}
 .k-mf{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:0 22px 20px}
-.k-btn{font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;border:1px solid var(--k-line,rgba(0,0,0,.15))}
-.k-btn.p{background:var(--k-accent,#2340E8);color:var(--k-on,#fff);border-color:var(--k-accent,#2340E8)}
+.k-btn,.d .k-btn{font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px;border:1px solid var(--k-line,rgba(0,0,0,.15))}
+.k-btn.p,.d .k-btn.p{background:var(--k-accent,#2340E8);color:var(--k-on,#fff);border-color:var(--k-accent,#2340E8)}
 .k-field{display:grid;gap:6px}
 .k-field label{font-size:13px;font-weight:600;opacity:.75}
 .k-field input,.k-field select,.k-field textarea{font:inherit;font-size:15px;color:inherit;background:transparent;border:1px solid var(--k-line,rgba(0,0,0,.18));border-radius:10px;padding:11px 12px;width:100%}

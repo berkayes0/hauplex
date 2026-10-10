@@ -1,0 +1,651 @@
+<!--meta title="Tazemarket" kind="Perakende · Talep tahmini ve otomatik satın alma" fonts="Schibsted+Grotesk:wght@400;500;600;700;800&family=Fragment+Mono"-->
+<style>
+.d{--k-accent:#65A30D;--k-on:#0F1A07;--k-ink:#17210F;--k-bg:#fff;--k-line:#E3E8DA;--bg:#F5F7F0;--card:#fff;--ink:#17210F;--muted:#667060;--line:#E3E8DA;--line2:#EEF1E8;--g:#65A30D;--g2:#4D7C0F;--g3:#3F6212;--soft:#EEF6E0;--soft2:#F7FBEF;--red:#DC4A3A;--redsoft:#FDECEA;--amber:#C9820A;--ambersoft:#FDF3DF;--blue:#2F7BC4;--bluesoft:#E7F1FB;--violet:#7A4FC9;--violetsoft:#F1EBFB;
+  font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5;padding:clamp(16px,3vw,32px)}
+.d *,.d *::before,.d *::after{box-sizing:border-box}
+.d h1,.d h2,.d h3,.d p{margin:0}.d ul,.d ol{list-style:none;margin:0;padding:0}
+.d .mono{font-family:"Fragment Mono",ui-monospace,monospace}
+.d .num{font-variant-numeric:tabular-nums}
+.d .wrap{max-width:1240px;margin:0 auto;display:grid;gap:20px}
+.d .hd{display:flex;justify-content:space-between;align-items:center;gap:14px 20px;flex-wrap:wrap}
+.d .brand{display:flex;align-items:center;gap:12px;min-width:0}
+.d .leaf{width:40px;height:40px;border-radius:12px;background:var(--g);display:grid;place-items:center;flex:none}
+.d .leaf i{width:18px;height:18px;background:#fff;border-radius:0 100% 0 100%;transform:rotate(0deg);position:relative}
+.d .leaf i::after{content:"";position:absolute;left:2px;bottom:2px;width:15px;height:2px;background:var(--g);transform:rotate(-45deg);transform-origin:left center}
+.d .brand b{display:block;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.d .brand span{font-size:13px;color:var(--muted)}
+.d .hact{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.d .pill{font-size:13px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--card);display:inline-flex;align-items:center;gap:7px}
+.d .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--g)}
+.d .pill:hover{border-color:var(--g);color:var(--ink)}
+.d .btn{font-size:14px;font-weight:600;padding:10px 16px;border-radius:10px;background:var(--g3);color:#fff;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.d .btn:hover{background:var(--g2)}
+.d .btn:disabled{opacity:.55;cursor:not-allowed}
+.d .btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.d .btn.ghost:hover{border-color:var(--g);color:var(--g3)}
+.d .btn svg{width:16px;height:16px;flex:none}
+.d .btn.spin svg{animation:tzSpin 1s linear infinite}
+@keyframes tzSpin{to{transform:rotate(360deg)}}
+.d .run{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:grid;gap:10px}
+.d .run[hidden]{display:none}
+.d .run-top{display:flex;justify-content:space-between;gap:12px;font-size:14px;flex-wrap:wrap}
+.d .run-top b{font-weight:600}.d .run-top span{color:var(--muted)}
+.d .bar{height:8px;border-radius:99px;background:var(--line2);overflow:hidden}
+.d .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g),#A3D65C);border-radius:99px;transition:width .35s ease}
+.d .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.d .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;gap:4px;min-width:0;position:relative;overflow:hidden}
+.d .kpi span{font-size:13px;color:var(--muted);font-weight:500}
+.d .kpi b{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.d .kpi small{font-size:12px;color:var(--muted)}
+.d .kpi small em{font-style:normal;color:var(--g2);font-weight:600}
+.d .kpi.hot{background:var(--g3);border-color:var(--g3);color:#fff}
+.d .kpi.hot span,.d .kpi.hot small{color:#ffffffcc}
+.d .kpi.hot small em{color:#D9F99D}
+.d .kpi .flash{animation:tzFlash 1s ease}
+@keyframes tzFlash{0%{color:var(--g)}100%{color:inherit}}
+.d .grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:20px;align-items:start}
+.d .card{background:var(--card);border:1px solid var(--line);border-radius:16px;min-width:0}
+.d .ch{display:flex;justify-content:space-between;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:15px 20px;border-bottom:1px solid var(--line)}
+.d .ch h2{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.d .ch .sub{font-size:13px;color:var(--muted)}
+.d select.sel{font:inherit;font-size:14px;font-weight:500;color:var(--ink);background:var(--soft2);border:1px solid var(--line);border-radius:10px;padding:8px 32px 8px 12px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px;background-repeat:no-repeat;max-width:100%}
+.d select.sel:focus{outline:none;border-color:var(--g)}
+.d .cbody{padding:16px 20px 18px;display:grid;gap:12px}
+.d .fsum{display:flex;gap:10px 24px;flex-wrap:wrap;align-items:baseline}
+.d .fsum div{display:grid}
+.d .fsum small{font-size:12px;color:var(--muted)}
+.d .fsum b{font-size:22px;font-weight:700;letter-spacing:-.01em}
+.d .fsum b.up{color:var(--g2)}.d .fsum b.dn{color:var(--red)}
+.d .chartbox{position:relative}
+.d .chartbox svg{display:block;width:100%;height:auto;overflow:visible}
+.d .chartbox .gl{stroke:var(--line2);stroke-width:1}
+.d .chartbox .ax{font-size:11px;fill:var(--muted);font-family:"Schibsted Grotesk",sans-serif}
+.d .chartbox .axb{font-size:11px;fill:var(--ink);font-weight:600}
+.d .chartbox svg.cmp .ax,.d .chartbox svg.cmp .axb{font-size:12.5px}
+.d .tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;line-height:1.45;padding:8px 10px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .12s;z-index:3}
+.d .tip.on{opacity:1}
+.d .tip b{font-weight:600}
+.d .legend{display:flex;gap:8px 16px;flex-wrap:wrap;font-size:12px;color:var(--muted);align-items:center}
+.d .legend span{display:inline-flex;align-items:center;gap:6px}
+.d .lg-a{width:16px;height:3px;border-radius:2px;background:var(--ink)}
+.d .lg-f{width:16px;height:0;border-top:3px dashed var(--g)}
+.d .lg-b{width:14px;height:10px;border-radius:3px;background:#65A30D33}
+.d .mk{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;font-size:10px;font-weight:700;color:#fff}
+.d .mk.k{background:var(--violet)}.d .mk.h{background:var(--blue)}.d .mk.o{background:var(--amber)}.d .mk.m{background:var(--g2)}
+.d .events{display:flex;gap:8px;flex-wrap:wrap}
+.d .ev{font-size:12px;padding:5px 10px 5px 6px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;background:var(--soft2);border:1px solid var(--line)}
+.d .ev .mk{width:16px;height:16px;font-size:9px}
+.d .factors{padding:6px 20px 8px}
+.d .factors li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;padding:13px 0;border-top:1px solid var(--line2);align-items:center}
+.d .factors li:first-child{border-top:0}
+.d .fl{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.d .fl .mk{margin-top:2px;flex:none;width:22px;height:22px;font-size:11px}
+.d .fl b{display:block;font-size:14px;font-weight:600}
+.d .fl small{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.d .imp{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) 58px;gap:10px;align-items:center;padding-left:32px}
+.d .ib{height:8px;background:var(--line2);border-radius:99px;position:relative}
+.d .ib::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#C9D1BD}
+.d .ib i{position:absolute;top:0;bottom:0;border-radius:99px;transition:all .3s}
+.d .imp b{font-size:13px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.d .imp b.up{color:var(--g2)}.d .imp b.dn{color:var(--red)}.d .imp b.off{color:var(--muted);font-weight:500}
+.d li.off .fl{opacity:.55}
+.d .sw{flex:none;width:42px;height:24px;border-radius:999px;background:var(--g);position:relative;transition:background .2s}
+.d .sw::after{content:"";position:absolute;top:3px;left:21px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 2px #0003}
+.d .sw[aria-checked="false"]{background:#D3D9C9}.d .sw[aria-checked="false"]::after{left:3px}
+.d .fnote{margin:0 20px 18px;padding:12px 14px;border-radius:12px;background:var(--soft);font-size:13px;line-height:1.5;color:var(--g3)}
+.d .fnote b{font-weight:700}
+.d .fact{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 20px 18px;flex-wrap:wrap}
+.d .link{font-size:13px;font-weight:600;color:var(--g3);text-decoration:underline;text-underline-offset:3px;text-decoration-color:#65A30D66}
+.d .link:hover{text-decoration-color:var(--g3)}
+.d .filters{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--soft2)}
+.d .chips{display:flex;gap:6px;flex-wrap:wrap}
+.d .chip{font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted)}
+.d .chip:hover{color:var(--ink);border-color:#C9D1BD}
+.d .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.d .chk{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;margin-left:auto}
+.d .chk .sw{width:36px;height:20px}.d .chk .sw::after{width:14px;height:14px;left:19px}.d .chk .sw[aria-checked="false"]::after{left:3px}
+.d .tw{overflow-x:auto}
+.d table{width:100%;border-collapse:collapse;min-width:980px;font-size:14px}
+.d th{text-align:left;font-size:11px;font-weight:600;color:var(--muted);padding:10px 14px;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+.d th:first-child,.d td:first-child{padding-left:20px}
+.d th:last-child,.d td:last-child{padding-right:20px}
+.d td{padding:11px 14px;border-top:1px solid var(--line2);white-space:nowrap;font-variant-numeric:tabular-nums;vertical-align:middle}
+.d td small{display:block;color:var(--muted);font-size:12px}
+.d tbody tr{cursor:pointer;transition:background .15s}
+.d tbody tr:hover td{background:#FAFCF5}
+.d tbody tr.sel td{background:var(--soft)}
+.d tbody tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--g)}
+.d td .pn{font-weight:600}
+.d .cov{display:flex;align-items:center;gap:8px}
+.d .cov i{display:block;width:62px;height:6px;border-radius:3px;background:var(--line2);overflow:hidden}
+.d .cov i b{display:block;height:100%;border-radius:3px}
+.d .qty{display:inline-flex;align-items:center;gap:6px}
+.d .qty input{font:inherit;font-size:14px;font-weight:600;width:84px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;text-align:right;color:var(--ink);background:var(--card);font-variant-numeric:tabular-nums}
+.d .qty input:focus{outline:none;border-color:var(--g);box-shadow:0 0 0 3px #65A30D22}
+.d .qty input.ed{border-color:var(--amber);background:var(--ambersoft)}
+.d .qty span{font-size:12px;color:var(--muted)}
+.d .tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.d .t-ok{background:var(--soft);color:var(--g3)}
+.d .t-mid{background:var(--ambersoft);color:#9A6206}
+.d .t-hi{background:var(--redsoft);color:#B33526}
+.d .t-na{background:var(--line2);color:var(--muted)}
+.d .t-way{background:var(--bluesoft);color:#1F5F9E}
+.d .t-k{background:var(--violetsoft);color:var(--violet)}
+.d .empty{padding:28px 20px;text-align:center;color:var(--muted);font-size:14px}
+.d .tfoot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.d .sech{display:flex;justify-content:space-between;align-items:flex-end;gap:10px 16px;flex-wrap:wrap}
+.d .sech h2{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.d .sech p{font-size:14px;color:var(--muted)}
+.d .pos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,370px),1fr));gap:16px;align-items:start}
+.d .po{background:var(--card);border:1px solid var(--line);border-radius:16px;display:grid;min-width:0;transition:border-color .3s,box-shadow .3s}
+.d .po.sent{background:#FBFDF7}
+.d .po.flash{border-color:var(--g);box-shadow:0 0 0 4px #65A30D22}
+.d .poh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:15px 18px 12px}
+.d .poh b{display:block;font-size:15px;font-weight:700}
+.d .poh small{display:block;font-size:12px;color:var(--muted)}
+.d .pol{padding:0 18px}
+.d .pol li{display:grid;grid-template-columns:minmax(0,1fr) auto auto 24px;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line2);font-size:13px}
+.d .pol li .nm{min-width:0}
+.d .pol li .nm b{display:block;font-weight:600;font-size:13px;line-height:1.3}
+.d .pol li .nm small{color:var(--muted);font-size:11px}
+.d .pol li .lt{font-weight:600;text-align:right;min-width:86px;font-variant-numeric:tabular-nums}
+.d .pol .qty input{width:72px;font-size:13px;padding:5px 7px}
+.d .rm{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;color:var(--muted);font-size:16px;line-height:1}
+.d .rm:hover{background:var(--redsoft);color:var(--red)}
+.d .pol li.sent-l{grid-template-columns:minmax(0,1fr) auto auto}
+.d .pomin{margin:10px 18px 0;display:grid;gap:6px;font-size:12px;color:var(--muted)}
+.d .pomin .bar{height:6px}
+.d .pomin .bar i{transition:width .3s}
+.d .pomin.low{color:#9A6206}
+.d .pomin.low .bar i{background:var(--amber)}
+.d .pomin div{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.d .pot{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 18px 0}
+.d .pot span{font-size:13px;color:var(--muted)}
+.d .pot b{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.d .poa{display:flex;gap:8px;padding:14px 18px 16px;flex-wrap:wrap;align-items:center}
+.d .poa .btn{flex:1 1 100%;justify-content:center}
+.d .poal{display:flex;justify-content:space-between;gap:8px 14px;flex-wrap:wrap;width:100%}
+.d .posent{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--g3);font-weight:600;padding:12px 18px 16px}
+.d .posent i{width:20px;height:20px;border-radius:50%;background:var(--g);display:grid;place-items:center;flex:none}
+.d .posent i::after{content:"";width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.d .noqty{padding:10px 18px 4px;font-size:13px;color:var(--muted)}
+.d .podoc{border:1px solid var(--line);border-radius:12px;overflow-x:auto;font-size:13px}
+.d .podoc td{white-space:normal}.d .podoc td:not(:first-child){white-space:nowrap}
+.d .podoc table{min-width:0}
+.d .podoc th{padding:8px 10px;background:var(--soft2)}
+.d .podoc td{padding:7px 10px}
+.d .podoc th:first-child,.d .podoc td:first-child{padding-left:12px}
+.d .podoc th:last-child,.d .podoc td:last-child{padding-right:12px;text-align:right}
+.d .podoc tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.d .src li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line2);font-size:14px}
+.d .src li:first-child{border-top:0}
+.d .src li span{color:var(--muted);font-size:13px;text-align:right}
+@media (max-width:1040px){.d .grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.d .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.d .kpi b{font-size:24px}.d .chk{margin-left:0}}
+@media (max-width:480px){.d .podoc .c3{display:none}.d .podoc th,.d .podoc td{padding-left:8px;padding-right:8px}.d .ch,.d .filters{padding-left:16px;padding-right:16px}.d .cbody{padding-left:16px;padding-right:16px}.d .factors{padding-left:16px;padding-right:16px}.d .fnote{margin-left:16px;margin-right:16px}.d .fact{padding-left:16px;padding-right:16px}.d .hact .btn{flex:1 1 100%;justify-content:center}.d .imp{padding-left:0}.d .kpi{padding:14px}}
+</style>
+<div class="d">
+  <div class="wrap">
+    <div class="hd">
+      <div class="brand"><span class="leaf"><i></i></span><div><b>Tazemarket</b><span>Talep ve satın alma merkezi · 10 Ekim 2026, Cumartesi</span></div></div>
+      <div class="hact">
+        <button type="button" class="pill" id="tz-src">14 mağaza · veri akışı aktif</button>
+        <button type="button" class="btn" id="tz-rerun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg><span>Tahmin modelini yeniden çalıştır</span></button>
+      </div>
+    </div>
+
+    <div class="run" id="tz-run" hidden>
+      <div class="run-top"><b id="tz-run-step">Satış verisi alınıyor</b><span id="tz-run-pct">%0</span></div>
+      <div class="bar"><i id="tz-run-bar"></i></div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Tahmin doğruluğu</span><b id="tz-acc">%92,4</b><small>Son 4 hafta · <em id="tz-acc-d">+1,8 puan</em> geçen aya göre</small></div>
+      <div class="kpi"><span>Önlenen stoksuzluk</span><b id="tz-so">37</b><small>Ekim ayında · <em>raf boş kalmadı</em></small></div>
+      <div class="kpi"><span>Azalan fire</span><b>%31</b><small>Taze ürünlerde, geçen yıl Ekim'e göre</small></div>
+      <div class="kpi hot"><span>Bekleyen satın alma taslağı</span><b id="tz-pend">0</b><small id="tz-pend-s">—</small></div>
+    </div>
+
+    <div class="grid">
+      <section class="card" id="tz-fc">
+        <div class="ch">
+          <div><h2>Talep tahmini</h2><span class="sub">Haftalık satış, 14 mağaza toplamı</span></div>
+          <select class="sel" id="tz-prod" aria-label="Ürün seçin"></select>
+        </div>
+        <div class="cbody">
+          <div class="fsum" id="tz-fsum"></div>
+          <div class="chartbox"><svg id="tz-svg" viewBox="0 0 720 290" role="img" aria-label="Talep tahmini grafiği"></svg><div class="tip" id="tz-tip"></div></div>
+          <div class="legend"><span><i class="lg-a"></i>Gerçekleşen satış</span><span><i class="lg-f"></i>Tahmin</span><span><i class="lg-b"></i>%80 güven aralığı</span><span><i class="mk k">%</i>Kampanya</span><span><i class="mk h">☂</i>Hava durumu</span><span><i class="mk o">★</i>Özel gün</span><span><i class="mk m">₺</i>Maaş günü</span></div>
+          <div class="events" id="tz-events"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="ch"><div><h2>Tahmini etkileyen faktörler</h2><span class="sub" id="tz-fsub">12–18 Ekim haftası</span></div></div>
+        <ul class="factors" id="tz-factors"></ul>
+        <p class="fnote" id="tz-fnote"></p>
+        <div class="fact"><button type="button" class="link" id="tz-reset">Senaryoyu sıfırla</button><button type="button" class="link" id="tz-why">Model bu tahmini nasıl yaptı?</button></div>
+      </section>
+    </div>
+
+    <section class="card" id="tz-tbl">
+      <div class="ch"><div><h2>Ürün bazında stok ve sipariş önerisi</h2><span class="sub">Bir satıra tıklayınca grafik o ürüne geçer. Önerilen miktarı doğrudan düzenleyebilirsiniz.</span></div></div>
+      <div class="filters">
+        <select class="sel" id="tz-store" aria-label="Mağaza veya bölge">
+          <option value="all">Tüm mağazalar (14) + merkez depo</option>
+          <option value="nil">Nilüfer bölgesi (5 mağaza)</option>
+          <option value="osm">Osmangazi–Yıldırım (5 mağaza)</option>
+          <option value="sah">Mudanya–Gemlik (4 mağaza)</option>
+        </select>
+        <div class="chips" id="tz-cats"></div>
+        <label class="chk"><button type="button" class="sw" role="switch" aria-checked="false" id="tz-risky" aria-label="Sadece riskli ürünler"></button>Sadece riskli ürünler</label>
+      </div>
+      <div class="tw"><table>
+        <thead><tr><th>Ürün</th><th>Mağaza / depo stoğu</th><th>7 günlük tahmini talep</th><th>Stok yeterliliği</th><th>Önerilen sipariş</th><th>Tedarikçi</th><th>Son kullanma riski</th></tr></thead>
+        <tbody id="tz-rows"></tbody>
+      </table></div>
+      <div class="tfoot"><span id="tz-count"></span><span>Sipariş önerisi zincir genelinde, merkez depoya teslim için hesaplanır.</span></div>
+    </section>
+
+    <section id="tz-po" style="display:grid;gap:14px">
+      <div class="sech"><div><h2>Otomatik satın alma taslakları</h2><p>Tedarikçi bazında gruplandı. Onayladığınızda sipariş EDI ve e-posta ile tedarikçiye iletilir.</p></div><span class="sub" id="tz-po-sum" style="font-size:13px;color:var(--muted)"></span></div>
+      <div class="pos" id="tz-pos"></div>
+    </section>
+  </div>
+</div>
+<script>
+var $ = function (s) { return root.querySelector(s); };
+var fmt = function (n, d) { return Number(n).toLocaleString('tr-TR', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); };
+var pct = function (x) { return (x > 0 ? '+' : x < 0 ? '−' : '') + '%' + fmt(Math.abs(x * 100)); };
+
+var SUP = {
+  hal: { n: 'Uludağ Hal Tarım', min: 25000, days: 'Her gün, 06:00', next: 'Pzt 12 Eki, 06:00', lead: 2, rev: 2, mail: 'siparis@uludaghal.com.tr' },
+  frn: { n: 'Nilüfer Fırın', min: 5000, days: 'Her gün, 05:30', next: 'Paz 11 Eki, 05:30', lead: 1, rev: 1, mail: 'siparis@niluferfirin.com.tr' },
+  sut: { n: 'Marmara Süt Kooperatifi', min: 40000, days: 'Pzt · Çar · Cum', next: 'Pzt 12 Eki, 07:00', lead: 2, rev: 2, mail: 'bayi@marmarasut.coop' },
+  et: { n: 'Karacabey Et ve Piliç', min: 35000, days: 'Sal · Cum', next: 'Sal 13 Eki, 08:00', lead: 3, rev: 3, mail: 'satis@karacabeyet.com.tr' },
+  bak: { n: 'Anadolu Bakliyat', min: 20000, days: 'Çarşamba', next: 'Çar 14 Eki, 10:00', lead: 4, rev: 7, mail: 'siparis@anadolubakliyat.com.tr' },
+  su: { n: 'Kaynak Su Dağıtım', min: 15000, days: 'Pzt – Per', next: 'Pzt 12 Eki, 09:00', lead: 2, rev: 3, mail: 'bursa@kaynaksu.com.tr' },
+  tmz: { n: 'Tuna Temizlik Dağıtım', min: 30000, days: 'Salı', next: 'Sal 13 Eki, 11:00', lead: 3, rev: 7, mail: 'siparis@tunadagitim.com.tr' }
+};
+// base: weekly chain demand; st: store stock, dp: depot stock; shelf: shelf life (days), left: avg remaining shelf of current stock
+// f: weekly impact of factors {rain, camp, pay, school}; hist: special effects in history
+var P = [
+  { id: 'dom', sku: 'MS-1021', n: 'Domates', cat: 'Meyve-sebze', u: 'kg', pack: 10, price: 28.5, sup: 'hal', base: 6200, st: 1420, dp: 880, shelf: 6, left: 4, f: { rain: -0.06, camp: 0.32, pay: 0.05, school: 0.02 }, hol: -0.05, tr: 0 },
+  { id: 'muz', sku: 'MS-1044', n: 'Muz (ithal)', cat: 'Meyve-sebze', u: 'kg', pack: 12, price: 62, sup: 'hal', base: 3400, st: 520, dp: 240, shelf: 7, left: 5, f: { rain: -0.04, camp: 0.28, pay: 0.07, school: 0.09 }, hol: -0.06, tr: 0.005 },
+  { id: 'man', sku: 'MS-1078', n: 'Mandalina', cat: 'Meyve-sebze', u: 'kg', pack: 10, price: 34, sup: 'hal', base: 3100, st: 900, dp: 600, shelf: 14, left: 11, f: { rain: 0.03, camp: 0.35, pay: 0.04, school: 0.08 }, hol: -0.04, tr: 0.07 },
+  { id: 'ekm', sku: 'FR-0007', n: 'Ekmek 350 g', cat: 'Fırın', u: 'adet', pack: 50, price: 11, sup: 'frn', base: 21000, st: 4400, dp: 0, shelf: 2, left: 2, f: { rain: 0.04, camp: 0.12, pay: 0.02, school: 0.06 }, hol: -0.08, tr: 0 },
+  { id: 'sut', sku: 'SU-0210', n: 'Günlük süt 1 L', cat: 'Süt ürünleri', u: 'adet', pack: 12, price: 32.5, sup: 'sut', base: 9800, st: 2300, dp: 1500, shelf: 5, left: 4, f: { rain: 0.03, camp: 0.22, pay: 0.03, school: 0.11 }, hol: -0.05, tr: 0 },
+  { id: 'yog', sku: 'SU-0233', n: 'Yoğurt 1,5 kg', cat: 'Süt ürünleri', u: 'adet', pack: 6, price: 89, sup: 'sut', base: 4100, st: 3200, dp: 2100, shelf: 21, left: 8, f: { rain: 0.02, camp: 0.30, pay: 0.04, school: 0.05 }, hol: -0.03, tr: -0.01 },
+  { id: 'pey', sku: 'SU-0251', n: 'Beyaz peynir 500 g', cat: 'Süt ürünleri', u: 'adet', pack: 12, price: 154, sup: 'sut', base: 2300, st: 1150, dp: 900, shelf: 60, left: 41, f: { rain: 0.01, camp: 0.27, pay: 0.06, school: 0.12 }, hol: -0.02, tr: 0 },
+  { id: 'ayr', sku: 'SU-0290', n: 'Ayran 300 ml', cat: 'İçecek', u: 'adet', pack: 20, price: 14, sup: 'sut', base: 8600, st: 3900, dp: 2700, shelf: 21, left: 8, f: { rain: -0.15, camp: 0.20, pay: 0.02, school: 0.14 }, hol: 0.09, tr: -0.02 },
+  { id: 'tav', sku: 'ET-0412', n: 'Tavuk but', cat: 'Et-tavuk', u: 'kg', pack: 10, price: 118, sup: 'et', base: 3600, st: 1450, dp: 650, shelf: 5, left: 4, f: { rain: 0.08, camp: 0.40, pay: 0.06, school: 0.03 }, hol: -0.07, tr: 0.01 },
+  { id: 'kiy', sku: 'ET-0438', n: 'Dana kıyma', cat: 'Et-tavuk', u: 'kg', pack: 5, price: 520, sup: 'et', base: 1150, st: 330, dp: 120, shelf: 5, left: 4, f: { rain: 0.10, camp: 0.25, pay: 0.09, school: 0.02 }, hol: -0.06, tr: 0 },
+  { id: 'mer', sku: 'KG-0105', n: 'Kırmızı mercimek 1 kg', cat: 'Kuru gıda', u: 'adet', pack: 10, price: 64, sup: 'bak', base: 2900, st: 1250, dp: 750, shelf: 365, left: 300, f: { rain: 0.14, camp: 0.26, pay: 0.05, school: 0.03 }, hol: -0.03, tr: 0.03 },
+  { id: 'mak', sku: 'KG-0131', n: 'Makarna 500 g', cat: 'Kuru gıda', u: 'adet', pack: 20, price: 21.5, sup: 'bak', base: 7400, st: 4600, dp: 10800, shelf: 540, left: 420, f: { rain: 0.06, camp: 0.24, pay: 0.04, school: 0.10 }, hol: -0.04, tr: 0 },
+  { id: 'su5', sku: 'IC-0502', n: 'Su 5 L', cat: 'İçecek', u: 'adet', pack: 4, price: 38, sup: 'su', base: 5200, st: 1700, dp: 1100, shelf: 365, left: 330, f: { rain: -0.10, camp: 0.18, pay: 0.03, school: 0.02 }, hol: 0.10, tr: -0.03 },
+  { id: 'det', sku: 'TM-0820', n: 'Çamaşır deterjanı 4 kg', cat: 'Temizlik', u: 'adet', pack: 4, price: 289, sup: 'tmz', base: 760, st: 980, dp: 520, shelf: 0, left: 0, f: { rain: 0.05, camp: 0.45, pay: 0.18, school: 0 }, hol: -0.02, tr: 0 }
+];
+var WEEKS = ['17 Ağu', '24 Ağu', '31 Ağu', '7 Eyl', '14 Eyl', '21 Eyl', '28 Eyl', '5 Eki', '12 Eki', '19 Eki'];
+var WEEKR = ['17–23 Ağustos', '24–30 Ağustos', '31 Ağustos – 6 Eylül', '7–13 Eylül', '14–20 Eylül', '21–27 Eylül', '28 Eylül – 4 Ekim', '5–11 Ekim', '12–18 Ekim', '19–25 Ekim'];
+var CAMP_HIST = { mak: 1, yog: 1, det: 1, tav: 1, man: 1 };
+var REG = { all: { n: 'Tüm mağazalar', s: 1 }, nil: { n: 'Nilüfer bölgesi', s: 0.38 }, osm: { n: 'Osmangazi–Yıldırım', s: 0.36 }, sah: { n: 'Mudanya–Gemlik', s: 0.26 } };
+var FACT = [
+  { k: 'rain', m: 'h', g: '☂', n: 'Hafta sonu yağmur', d: '17–18 Ekim, yağış olasılığı %70 (MGM)' },
+  { k: 'camp', m: 'k', g: '%', n: '%25 indirim kampanyası', d: '12–18 Ekim, bu ürüne özel what-if' },
+  { k: 'pay', m: 'm', g: '₺', n: 'Maaş günü', d: '15 Ekim Perşembe, sepet büyüklüğü artıyor' },
+  { k: 'school', m: 'o', g: '★', n: 'Okul dönemi', d: 'Okullar açık, kahvaltı ve beslenme etkisi' }
+];
+var S = { sel: 'muz', rain: true, pay: true, school: true, camp: {}, store: 'all', cat: 'Tümü', risky: false, seed: 0, acc: 92.4, so: 37, poNo: 1048, sent: {}, sentAt: {}, removed: {} };
+P.forEach(function (p) { p.edit = null; p.ordered = 0; });
+
+function noise(i, j) { var x = Math.sin((i + 1) * 12.9898 + (j + 1) * 78.233 + S.seed * 3.17) * 43758.5453; return x - Math.floor(x); }
+function hist(p, pi) {
+  return WEEKS.slice(0, 8).map(function (w, i) {
+    var v = p.base * (1 + p.tr * (i - 8)) * (0.96 + noise(pi, i) * 0.07);
+    if (i === 1) v *= 1 + p.hol;
+    if (i < 4) v *= 1 - p.f.school * 0.8;
+    if (i === 5 && CAMP_HIST[p.id]) v *= 1 + p.f.camp * 0.9;
+    if (i === 6) v *= 1 + p.f.rain * 0.8;
+    return Math.round(v);
+  });
+}
+// pi is fixed per product so history stays stable; S.seed only nudges forecast after a rerun
+P.forEach(function (p, i) { p.pi = i; p.h = hist(p, i); });
+function mult(p, k) { if (k === 'camp') return S.camp[p.id] ? p.f.camp : 0; return S[k] ? p.f[k] : 0; }
+function fc(p) {
+  var lvl = p.base * (1 + p.tr) * (1 + (noise(p.pi, 20) - 0.5) * 0.02 * (S.seed ? 1 : 0));
+  var school = mult(p, 'school') * 0.2; // already mostly in the level; residual uplift vs. summer pattern
+  var m1 = (1 + mult(p, 'rain')) * (1 + mult(p, 'camp')) * (1 + mult(p, 'pay')) * (1 + school);
+  var baseW1 = lvl * (1 + (S.school ? school : 0));
+  var w1 = lvl * m1, w2 = lvl * (1 + p.tr) * (1 + school) * (S.camp[p.id] ? 0.94 : 1);
+  return { base: Math.round(baseW1), w1: Math.round(w1), w2: Math.round(w2), lo1: w1 * 0.92, hi1: w1 * 1.08, lo2: w2 * 0.87, hi2: w2 * 1.13 };
+}
+function supplierOf(p) { return SUP[p.sup]; }
+function suggest(p, f) {
+  var s = supplierOf(p), daily = f.w1 / 7, T = s.lead + s.rev;
+  if (p.shelf) T = Math.min(T, Math.max(1, p.shelf - 1) + (p.shelf <= 2 ? 1 : 0));
+  var safety = p.shelf && p.shelf < 10 ? 0.10 : 0.15;
+  var need = daily * T * (1 + safety) - (p.st + p.dp);
+  return need <= 0 ? 0 : Math.ceil(need / p.pack) * p.pack;
+}
+function qty(p) { if (S.removed[p.id]) return 0; return p.edit != null ? p.edit : p.sug; }
+function stockAt(p) {
+  var r = REG[S.store];
+  if (S.store === 'all') return { st: p.st, dp: p.dp, share: 1 };
+  var w = 0.9 + noise(p.pi, S.store.length + 30) * 0.2;
+  return { st: Math.round(p.st * r.s * w), dp: p.dp, share: r.s };
+}
+function risk(p, f) {
+  var a = stockAt(p), d = f.w1 / 7 * a.share, have = a.st + a.dp * a.share;
+  var days = d ? have / d : 99, lead = supplierOf(p).lead;
+  var out = days < lead && !S.sent[p.sup];
+  var exp = 'na';
+  if (p.shelf) exp = days > p.left ? 'hi' : days > p.left * 0.7 ? 'mid' : 'ok';
+  var waste = exp === 'hi' ? Math.round((days - p.left) * d) : 0;
+  return { days: days, out: out, exp: exp, waste: waste, d7: f.w1 * a.share, have: a };
+}
+function recalc() { P.forEach(function (p) { p.f7 = fc(p); p.sug = suggest(p, p.f7); p.r = risk(p, p.f7); }); }
+function byId(id) { return P.filter(function (p) { return p.id === id; })[0]; }
+
+/* ---------- chart ---------- */
+function niceStep(range) { var raw = range / 4, mag = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / mag; return (n < 1.5 ? 1 : n < 3 ? 2 : n < 7 ? 5 : 10) * mag; }
+function markers(p) {
+  var m = {};
+  function add(i, t, g, l) { (m[i] = m[i] || []).push({ t: t, g: g, l: l }); }
+  add(1, 'o', '★', '30 Ağustos Zafer Bayramı (uzun hafta sonu)');
+  add(4, 'o', '★', 'Okullar açıldı (14 Eylül)');
+  if (CAMP_HIST[p.id]) add(5, 'k', '%', 'Eylül kampanyası: bu üründe indirim');
+  add(6, 'h', '☂', 'Yağmurlu hafta sonu (3–4 Ekim)');
+  if (S.pay) add(8, 'm', '₺', 'Maaş günü (15 Ekim)');
+  if (S.rain) add(8, 'h', '☂', 'Hafta sonu yağmur beklentisi (17–18 Ekim)');
+  if (S.camp[p.id]) add(8, 'k', '%', '%25 indirim kampanyası (12–18 Ekim)');
+  return m;
+}
+function drawChart() {
+  var p = byId(S.sel), f = p.f7, cw = $('#tz-svg').parentNode.clientWidth || 720, cmp = cw < 560, W = cmp ? 400 : 720, H = cmp ? 270 : 290, L = cmp ? 44 : 56, R = cmp ? 14 : 18, T = 40, B = 36;
+  $('#tz-svg').setAttribute('viewBox', '0 0 ' + W + ' ' + H); $('#tz-svg').classList.toggle('cmp', cmp);
+  var vals = p.h.concat([f.hi1, f.hi2, f.lo1, f.lo2]);
+  var mx = Math.max.apply(null, vals), mn = Math.min.apply(null, vals);
+  var step = niceStep((mx - mn) * 1.3 || 1), y0 = Math.max(0, Math.floor((mn - (mx - mn) * 0.25) / step) * step), y1 = Math.ceil((mx + (mx - mn) * 0.08) / step) * step;
+  if (y1 === y0) y1 = y0 + step;
+  var X = function (i) { return L + i * (W - L - R) / 9; }, Y = function (v) { return T + (H - T - B) * (1 - (v - y0) / (y1 - y0)); };
+  var s = '';
+  for (var v = y0; v <= y1 + 0.001; v += step) s += '<line class="gl" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '"/><text class="ax" x="' + (L - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + (v >= 10000 ? fmt(v / 1000, v % 1000 ? 1 : 0) + ' bin' : fmt(v)) + '</text>';
+  // forecast area
+  s += '<rect x="' + ((X(7) + X(8)) / 2) + '" y="' + T + '" width="' + (W - R - (X(7) + X(8)) / 2) + '" height="' + (H - T - B) + '" fill="#65A30D" opacity=".05" rx="6"/>';
+  s += '<line x1="' + ((X(7) + X(8)) / 2) + '" x2="' + ((X(7) + X(8)) / 2) + '" y1="' + (T - 6) + '" y2="' + (H - B) + '" stroke="#9AA58D" stroke-dasharray="3 4"/>';
+  s += '<text class="ax" x="' + ((X(7) + X(8)) / 2 + 6) + '" y="' + (H - B - 8) + '">Tahmin</text>';
+  var last = p.h[7];
+  s += '<path d="M' + X(7) + ' ' + Y(last) + ' L' + X(8) + ' ' + Y(f.hi1) + ' L' + X(9) + ' ' + Y(f.hi2) + ' L' + X(9) + ' ' + Y(f.lo2) + ' L' + X(8) + ' ' + Y(f.lo1) + ' Z" fill="#65A30D" opacity=".18"/>';
+  s += '<path d="M' + p.h.map(function (v, i) { return X(i) + ' ' + Y(v); }).join(' L') + '" fill="none" stroke="#17210F" stroke-width="2.5" stroke-linejoin="round"/>';
+  s += '<path d="M' + X(7) + ' ' + Y(last) + ' L' + X(8) + ' ' + Y(f.w1) + ' L' + X(9) + ' ' + Y(f.w2) + '" fill="none" stroke="#65A30D" stroke-width="2.5" stroke-dasharray="7 5"/>';
+  p.h.forEach(function (v, i) { s += '<circle cx="' + X(i) + '" cy="' + Y(v) + '" r="3.5" fill="#fff" stroke="#17210F" stroke-width="2"/>'; });
+  [f.w1, f.w2].forEach(function (v, i) { s += '<circle cx="' + X(8 + i) + '" cy="' + Y(v) + '" r="5" fill="#65A30D" stroke="#fff" stroke-width="2"/>'; });
+  s += '<text class="axb" x="' + X(8) + '" y="' + (Y(f.hi1) - 9) + '" text-anchor="middle">' + fmt(f.w1) + '</text>';
+  WEEKS.forEach(function (w, i) { if (cmp && i < 8 && i % 2) return; s += '<text class="' + (i >= 8 ? 'axb' : 'ax') + '" x="' + X(i) + '" y="' + (H - 12) + '" text-anchor="middle">' + w + '</text>'; });
+  var m = markers(p), COL = { k: '#7A4FC9', h: '#2F7BC4', o: '#C9820A', m: '#4D7C0F' };
+  Object.keys(m).forEach(function (i) {
+    var list = m[i], x = X(+i);
+    s += '<line x1="' + x + '" x2="' + x + '" y1="' + (T - 8) + '" y2="' + (H - B) + '" stroke="#C9D1BD" stroke-dasharray="2 3"/>';
+    list.forEach(function (mk, j) {
+      var cx = x + (j - (list.length - 1) / 2) * 21;
+      s += '<g data-mk="' + i + '-' + j + '"><circle cx="' + cx + '" cy="' + (T - 18) + '" r="9.5" fill="' + COL[mk.t] + '"/><text x="' + cx + '" y="' + (T - 14.5) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">' + mk.g + '</text></g>';
+    });
+  });
+  WEEKS.forEach(function (w, i) { s += '<rect data-wk="' + i + '" x="' + (X(i) - (W - L - R) / 18) + '" y="' + T + '" width="' + (W - L - R) / 9 + '" height="' + (H - T - B) + '" fill="transparent"/>'; });
+  $('#tz-svg').innerHTML = s;
+  $('#tz-svg').setAttribute('aria-label', p.n + ' için son 8 hafta satış ve 2 haftalık tahmin');
+  var svg = $('#tz-svg'), tip = $('#tz-tip');
+  svg.onmousemove = svg.onclick = function (e) {
+    var t = e.target, box = svg.getBoundingClientRect(), sc = box.width / W, html = null, cx, cy;
+    var mk = t.closest && t.closest('[data-mk]');
+    if (mk) { var a = mk.getAttribute('data-mk').split('-'); html = '<b>' + WEEKR[a[0]] + '</b><br>' + m[a[0]][a[1]].l; cx = X(+a[0]); cy = T - 30; }
+    else {
+      var mx = (e.clientX - box.left) / sc, my = (e.clientY - box.top) / sc;
+      if (mx < L - 20 || mx > W - R + 20 || my < T - 4 || my > H - B + 6) { tip.classList.remove('on'); return; }
+      var i = Math.max(0, Math.min(9, Math.round((mx - L) / ((W - L - R) / 9))));
+      if (i < 8) { html = '<b>' + WEEKR[i] + '</b><br>Satış: ' + fmt(p.h[i]) + ' ' + p.u + (i === 7 ? '<br><span style="opacity:.7">Pazar günü tahmini dahil</span>' : ''); cy = Y(p.h[i]) - 10; }
+      else { var w = i === 8 ? f.w1 : f.w2, lo = i === 8 ? f.lo1 : f.lo2, hi = i === 8 ? f.hi1 : f.hi2; html = '<b>' + WEEKR[i] + ' · tahmin</b><br>' + fmt(w) + ' ' + p.u + '<br><span style="opacity:.75">Aralık: ' + fmt(lo) + ' – ' + fmt(hi) + '</span>'; cy = Y(hi) - 22; }
+      cx = X(i);
+    }
+    if (!html) { tip.classList.remove('on'); return; }
+    tip.innerHTML = html; tip.classList.add('on');
+    var px = Math.min(Math.max(cx * sc, 80), box.width - 80);
+    tip.style.left = px + 'px'; tip.style.top = Math.max(cy * sc, 40) + 'px';
+  };
+  svg.onmouseleave = function () { tip.classList.remove('on'); };
+  // summary
+  var ch = f.w1 / f.base - 1, lastW = p.h[7];
+  $('#tz-fsum').innerHTML = '<div><small>12–18 Ekim tahmini</small><b>' + fmt(f.w1) + ' ' + p.u + '</b></div><div><small>Geçen haftaya göre</small><b class="' + (f.w1 >= lastW ? 'up' : 'dn') + '">' + pct(f.w1 / lastW - 1) + '</b></div><div><small>Senaryo etkisi</small><b class="' + (ch >= 0 ? 'up' : 'dn') + '">' + pct(ch) + '</b></div><div><small>Önerilen sipariş</small><b>' + (S.sent[p.sup] ? 'Gönderildi' : fmt(qty(p)) + ' ' + p.u) + '</b></div>';
+  var evs = [];
+  Object.keys(m).forEach(function (i) { m[i].forEach(function (mk) { if (+i >= 8) evs.push('<span class="ev"><i class="mk ' + mk.t + '">' + mk.g + '</i>' + mk.l + '</span>'); }); });
+  $('#tz-events').innerHTML = evs.length ? evs.join('') : '<span class="ev">Önümüzdeki 2 haftada özel bir etken yok; tahmin mevsimsel seyre dayanıyor.</span>';
+}
+
+/* ---------- factors ---------- */
+function drawFactors() {
+  var p = byId(S.sel), f = p.f7;
+  $('#tz-fsub').textContent = p.n + ' · 12–18 Ekim haftası';
+  $('#tz-factors').innerHTML = FACT.map(function (x) {
+    var on = x.k === 'camp' ? !!S.camp[p.id] : S[x.k], v = p.f[x.k], w = Math.min(Math.abs(v) / 0.5, 1) * 50;
+    var col = !on ? '#C9D1BD' : v >= 0 ? '#65A30D' : '#DC4A3A';
+    var bar = v >= 0 ? 'left:50%;width:' + w + '%' : 'right:50%;width:' + w + '%';
+    return '<li class="' + (on ? '' : 'off') + '"><div class="fl"><i class="mk ' + x.m + '">' + x.g + '</i><div><b>' + x.n + '</b><small>' + x.d + '</small></div></div>' +
+      '<button type="button" class="sw" role="switch" aria-checked="' + on + '" aria-label="' + x.n + '" data-fk="' + x.k + '"></button>' +
+      '<div class="imp"><div class="ib"><i style="' + bar + ';background:' + col + '"></i></div><b class="' + (!on ? 'off' : v >= 0 ? 'up' : 'dn') + '">' + (v === 0 ? 'etkisiz' : pct(v)) + '</b></div></li>';
+  }).join('');
+  var r = p.r, sug = qty(p), txt;
+  if (S.sent[p.sup]) txt = '<b>' + supplierOf(p).n + '</b> siparişi gönderildi. Ürün ' + supplierOf(p).next + ' teslim alınacak.';
+  else if (r.exp === 'hi') txt = 'Mevcut stok ' + fmt(r.days, 1) + ' günlük ama ortalama raf ömrü ' + p.left + ' gün. Yaklaşık <b>' + fmt(r.waste) + ' ' + p.u + ' fire</b> riski var; sipariş önerilmiyor. Kampanya senaryosunu açarak etkisini görebilirsiniz.';
+  else if (r.out) txt = 'Stok ' + fmt(r.days, 1) + ' gün yetiyor, tedarik süresi ' + supplierOf(p).lead + ' gün. <b>Stoksuzluk riski</b> nedeniyle ' + fmt(sug) + ' ' + p.u + ' sipariş öneriliyor.';
+  else txt = 'Tahmin ' + fmt(f.w1) + ' ' + p.u + '. Stok ' + fmt(r.days, 1) + ' gün yetiyor; ' + (sug ? 'teslim döngüsünü karşılamak için <b>' + fmt(sug) + ' ' + p.u + '</b> öneriliyor.' : 'bu dönem ek sipariş gerekmiyor.');
+  $('#tz-fnote').innerHTML = txt;
+}
+
+/* ---------- table ---------- */
+var CATS = ['Tümü'].concat(P.map(function (p) { return p.cat; }).filter(function (c, i, a) { return a.indexOf(c) === i; }));
+$('#tz-cats').innerHTML = CATS.map(function (c) { return '<button type="button" class="chip' + (c === 'Tümü' ? ' on' : '') + '" data-cat="' + c + '">' + c + '</button>'; }).join('');
+$('#tz-prod').innerHTML = P.map(function (p) { return '<option value="' + p.id + '">' + p.n + ' · ' + p.sku + '</option>'; }).join('');
+function isRisky(p) { return p.r.out || p.r.exp === 'hi' || p.r.exp === 'mid'; }
+function expTag(p) {
+  var r = p.r;
+  if (r.exp === 'na') return '<span class="tag t-na">Taze değil</span>';
+  if (r.exp === 'hi') return '<span class="tag t-hi">Yüksek · ~' + fmt(r.waste) + ' ' + p.u + ' fire</span>';
+  if (r.exp === 'mid') return '<span class="tag t-mid">Orta · raf ömrü ' + p.left + ' gün</span>';
+  return '<span class="tag t-ok">Düşük</span>';
+}
+function drawTable() {
+  var rows = P.filter(function (p) { return (S.cat === 'Tümü' || p.cat === S.cat) && (!S.risky || isRisky(p)); });
+  $('#tz-rows').innerHTML = rows.length ? rows.map(function (p) {
+    var r = p.r, a = r.have, base = p.f7.base * a.share, delta = r.d7 / base - 1;
+    var dd = Math.min(r.days, 99), w = Math.min(dd / 10, 1) * 100, col = r.out ? '#DC4A3A' : r.exp === 'hi' ? '#C9820A' : dd < supplierOf(p).lead + 2 ? '#C9820A' : '#65A30D';
+    var sent = S.sent[p.sup], q = qty(p), ord;
+    if (sent) ord = '<span class="tag t-way">Yolda · ' + fmt(p.ordered) + ' ' + p.u + '</span>';
+    else if (S.removed[p.id]) ord = '<span class="tag t-na">Taslaktan çıkarıldı</span> <button type="button" class="link" data-restore="' + p.id + '">geri al</button>';
+    else ord = '<span class="qty"><input type="number" min="0" step="' + p.pack + '" inputmode="numeric" value="' + q + '" data-q="' + p.id + '" class="' + (p.edit != null ? 'ed' : '') + '" aria-label="' + p.n + ' sipariş miktarı"><span>' + p.u + '</span></span>';
+    return '<tr data-p="' + p.id + '" class="' + (p.id === S.sel ? 'sel' : '') + '"><td><span class="pn">' + p.n + '</span>' + (S.camp[p.id] ? ' <span class="tag t-k">kampanya</span>' : '') + '<small class="mono">' + p.sku + ' · ' + p.cat + '</small></td>' +
+      '<td>' + fmt(a.st) + ' / ' + (S.store === 'all' ? fmt(a.dp) : fmt(a.dp) + '*') + ' <small>' + p.u + (S.store === 'all' ? '' : ' · *ortak merkez depo') + '</small></td>' +
+      '<td>' + fmt(r.d7) + ' ' + p.u + (Math.abs(delta) >= 0.005 ? '<small style="color:' + (delta > 0 ? 'var(--g2)' : 'var(--red)') + '">' + pct(delta) + ' senaryo etkisi</small>' : '<small>temel tahmin</small>') + '</td>' +
+      '<td><div class="cov"><i><b style="width:' + w + '%;background:' + col + '"></b></i>' + fmt(dd, 1) + ' gün</div>' + (r.out ? '<small style="color:var(--red);font-weight:600">Stoksuzluk riski</small>' : '<small>tedarik ' + supplierOf(p).lead + ' gün</small>') + '</td>' +
+      '<td>' + ord + '</td><td>' + supplierOf(p).n + '<small>' + supplierOf(p).days + '</small></td><td>' + expTag(p) + '</td></tr>';
+  }).join('') : '<tr><td colspan="7" class="empty">Bu filtrelerle eşleşen ürün yok. Kategori veya risk filtresini değiştirin.</td></tr>';
+  var nr = P.filter(isRisky).length;
+  $('#tz-count').textContent = rows.length + ' ürün gösteriliyor · ' + REG[S.store].n + ' · ' + nr + ' riskli ürün';
+}
+
+/* ---------- purchase orders ---------- */
+function poLines(k) { return P.filter(function (p) { return p.sup === k && (S.sent[k] ? p.ordered > 0 : qty(p) > 0); }); }
+function poTotal(k) { return poLines(k).reduce(function (t, p) { return t + (S.sent[k] ? p.ordered : qty(p)) * p.price; }, 0); }
+function drawPOs() {
+  var keys = Object.keys(SUP).filter(function (k) { return poLines(k).length; });
+  keys.sort(function (a, b) { return (S.sent[a] ? 1 : 0) - (S.sent[b] ? 1 : 0); });
+  $('#tz-pos').innerHTML = keys.map(function (k) {
+    var s = SUP[k], lines = poLines(k), tot = poTotal(k), sent = S.sent[k], low = tot < s.min;
+    var head = '<div class="poh"><div><b>' + s.n + '</b><small>Teslim günleri: ' + s.days + '</small></div>' + (sent ? '<span class="tag t-ok">Gönderildi</span>' : '<span class="tag t-mid">Onay bekliyor</span>') + '</div>';
+    var ul = '<ul class="pol">' + lines.map(function (p) {
+      if (sent) return '<li class="sent-l"><div class="nm"><b>' + p.n + '</b><small>' + fmt(p.ordered / p.pack) + ' koli × ' + p.pack + ' ' + p.u + '</small></div><span class="num">' + fmt(p.ordered) + ' ' + p.u + '</span><span class="lt">' + kit.money(p.ordered * p.price) + '</span></li>';
+      return '<li><div class="nm"><b>' + p.n + '</b><small>' + kit.money(p.price) + ' / ' + p.u + (p.r.out ? ' · stoksuzluk riski' : '') + '</small></div><span class="qty"><input type="number" min="0" step="' + p.pack + '" inputmode="numeric" value="' + qty(p) + '" data-q="' + p.id + '" class="' + (p.edit != null ? 'ed' : '') + '" aria-label="' + p.n + ' miktarı"><span>' + p.u + '</span></span><span class="lt" data-lt="' + p.id + '">' + kit.money(qty(p) * p.price) + '</span><button type="button" class="rm" data-rm="' + p.id + '" aria-label="' + p.n + ' satırını taslaktan çıkar" title="Taslaktan çıkar">×</button></li>';
+    }).join('') + '</ul>';
+    var minb = sent ? '' : '<div class="pomin' + (low ? ' low' : '') + '" data-min="' + k + '"><div><span>Min. sipariş tutarı ' + kit.money(s.min) + '</span><span>' + (low ? kit.money(s.min - tot) + ' eksik' : 'Karşılanıyor') + '</span></div><div class="bar"><i style="width:' + Math.min(tot / s.min * 100, 100) + '%"></i></div></div>';
+    var totl = '<div class="pot"><span>' + (sent ? S.sentAt[k].no + ' · toplam' : 'Taslak toplamı (KDV hariç)') + '</span><b data-tot="' + k + '">' + kit.money(tot) + '</b></div>';
+    var act = sent ? '<div class="posent"><i></i>' + S.sentAt[k].time + ' gönderildi · teslim ' + s.next + '</div>'
+      : '<div class="poa"><button type="button" class="btn" data-ok="' + k + '">Taslağı onayla ve tedarikçiye gönder</button><span class="poal"><button type="button" class="link" data-view="' + k + '">Sipariş belgesini önizle</button>' + (low ? '<button type="button" class="link" data-fill="' + k + '">Min. tutara tamamla</button>' : '') + '</span></div>';
+    return '<article class="po' + (sent ? ' sent' : '') + '" data-po="' + k + '">' + head + ul + minb + totl + act + '</article>';
+  }).join('') || '<div class="card empty">Şu an sipariş gerektiren ürün yok.</div>';
+  var nil = Object.keys(SUP).filter(function (k) { return !poLines(k).length && !S.sent[k]; }).map(function (k) { return SUP[k].n; });
+  $('#tz-po-sum').textContent = nil.length ? 'Sipariş gerekmeyen: ' + nil.join(', ') : '';
+  drawKPIs();
+}
+function drawKPIs() {
+  var pend = Object.keys(SUP).filter(function (k) { return !S.sent[k] && poLines(k).length; });
+  var tot = pend.reduce(function (t, k) { return t + poTotal(k); }, 0);
+  $('#tz-pend').textContent = pend.length;
+  $('#tz-pend-s').textContent = pend.length ? kit.money(tot) + ' · ' + pend.reduce(function (t, k) { return t + poLines(k).length; }, 0) + ' kalem onay bekliyor' : 'Tüm taslaklar gönderildi';
+  $('#tz-so').textContent = S.so;
+  $('#tz-acc').textContent = '%' + fmt(S.acc, 1);
+}
+function render() { recalc(); drawChart(); drawFactors(); drawTable(); drawPOs(); $('#tz-prod').value = S.sel; }
+function flash(el) { if (!el) return; el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+
+/* ---------- events ---------- */
+$('#tz-prod').addEventListener('change', function () { S.sel = this.value; render(); });
+$('#tz-factors').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-fk]'); if (!b) return;
+  var k = b.getAttribute('data-fk'), p = byId(S.sel), name = FACT.filter(function (x) { return x.k === k; })[0].n;
+  var before = p.f7.w1;
+  if (k === 'camp') { if (S.camp[p.id]) delete S.camp[p.id]; else S.camp[p.id] = 1; } else S[k] = !S[k];
+  render();
+  var on = k === 'camp' ? !!S.camp[p.id] : S[k];
+  kit.toast(name + (on ? ' senaryoya eklendi. ' : ' senaryodan çıkarıldı. ') + p.n + ' tahmini ' + fmt(before) + ' → ' + fmt(byId(S.sel).f7.w1) + ' ' + p.u + (k === 'camp' ? '.' : '; tüm ürünlerin önerileri güncellendi.'));
+});
+$('#tz-reset').addEventListener('click', function () {
+  S.rain = true; S.pay = true; S.school = true; S.camp = {}; render();
+  kit.toast('Senaryo varsayılana döndü: meteoroloji ve takvim verileri, kampanya yok.');
+});
+$('#tz-why').addEventListener('click', function () {
+  var p = byId(S.sel), f = p.f7;
+  kit.modal({ title: p.n + ' · tahmin açıklaması', body: '<p>Model, 14 mağazanın son 104 haftalık satışını gün bazında okur; mevsimsellik, tatil takvimi, hava durumu ve kampanya geçmişini birlikte değerlendirir.</p><dl class="k-dl"><dt>Temel seviye</dt><dd>' + fmt(f.base) + ' ' + p.u + ' / hafta</dd><dt>Senaryo sonrası</dt><dd>' + fmt(f.w1) + ' ' + p.u + '</dd><dt>%80 güven aralığı</dt><dd>' + fmt(f.lo1) + ' – ' + fmt(f.hi1) + '</dd><dt>Bu ürünün doğruluğu</dt><dd>%' + fmt(89 + noise(p.pi, 40) * 7, 1) + ' (son 4 hafta)</dd><dt>Güvenlik stoğu</dt><dd>' + (p.shelf && p.shelf < 10 ? '%10 (taze ürün)' : '%15') + '</dd><dt>Teslim döngüsü</dt><dd>' + supplierOf(p).lead + ' gün tedarik + ' + supplierOf(p).rev + ' gün sipariş aralığı</dd></dl><p class="k-note">Taze ürünlerde sipariş miktarı raf ömrüyle sınırlandırılır; böylece fazla sipariş fireye dönüşmez.</p>', actions: [{ label: 'Kapat' }] });
+});
+$('#tz-store').addEventListener('change', function () { S.store = this.value; render(); kit.toast(REG[S.store].n + ' görünümü: stok ve talep bölge payına göre gösteriliyor.'); });
+$('#tz-cats').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-cat]'); if (!b) return;
+  S.cat = b.getAttribute('data-cat');
+  root.querySelectorAll('#tz-cats .chip').forEach(function (c) { c.classList.toggle('on', c === b); });
+  drawTable();
+});
+$('#tz-risky').addEventListener('click', function () { S.risky = !S.risky; this.setAttribute('aria-checked', S.risky); drawTable(); });
+$('#tz-rows').addEventListener('click', function (e) {
+  if (e.target.closest('input,button')) return;
+  var tr = e.target.closest('tr[data-p]'); if (!tr) return;
+  S.sel = tr.getAttribute('data-p'); render(); kit.go('#tz-fc');
+});
+function setQty(input) {
+  var p = byId(input.getAttribute('data-q')), v = Math.max(0, Math.round(+input.value || 0));
+  p.edit = v === p.sug ? null : v;
+  return p;
+}
+// live update while typing: refresh line totals, PO totals and KPIs without re-rendering the focused input
+root.addEventListener('input', function (e) {
+  var inp = e.target.closest && e.target.closest('input[data-q]'); if (!inp) return;
+  var p = setQty(inp);
+  root.querySelectorAll('input[data-q="' + p.id + '"]').forEach(function (o) { if (o !== inp) o.value = qty(p); o.classList.toggle('ed', p.edit != null); });
+  root.querySelectorAll('[data-lt="' + p.id + '"]').forEach(function (o) { o.textContent = kit.money(qty(p) * p.price); });
+  var k = p.sup, tot = poTotal(k), s = SUP[k];
+  root.querySelectorAll('[data-tot="' + k + '"]').forEach(function (o) { o.textContent = kit.money(tot); });
+  var mn = root.querySelector('[data-min="' + k + '"]');
+  if (mn) { mn.classList.toggle('low', tot < s.min); mn.querySelector('div span:last-child').textContent = tot < s.min ? kit.money(s.min - tot) + ' eksik' : 'Karşılanıyor'; mn.querySelector('.bar i').style.width = Math.min(tot / s.min * 100, 100) + '%'; }
+  drawKPIs();
+});
+root.addEventListener('change', function (e) {
+  var inp = e.target.closest && e.target.closest('input[data-q]'); if (!inp) return;
+  var p = setQty(inp), v = qty(p);
+  if (v % p.pack) { p.edit = Math.ceil(v / p.pack) * p.pack; kit.toast(p.n + ' koli içi ' + p.pack + ' ' + p.u + '; miktar ' + fmt(p.edit) + ' ' + p.u + ' olarak yuvarlandı.', 'warn'); }
+  else kit.toast(p.n + ': ' + fmt(v) + ' ' + p.u + ' · ' + SUP[p.sup].n + ' taslağı güncellendi.');
+  render();
+});
+$('#tz-pos').addEventListener('click', function (e) {
+  var b;
+  if ((b = e.target.closest('[data-rm]'))) {
+    var p = byId(b.getAttribute('data-rm')); S.removed[p.id] = 1; render();
+    kit.toast(p.n + ' taslaktan çıkarıldı. Ürün tablosundan geri alabilirsiniz.', 'warn'); return;
+  }
+  if ((b = e.target.closest('[data-fill]'))) {
+    var k = b.getAttribute('data-fill'), s = SUP[k], lines = poLines(k).slice().sort(function (a, c) { return c.shelf - a.shelf || c.price - a.price; }), guard = 0;
+    if (!lines.length) return;
+    var target = lines.filter(function (p) { return !p.shelf || p.shelf >= 14; })[0] || lines[0];
+    while (poTotal(k) < s.min && guard++ < 500) target.edit = qty(target) + target.pack;
+    render(); flash(root.querySelector('[data-po="' + k + '"]'));
+    kit.toast(target.n + ' miktarı ' + fmt(qty(target)) + ' ' + target.u + ' yapıldı; ' + s.n + ' minimum tutarı karşılandı.'); return;
+  }
+  if ((b = e.target.closest('[data-view]'))) { preview(b.getAttribute('data-view')); return; }
+  if ((b = e.target.closest('[data-ok]'))) approve(b.getAttribute('data-ok'));
+});
+$('#tz-rows').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-restore]'); if (!b) return;
+  var p = byId(b.getAttribute('data-restore')); delete S.removed[p.id]; render(); kit.toast(p.n + ' yeniden taslağa eklendi.');
+});
+function docTable(k) {
+  var lines = poLines(k);
+  return '<div class="podoc"><table><thead><tr><th>Ürün</th><th>Miktar</th><th class="c3">Birim fiyat</th><th>Tutar</th></tr></thead><tbody>' + lines.map(function (p) {
+    return '<tr><td>' + p.n + '<small class="mono">' + p.sku + '</small></td><td>' + fmt(qty(p)) + ' ' + p.u + '</td><td class="c3">' + kit.money(p.price) + '</td><td>' + kit.money(qty(p) * p.price) + '</td></tr>';
+  }).join('') + '</tbody><tfoot><tr><td colspan="2">Toplam (KDV hariç)</td><td class="c3"></td><td>' + kit.money(poTotal(k)) + '</td></tr></tfoot></table></div>';
+}
+function preview(k) {
+  var s = SUP[k];
+  kit.modal({ title: 'Sipariş taslağı · PO-2026-' + S.poNo, body: '<dl class="k-dl"><dt>Tedarikçi</dt><dd>' + s.n + '</dd><dt>Teslim yeri</dt><dd>Tazemarket Merkez Depo, Nilüfer / Bursa</dd><dt>İlk teslim</dt><dd>' + s.next + '</dd></dl>' + docTable(k) + '<p class="k-note">Taslak tahmin modelinin 10 Ekim çıktısına göre hazırlandı. Onaydan önce miktarları kart üzerinden düzenleyebilirsiniz.</p>', actions: [{ label: 'Kapat' }, { label: 'Onaya geç', primary: true, onClick: function (close) { close(); approve(k); } }] });
+}
+function approve(k) {
+  var s = SUP[k], tot = poTotal(k), lines = poLines(k);
+  if (!lines.length) return;
+  var low = tot < s.min;
+  kit.modal({ title: s.n + ' siparişi onaylansın mı?', body: '<dl class="k-dl"><dt>Sipariş no</dt><dd>PO-2026-' + S.poNo + '</dd><dt>Kalem</dt><dd>' + lines.length + ' ürün</dd><dt>Teslim</dt><dd>' + s.next + '</dd><dt>Gönderim</dt><dd>EDI + e-posta (' + s.mail + ')</dd></dl>' + docTable(k) + (low ? '<p style="color:#9A6206;font-size:14px"><b>Dikkat:</b> Toplam, ' + kit.money(s.min) + ' minimum sipariş tutarının altında. Tedarikçi ek nakliye ücreti yansıtabilir.</p>' : '') + '<p class="k-note">Onay, sizin adınızla işlem geçmişine kaydedilir ve ERP\'de satın alma siparişi açılır.</p>',
+    actions: [{ label: 'Vazgeç' }, { label: low ? 'Yine de gönder' : 'Onayla ve gönder', primary: true, onClick: function (close) {
+      close();
+      var prevented = lines.filter(function (p) { return p.r.out; }).length;
+      lines.forEach(function (p) { p.ordered = qty(p); p.edit = null; });
+      S.sent[k] = 1; S.sentAt[k] = { no: 'PO-2026-' + S.poNo, time: '10 Eki ' + clock() };
+      S.poNo++; S.so += prevented;
+      render();
+      flash(root.querySelector('[data-po="' + k + '"]'));
+      if (prevented) flash($('#tz-so'));
+      kit.toast(S.sentAt[k].no + ' gönderildi: ' + s.n + ' · ' + kit.money(tot) + (prevented ? ' · ' + prevented + ' üründe stoksuzluk önlendi.' : '.'));
+    } }] });
+}
+var mins = 14 * 60 + 12;
+function clock() { mins += 1 + Math.floor(Math.random() * 3); return String(Math.floor(mins / 60)).padStart(2, '0') + ':' + String(mins % 60).padStart(2, '0'); }
+$('#tz-src').addEventListener('click', function () {
+  kit.modal({ title: 'Veri kaynakları', body: '<ul class="src"><li>POS satış verisi<span>14 mağaza · 15 dk\'da bir</span></li><li>ERP stok ve satın alma<span>Logo Tiger · anlık</span></li><li>Hava durumu tahmini<span>MGM · 6 saatte bir</span></li><li>Kampanya takvimi<span>Pazarlama planı · günlük</span></li><li>Resmi tatil ve okul takvimi<span>MEB · yıllık</span></li><li>Tedarikçi katalogları<span>EDI · fiyat ve min. sipariş</span></li></ul><p class="k-note">Son eşitleme 10 Ekim 14:10. Model her gün 06:00\'da otomatik çalışır.</p>', actions: [{ label: 'Kapat' }] });
+});
+var running = false;
+$('#tz-rerun').addEventListener('click', function () {
+  if (running) return;
+  running = true;
+  var btn = this, steps = ['Satış verisi alınıyor · 14 mağaza, 2.184 SKU', 'Hava durumu ve takvim verisi işleniyor', 'Kampanya ve fiyat etkileri hesaplanıyor', 'Model eğitiliyor ve doğrulanıyor', 'Sipariş önerileri güncelleniyor'], i = 0;
+  btn.disabled = true; btn.classList.add('spin'); btn.querySelector('span').textContent = 'Model çalışıyor…';
+  $('#tz-run').hidden = false;
+  var t = setInterval(function () {
+    i++;
+    var pc = Math.min(i * 10, 100);
+    $('#tz-run-bar').style.width = pc + '%'; $('#tz-run-pct').textContent = '%' + pc;
+    $('#tz-run-step').textContent = steps[Math.min(Math.floor((i - 1) / 2), 4)];
+    if (i >= 10) {
+      clearInterval(t);
+      setTimeout(function () {
+        var old = S.acc;
+        S.seed++; S.acc = Math.round((92.3 + Math.random() * 0.9) * 10) / 10;
+        render();
+        $('#tz-run').hidden = true; $('#tz-run-bar').style.width = '0';
+        btn.disabled = false; btn.classList.remove('spin'); btn.querySelector('span').textContent = 'Tahmin modelini yeniden çalıştır';
+        $('#tz-src').textContent = '14 mağaza · son çalıştırma ' + clock();
+        var d = S.acc - 90.6; $('#tz-acc-d').textContent = (d >= 0 ? '+' : '−') + fmt(Math.abs(d), 1) + ' puan';
+        flash($('#tz-acc'));
+        running = false;
+        kit.toast('Model yeniden çalıştı. Doğruluk %' + fmt(old, 1) + ' → %' + fmt(S.acc, 1) + '; elle düzenlenmemiş öneriler güncellendi.');
+      }, 250);
+    }
+  }, 230);
+});
+var rw = 0;
+window.addEventListener('resize', function () { var w = $('#tz-svg').parentNode.clientWidth; if ((w < 560) !== (rw < 560)) { rw = w; drawChart(); } });
+render(); rw = $('#tz-svg').parentNode.clientWidth;
+</script>

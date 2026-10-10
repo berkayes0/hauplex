@@ -129,6 +129,18 @@ DEMOS = [
      'Araç ya da plakaya göre uyumlu parça arama, depo bazında stok ve net fiyat.', '#D7263D', '#EEF0F4', 'e'),
     ('lojistik', 'Rota Lojistik', 'Lojistik · Stok ve kargo bildirimleri', 'oto',
      'Gönderi takibi, kritik stok uyarıları ve müşteriye otomatik WhatsApp mesajları.', '#4A2C82', '#F1ECF9', 'f'),
+    ('finans', 'Atlas Dağıtım', 'Finans · Nakit akışı ve tahsilat otomasyonu', 'oto',
+     'Vadesi gelen alacaklara otomatik hatırlatma, banka hareketlerinden tahsilat eşleştirme ve 90 günlük nakit tahmini.', '#0E7C66', '#E8F4F0', 'a'),
+    ('mutabakat', 'Kardelen Mobilya', 'Muhasebe · Fatura okuma ve banka mutabakatı', 'oto',
+     'Gelen faturaları okuyup muhasebeye işleyen, banka ekstresini cari hesaplarla otomatik eşleştiren panel.', '#1D4ED8', '#EEF2FB', 'b'),
+    ('rakip', 'Modaev', 'E-ticaret · Rakip fiyat ve pazar analizi', 'oto',
+     'Rakiplerin fiyat, stok ve kampanyalarını izleyip fiyatları kurallara göre otomatik güncelleyen sistem.', '#E11D48', '#FDF0F3', 'c'),
+    ('rota', 'Yolda Dağıtım', 'Lojistik · Rota optimizasyonu ve filo takibi', 'oto',
+     'Teslimatları araçlara dağıtan, en kısa rotayı çıkaran ve gecikmeleri müşteriye bildiren planlama ekranı.', '#EA580C', '#FFF3EA', 'd'),
+    ('talep', 'Tazemarket', 'Perakende · Talep tahmini ve otomatik satın alma', 'oto',
+     'Satış geçmişi, hava durumu ve kampanyalara göre talebi tahmin edip tedarikçiye sipariş taslağı hazırlayan sistem.', '#65A30D', '#F2F7E8', 'e'),
+    ('pazaryeri', 'Nova Kozmetik', 'E-ticaret · Çok kanallı pazaryeri yönetimi', 'oto',
+     'Trendyol, Hepsiburada, Amazon ve kendi sitesindeki stok, fiyat ve siparişleri tek ekrandan yöneten panel.', '#7C3AED', '#F4EFFD', 'f'),
 ]
 
 THUMBS = {
@@ -256,7 +268,7 @@ def home():
     </div>
   </section>
 '''
-    refs = links(part('refs')).replace('{{CARDS_HOME}}', cards(DEMOS[:3]))
+    refs = links(part('refs')).replace('{{CARDS_HOME}}', cards([d for d in DEMOS if d[0] in ('insaat', 'gida', 'rakip')]))
     refs = refs.replace('      </div>\n    </div>\n  </section>', f'      </div>\n      <div class="section-foot"><a class="text-link" href="referanslar.html">Tüm referansları görün {ARROW}</a></div>\n    </div>\n  </section>', 1)
     return (links(part('hero')) + integrations_strip() + services + links(part('band')) + refs
             + cta('Projenizi birlikte planlayalım.', 'Ne yapmak istediğinizi anlatın; ihtiyacınıza uygun çözümü ve net bir teklifi birlikte çıkaralım.', ('hizmetler.html', 'Hizmetleri inceleyin')))
