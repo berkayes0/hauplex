@@ -628,3 +628,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .marquee ul { flex-wrap: wrap; flex: 1; }
   .marquee ul[aria-hidden] { display: none; }
 }
+
+/* Reference cards: real demo screenshots */
+.ref-img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: cover; object-position: top center; background: var(--hue-bg); transition: transform .5s ease; }
+.ref-link:hover .ref-img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .ref-link:hover .ref-img { transform: none; } }

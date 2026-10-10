@@ -146,7 +146,7 @@ def ref_card(d):
           <a class="ref-link" href="demos/{slug}.html" aria-label="{name} demosunu açın">
             <div class="ref-shot" aria-hidden="true">
               <div class="ref-bar"><i></i><i></i><i></i><span></span></div>
-              <div class="ref-body">{THUMBS[layout]}</div>
+              <img class="ref-img" src="assets/refs/{slug}.webp" width="960" height="640" loading="lazy" decoding="async" alt="">
               <span class="demo-badge">Demo</span><span class="ref-open">Demoyu aç</span>
             </div>
           </a>
@@ -453,6 +453,10 @@ def preview(path):
 {ROUTER}
 </script>
 '''
+    import base64
+    for d in DEMOS:
+        b64 = base64.b64encode(open(os.path.join(ROOT, 'assets', 'refs', d[0] + '.webp'), 'rb').read()).decode()
+        out = out.replace(f'src="assets/refs/{d[0]}.webp"', f'src="data:image/webp;base64,{b64}"')
     with open(path, 'w', encoding='utf-8') as f:
         f.write(out)
 
